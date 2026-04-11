@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegginX — Performance Wear That Moves With You</title>
+    <link rel="stylesheet" href="assets/rival-shorts-revamp.css?v=9">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="assets/product-data.js"></script>
+    <script src="assets/legginx-animations.js?v=4" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="assets/legginx-threejs.js" defer></script>
+    <style>
+        body { font-family: 'Outfit', sans-serif; background-color: #09090b; color: #ededed; }
+        .glass-panel {
+            background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #ffffff, #888888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .reveal-glow { transition: box-shadow 0.5s ease, border-color 0.5s ease; }
+        .reveal-glow:hover {
+            box-shadow: 0 0 40px rgba(150, 150, 150, 0.15);
+            border-color: rgba(255,255,255,0.15);
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen antialiased selection:bg-white selection:text-black">
+
+<!-- ════════════════════════════════════════════════════════════
+     HEADER
+     ════════════════════════════════════════════════════════════ -->
+<header class="fixed top-0 left-0 right-0 z-[100] w-full transition-all duration-300 bg-transparent flex flex-col font-['Outfit'] antialiased group" id="legginx-header">
+  <!-- Announcement Bar -->
+  <div class="bg-black text-white text-[10px] sm:text-xs font-semibold tracking-widest uppercase text-center py-2 relative z-20 w-full">
+    Free Shipping on All Orders
+  </div>
+
+  <!-- Main Nav Row -->
+  <div class="w-full px-5 md:px-12 py-4 flex items-center justify-between transition-all duration-500 bg-gradient-to-b from-black/80 to-transparent group-hover:bg-black/90 group-hover:backdrop-blur-md">
+
+    <!-- Left: Hamburger (mobile only) / Links (desktop) -->
+    <div class="flex-1 flex items-center">
+      <button id="mobile-nav-toggle" class="lg:hidden text-white hover:text-zinc-400 transition-colors" aria-label="Open menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"/></svg>
+      </button>
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="rival.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Rival</a>
+        <a href="glow.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Glow</a>
+        <a href="aura.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Aura</a>
+        <a href="all-items.html" class="text-xs font-medium uppercase tracking-[0.2em] text-zinc-300 hover:text-white transition-colors">All Items</a>
+        <a href="essentials.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Essentials</a>
+      </nav>
+    </div>
+
+    <!-- Center: Logo -->
+    <div class="flex-shrink-0">
+      <a href="index.html" class="text-white hover:scale-110 transition-transform duration-500 block filter drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
+        <svg viewBox="0 0 100 100" fill="currentColor" class="w-8 h-8 md:w-10 md:h-10">
+          <path d="M 50 2 L 34 22 L 44 22 L 44 42 C 44 55, 28 55, 28 35 L 28 28 L 34 32 L 20 6 L 6 32 L 14 28 C 14 55, 34 60, 44 60 C 36 61, 36 66, 44 67 L 44 71 C 36 72, 36 77, 44 78 L 44 98 L 56 98 L 56 78 C 64 77, 64 72, 56 71 L 56 67 C 64 66, 64 61, 56 60 C 66 60, 86 55, 86 28 L 94 32 L 80 6 L 66 32 L 72 28 L 72 35 C 72 55, 56 55, 56 42 L 56 22 L 66 22 Z" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- Right: Utility Icons -->
+    <div class="flex flex-1 items-center justify-end gap-5 text-white">
+      <a href="#" class="hover:text-zinc-400 transition-colors hidden sm:block">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+      </a>
+      <a href="profile.html" class="hover:text-zinc-400 transition-colors hidden sm:block">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+      </a>
+      <a href="cart.html" class="hover:text-zinc-400 transition-colors flex items-center relative">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
+        <span id="cart-count" class="absolute -top-2 -right-2 bg-white text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center transition-transform duration-300">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ════════════════════════════════════════════════════════════
+     MOBILE NAV DRAWER (hidden on desktop)
+     ════════════════════════════════════════════════════════════ -->
+<div id="mobile-nav-backdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[200] hidden opacity-0 transition-opacity duration-300 lg:hidden"></div>
+<div id="mobile-nav-drawer" class="fixed top-0 left-0 h-full w-[80%] max-w-[320px] bg-[#09090b] z-[210] transform -translate-x-full transition-transform duration-300 ease-in-out border-r border-white/5 flex flex-col p-8 lg:hidden font-['Outfit']">
+  <div class="flex justify-between items-center mb-12">
+    <svg viewBox="0 0 100 100" fill="currentColor" class="w-8 h-8 text-white opacity-60">
+      <path d="M 50 2 L 34 22 L 44 22 L 44 42 C 44 55, 28 55, 28 35 L 28 28 L 34 32 L 20 6 L 6 32 L 14 28 C 14 55, 34 60, 44 60 C 36 61, 36 66, 44 67 L 44 71 C 36 72, 36 77, 44 78 L 44 98 L 56 98 L 56 78 C 64 77, 64 72, 56 71 L 56 67 C 64 66, 64 61, 56 60 C 66 60, 86 55, 86 28 L 94 32 L 80 6 L 66 32 L 72 28 L 72 35 C 72 55, 56 55, 56 42 L 56 22 L 66 22 Z" />
+    </svg>
+    <button id="mobile-nav-close" class="text-white/60 hover:text-white transition-colors">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="flex flex-col gap-7">
+    <a href="rival.html" class="text-2xl font-light tracking-widest text-white/80 hover:text-white transition-colors uppercase">Rival</a>
+    <a href="glow.html" class="text-2xl font-light tracking-widest text-white/80 hover:text-white transition-colors uppercase">Glow</a>
+    <a href="aura.html" class="text-2xl font-light tracking-widest text-white/80 hover:text-white transition-colors uppercase">Aura</a>
+    <a href="all-items.html" class="text-2xl font-light tracking-widest text-white/80 hover:text-white transition-colors uppercase">All Items</a>
+    <a href="essentials.html" class="text-2xl font-light tracking-widest text-white/80 hover:text-white transition-colors uppercase">Essentials</a>
+  </nav>
+  <div class="mt-auto border-t border-white/5 pt-8 flex flex-col gap-4 text-xs tracking-widest uppercase text-zinc-500">
+    <a href="profile.html" class="hover:text-white transition-colors">My Account</a>
+    <a href="cart.html" class="hover:text-white transition-colors">Shopping Cart</a>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     HERO SECTION
+     ════════════════════════════════════════════════════════════ -->
+<div class="relative w-full min-h-[85vh] lg:min-h-screen py-16 lg:py-24 flex items-center justify-center overflow-hidden bg-[#09090b] font-['Outfit'] antialiased">
+
+  <!-- Background Image + Overlays -->
+  <div class="absolute inset-0 w-full h-full">
+    <img src="images/hero_image.png" alt="Performance Wear" class="w-full h-full object-cover object-right lg:object-center opacity-70 animate-on-scroll transform duration-[2000ms] scale-100 hover:scale-105 ease-out transition-transform">
+    <div class="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/40 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#09090b]/80 via-[#09090b]/20 to-transparent"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-24 lg:h-48 bg-gradient-to-t from-[#09090b] to-transparent z-10"></div>
+    <div id="hero-canvas-container" class="absolute inset-0 z-0 pointer-events-none mix-blend-screen opacity-60"></div>
+  </div>
+
+  <!-- Hero Content -->
+  <div class="relative z-10 w-full max-w-[90rem] mx-auto px-5 sm:px-6 lg:px-12 flex flex-col items-start justify-end lg:justify-center h-full pb-8 lg:pb-0">
+    <div class="max-w-3xl animate-on-scroll opacity-0 translate-y-12 transition-all duration-[1200ms] ease-out">
+
+      <!-- Trust Badge -->
+      <div class="flex items-center gap-2.5 mb-5 lg:mb-6">
+        <div class="flex text-amber-400 text-xs tracking-wider">★★★★★</div>
+        <span class="text-[11px] uppercase tracking-[0.2em] text-white/50 font-medium">4.8 · Rated by 10,000+ Athletes</span>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[6.5rem] font-bold tracking-tight lg:tracking-tighter uppercase text-white leading-[1] lg:leading-[0.9] mb-5 lg:mb-6" style="text-shadow: 0 8px 30px rgba(0,0,0,0.7);">
+        Performance<br>Wear That<br class="sm:hidden"> Moves<br class="hidden sm:block"> With You
+      </h1>
+
+      <!-- Subheadline -->
+      <p class="text-base sm:text-lg md:text-xl lg:text-xl text-zinc-300/90 font-light max-w-md lg:max-w-xl mb-7 lg:mb-8 leading-relaxed">
+        Breathable. Sculpting. Built for high-output training.
+      </p>
+
+      <!-- CTA Stack -->
+      <div class="flex flex-col gap-3 w-full sm:w-auto">
+        <a href="all-items.html" class="px-10 py-4 lg:py-5 bg-white text-black text-xs lg:text-sm uppercase tracking-[0.2em] font-bold rounded-full text-center transition-all duration-300 hover:bg-zinc-100 hover:shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:scale-[1.02] active:scale-[0.98]">
+          Shop FW26 Collection
+        </a>
+        <div class="flex gap-3">
+          <a href="all-items.html" class="flex-1 px-10 py-3.5 bg-white/5 backdrop-blur-md border border-white/15 text-white/80 text-[10px] lg:text-xs uppercase tracking-[0.2em] font-medium rounded-full text-center transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:text-white">
+            Shop Women's Apparel
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     FEATURED PRODUCTS
+     ════════════════════════════════════════════════════════════ -->
+<div class="legginx-section py-20 px-4 sm:px-6 lg:px-12 w-full max-w-[90rem] mx-auto relative z-20">
+
+  <!-- Section Header -->
+  <div class="mb-16 text-center animate-on-scroll opacity-0 translate-y-8 transition-all duration-[1000ms] ease-out">
+    <span class="text-xs uppercase tracking-[0.3em] text-zinc-500 mb-4 block font-semibold">New Arrival</span>
+    <h2 class="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight uppercase text-gradient pb-2">
+      RIVAL SERIES
+    </h2>
+    <p class="mt-6 max-w-2xl text-base sm:text-lg text-zinc-400 mx-auto font-light leading-relaxed">
+      A masterpiece of engineering. Second-skin feel, zero distractions, and unparalleled aesthetic dominance.
+    </p>
+  </div>
+
+  <!-- Product Grid -->
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-8 pb-28 lg:pb-12">
+
+    <!-- Product 1 -->
+    <div class="legginx-product-card group relative flex flex-col rounded-2xl glass-panel reveal-glow p-1.5 sm:p-2 animate-on-scroll opacity-0 translate-y-8 transition-all duration-[1000ms] ease-out" style="transition-delay: 0ms;">
+      <div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-black flex-grow">
+        <a href="product.html?id=aura_obsidian" class="absolute inset-0 z-0 cursor-pointer block">
+          <img src="images/aura_obsidian.png" alt="Aura Bra - Obsidian" class="legginx-product-image w-full h-full object-center object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700">
+        </a>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+        <form method="post" action="#" class="absolute bottom-4 left-4 right-4 transform translate-y-8 group-hover:translate-y-0 transition-all duration-500 z-10 opacity-0 group-hover:opacity-100">
+          <button type="button" class="quick-add-btn w-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium py-3 px-4 rounded-lg shadow-2xl hover:bg-white hover:text-black hover:border-white uppercase tracking-widest text-[10px] sm:text-xs transition-all duration-300 cursor-pointer">Quick Add</button>
+        </form>
+      </div>
+      <div class="mt-3 sm:mt-5 mb-2 px-2 sm:px-3 flex flex-row items-center justify-between">
+        <h3 class="text-sm sm:text-base font-medium text-white tracking-wide truncate"><a href="product.html?id=aura_obsidian" class="hover:text-zinc-300 transition-colors">Aura Obsidian</a></h3>
+        <p class="text-xs sm:text-sm text-zinc-500 font-light ml-2">$48</p>
+      </div>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="legginx-product-card group relative flex flex-col rounded-2xl glass-panel reveal-glow p-1.5 sm:p-2 animate-on-scroll opacity-0 translate-y-8 transition-all duration-[1000ms] ease-out" style="transition-delay: 150ms;">
+      <div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-black flex-grow">
+        <a href="product.html?id=aura_frost" class="absolute inset-0 z-0 cursor-pointer block">
+          <img src="images/aura_frost.png" alt="Aura Bra - Frost" class="legginx-product-image w-full h-full object-center object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700">
+        </a>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+        <form method="post" action="#" class="absolute bottom-4 left-4 right-4 transform translate-y-8 group-hover:translate-y-0 transition-all duration-500 z-10 opacity-0 group-hover:opacity-100">
+          <button type="button" class="quick-add-btn w-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium py-3 px-4 rounded-lg shadow-2xl hover:bg-white hover:text-black hover:border-white uppercase tracking-widest text-[10px] sm:text-xs transition-all duration-300 cursor-pointer">Quick Add</button>
+        </form>
+      </div>
+      <div class="mt-3 sm:mt-5 mb-2 px-2 sm:px-3 flex flex-row items-center justify-between">
+        <h3 class="text-sm sm:text-base font-medium text-white tracking-wide truncate"><a href="product.html?id=aura_frost" class="hover:text-zinc-300 transition-colors">Aura Frost</a></h3>
+        <p class="text-xs sm:text-sm text-zinc-500 font-light ml-2">$48</p>
+      </div>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="legginx-product-card group relative flex flex-col rounded-2xl glass-panel reveal-glow p-1.5 sm:p-2 animate-on-scroll opacity-0 translate-y-8 transition-all duration-[1000ms] ease-out" style="transition-delay: 300ms;">
+      <div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-black flex-grow">
+        <a href="product.html?id=essential_midnight" class="absolute inset-0 z-0 cursor-pointer block">
+          <img src="images/essential_midnight.png" alt="Essential Halter - Midnight" class="legginx-product-image w-full h-full object-center object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700">
+        </a>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+        <form method="post" action="#" class="absolute bottom-4 left-4 right-4 transform translate-y-8 group-hover:translate-y-0 transition-all duration-500 z-10 opacity-0 group-hover:opacity-100">
+          <button type="button" class="quick-add-btn w-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium py-3 px-4 rounded-lg shadow-2xl hover:bg-white hover:text-black hover:border-white uppercase tracking-widest text-[10px] sm:text-xs transition-all duration-300 cursor-pointer">Quick Add</button>
+        </form>
+      </div>
+      <div class="mt-3 sm:mt-5 mb-2 px-2 sm:px-3 flex flex-row items-center justify-between">
+        <h3 class="text-sm sm:text-base font-medium text-white tracking-wide truncate"><a href="product.html?id=essential_midnight" class="hover:text-zinc-300 transition-colors">Ess. Midnight</a></h3>
+        <p class="text-xs sm:text-sm text-zinc-500 font-light ml-2">$32</p>
+      </div>
+    </div>
+
+    <!-- Product 4 -->
+    <div class="legginx-product-card group relative flex flex-col rounded-2xl glass-panel reveal-glow p-1.5 sm:p-2 animate-on-scroll opacity-0 translate-y-8 transition-all duration-[1000ms] ease-out" style="transition-delay: 450ms;">
+      <div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-black flex-grow">
+        <a href="product.html?id=essential_mocha" class="absolute inset-0 z-0 cursor-pointer block">
+          <img src="images/essential_mocha.png" alt="Essential Halter - Mocha" class="legginx-product-image w-full h-full object-center object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700">
+        </a>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+        <form method="post" action="#" class="absolute bottom-4 left-4 right-4 transform translate-y-8 group-hover:translate-y-0 transition-all duration-500 z-10 opacity-0 group-hover:opacity-100">
+          <button type="button" class="quick-add-btn w-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium py-3 px-4 rounded-lg shadow-2xl hover:bg-white hover:text-black hover:border-white uppercase tracking-widest text-[10px] sm:text-xs transition-all duration-300 cursor-pointer">Quick Add</button>
+        </form>
+      </div>
+      <div class="mt-3 sm:mt-5 mb-2 px-2 sm:px-3 flex flex-row items-center justify-between">
+        <h3 class="text-sm sm:text-base font-medium text-white tracking-wide truncate"><a href="product.html?id=essential_mocha" class="hover:text-zinc-300 transition-colors">Ess. Mocha</a></h3>
+        <p class="text-xs sm:text-sm text-zinc-500 font-light ml-2">$32</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     MOBILE BOTTOM DOCK (hidden on desktop)
+     ════════════════════════════════════════════════════════════ -->
+<nav class="lg:hidden fixed bottom-5 left-1/2 -translate-x-1/2 w-[88%] max-w-[300px] bg-black/85 backdrop-blur-2xl rounded-full z-[100] border border-white/10 flex items-center justify-around px-6 py-3.5 shadow-[0_15px_40px_rgba(0,0,0,0.9)]">
+  <a href="index.html" class="text-white transition-colors">
+    <svg class="w-[22px] h-[22px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
+  </a>
+  <a href="all-items.html" class="text-zinc-500 hover:text-white transition-colors">
+    <svg class="w-[22px] h-[22px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>
+  </a>
+  <a href="cart.html" class="text-zinc-500 hover:text-white transition-colors">
+    <svg class="w-[22px] h-[22px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg>
+  </a>
+  <a href="profile.html" class="text-zinc-500 hover:text-white transition-colors">
+    <svg class="w-[22px] h-[22px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+  </a>
+</nav>
+
+<!-- ════════════════════════════════════════════════════════════
+     SCRIPTS
+     ════════════════════════════════════════════════════════════ -->
+<script>
+  // Header scroll effect
+  window.addEventListener('scroll', () => {
+    const header = document.getElementById('legginx-header');
+    if (window.scrollY > 50) {
+      header.classList.add('bg-black/90', 'backdrop-blur-md', 'shadow-2xl');
+      header.classList.remove('bg-transparent');
+    } else {
+      header.classList.remove('bg-black/90', 'backdrop-blur-md', 'shadow-2xl');
+      header.classList.add('bg-transparent');
+    }
+  });
+
+  // Mobile drawer
+  const toggleBtn = document.getElementById('mobile-nav-toggle');
+  const closeBtn = document.getElementById('mobile-nav-close');
+  const drawer = document.getElementById('mobile-nav-drawer');
+  const backdrop = document.getElementById('mobile-nav-backdrop');
+
+  function openDrawer() {
+    drawer.classList.remove('-translate-x-full');
+    backdrop.classList.remove('hidden');
+    setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    drawer.classList.add('-translate-x-full');
+    backdrop.classList.add('opacity-0');
+    setTimeout(() => {
+      backdrop.classList.add('hidden');
+      document.body.style.overflow = '';
+    }, 300);
+  }
+
+  toggleBtn && toggleBtn.addEventListener('click', openDrawer);
+  closeBtn && closeBtn.addEventListener('click', closeDrawer);
+  backdrop && backdrop.addEventListener('click', closeDrawer);
+</script>
+
+</body>
+</html>

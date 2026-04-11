@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanguard Halter Top - LegginX Elite</title>
+    <link rel="stylesheet" href="assets/rival-shorts-revamp.css?v=9">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="assets/legginx-animations.js" defer></script>
+    <style>
+        body { font-family: 'Outfit', sans-serif; background-color: #09090b; color: #ededed; }
+        .glass-panel {
+            background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #ffffff, #888888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="min-h-screen antialiased selection:bg-white selection:text-black">
+
+<!-- HEADER SECTION -->
+<header class="fixed top-0 left-0 right-0 z-[100] w-full transition-all duration-300 bg-transparent flex flex-col font-['Outfit'] antialiased group" id="legginx-header">
+  <div class="bg-black text-white text-xs font-semibold tracking-widest uppercase text-center py-2 relative z-20 w-full">
+    Free Shipping All Orders
+  </div>
+  <div class="w-full px-6 md:px-12 py-4 flex items-center justify-between transition-all duration-500 bg-gradient-to-b from-black/80 to-transparent group-hover:bg-black/90 group-hover:backdrop-blur-md">
+    <div class="flex-1 flex items-center lg:hidden">
+      <button id="mobile-nav-toggle" class="text-white hover:text-zinc-400 transition-colors" aria-label="Open navigation">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"/></svg>
+      </button>
+    </div>
+    <nav class="hidden lg:flex items-center gap-8 flex-1">
+      <a href="rival.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Rival</a>
+      <a href="glow.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Glow</a>
+      <a href="aura.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Aura</a>
+      <a href="all-items.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors" style="color: #cbd5e1;">All Items</a>
+      <a href="essentials.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Essentials</a>
+    </nav>
+    <div class="flex-1 flex justify-center items-center">
+      <a href="index.html" class="text-white hover:scale-110 transition-transform duration-500 filter drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
+        <svg viewBox="0 0 100 100" fill="currentColor" class="w-8 h-8 md:w-10 md:h-10">
+          <path d="M 50 2 L 34 22 L 44 22 L 44 42 C 44 55, 28 55, 28 35 L 28 28 L 34 32 L 20 6 L 6 32 L 14 28 C 14 55, 34 60, 44 60 C 36 61, 36 66, 44 67 L 44 71 C 36 72, 36 77, 44 78 L 44 98 L 56 98 L 56 78 C 64 77, 64 72, 56 71 L 56 67 C 64 66, 64 61, 56 60 C 66 60, 86 55, 86 28 L 94 32 L 80 6 L 66 32 L 72 28 L 72 35 C 72 55, 56 55, 56 42 L 56 22 L 66 22 Z" />
+        </svg>
+      </a>
+    </div>
+    <div class="flex flex-1 items-center justify-end gap-6 text-white">
+      <a href="#" class="hover:text-zinc-400 transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+      </a>
+      <a href="profile.html" class="hover:text-zinc-400 transition-colors hidden sm:block">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+      </a>
+      <a href="cart.html" class="hover:text-zinc-400 transition-colors flex items-center relative">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
+        <span id="cart-count" class="absolute -top-2 -right-2 bg-white text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center transition-transform duration-300">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+<script>
+  window.addEventListener('scroll', () => {
+    const header = document.getElementById('legginx-header');
+    if(window.scrollY > 50) {
+      header.classList.add('bg-black/90', 'backdrop-blur-md', 'shadow-2xl');
+      header.classList.remove('bg-transparent');
+    } else {
+      header.classList.remove('bg-black/90', 'backdrop-blur-md', 'shadow-2xl');
+      header.classList.add('bg-transparent');
+    }
+  });
+
+  // Mobile Nav Drawer Toggle
+  const toggleBtn = document.getElementById('mobile-nav-toggle');
+  const closeBtn = document.getElementById('mobile-nav-close');
+  const drawer = document.getElementById('mobile-nav-drawer');
+  const backdrop = document.getElementById('mobile-nav-backdrop');
+
+  function openDrawer() {
+    drawer.classList.remove('-translate-x-full');
+    backdrop.classList.remove('hidden');
+    setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    drawer.classList.add('-translate-x-full');
+    backdrop.classList.add('opacity-0');
+    setTimeout(() => {
+      backdrop.classList.add('hidden');
+      document.body.style.overflow = '';
+    }, 300);
+  }
+
+  toggleBtn && toggleBtn.addEventListener('click', openDrawer);
+  closeBtn && closeBtn.addEventListener('click', closeDrawer);
+  backdrop && backdrop.addEventListener('click', closeDrawer);
+</script>
+
+<!-- MOBILE NAV DRAWER -->
+<div id="mobile-nav-backdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[200] hidden opacity-0 transition-opacity duration-300"></div>
+<div id="mobile-nav-drawer" class="fixed top-0 left-0 h-full w-[80%] max-w-[320px] bg-[#09090b] z-[210] transform -translate-x-full transition-transform duration-300 ease-in-out border-r border-white/5 flex flex-col p-8 lg:hidden font-['Outfit']">
+  <div class="flex justify-between items-center mb-12">
+    <svg viewBox="0 0 100 100" fill="currentColor" class="w-8 h-8 text-white">
+      <path d="M 50 2 L 34 22 L 44 22 L 44 42 C 44 55, 28 55, 28 35 L 28 28 L 34 32 L 20 6 L 6 32 L 14 28 C 14 55, 34 60, 44 60 C 36 61, 36 66, 44 67 L 44 71 C 36 72, 36 77, 44 78 L 44 98 L 56 98 L 56 78 C 64 77, 64 72, 56 71 L 56 67 C 64 66, 64 61, 56 60 C 66 60, 86 55, 86 28 L 94 32 L 80 6 L 66 32 L 72 28 L 72 35 C 72 55, 56 55, 56 42 L 56 22 L 66 22 Z" />
+    </svg>
+    <button id="mobile-nav-close" class="text-white hover:text-zinc-400 transition-colors">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="flex flex-col gap-6">
+    <a href="rival.html" class="text-2xl font-light tracking-widest text-white hover:text-zinc-400 transition-colors uppercase">Rival</a>
+    <a href="glow.html" class="text-2xl font-light tracking-widest text-white hover:text-zinc-400 transition-colors uppercase">Glow</a>
+    <a href="aura.html" class="text-2xl font-light tracking-widest text-white hover:text-zinc-400 transition-colors uppercase">Aura</a>
+    <a href="all-items.html" class="text-2xl font-light tracking-widest text-white hover:text-zinc-400 transition-colors uppercase">All Items</a>
+    <a href="essentials.html" class="text-2xl font-light tracking-widest text-white hover:text-zinc-400 transition-colors uppercase">Essentials</a>
+  </nav>
+  <div class="mt-auto border-t border-white/5 pt-8 flex flex-col gap-4 text-xs tracking-widest uppercase text-zinc-500">
+    <a href="profile.html" class="hover:text-white transition-colors">My Profile</a>
+    <a href="cart.html" class="hover:text-white transition-colors">Shopping Cart</a>
+  </div>
+</div>
+
+<!-- PRODUCT DETAIL SECTION -->
+<div class="relative w-full min-h-screen pt-40 pb-24 px-4 sm:px-6 lg:px-12 bg-[#09090b] font-['Outfit'] antialiased">
+    <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 relative z-20">
+        
+        <!-- Left: Image Gallery (Scrollable) -->
+        <div class="w-full flex justify-center lg:justify-end relative">
+            <div class="w-full max-w-xl flex flex-col gap-4 hide-scrollbar pb-32" id="pdp-image-gallery">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+
+        <!-- Right: Product Details (Sticky) -->
+        <div class="w-full flex items-start pt-8 lg:pt-0 relative">
+            <div class="flex flex-col gap-8 max-w-md w-full sticky top-36 h-fit pb-32">
+                
+                <!-- Title & Price -->
+                <div class="flex flex-col gap-1">
+                    <span class="text-[10px] tracking-[0.3em] text-zinc-500 uppercase font-semibold mb-2">New Arrival</span>
+                    <h1 class="text-4xl md:text-5xl font-bold text-white tracking-widest uppercase leading-tight">Vanguard Halter Top</h1>
+                    <p class="text-xl text-zinc-400 font-light mt-3">$36.00</p>
+                </div>
+                
+                <div class="h-px w-full bg-white/5"></div>
+                
+                <!-- Color Selector -->
+                <div class="flex flex-col gap-3">
+                    <p class="text-xs tracking-[0.2em] text-white uppercase flex justify-between items-center">
+                        <span id="pdp-color-label">Color: <span class="text-zinc-400 ml-1">Obsidian Black</span></span>
+                    </p>
+                    <div class="flex gap-4 mt-2">
+                        <button class="w-8 h-8 rounded-full bg-black border border-white/20 ring-2 ring-white ring-offset-2 ring-offset-[#09090b] transition-all"></button>
+                        <button class="w-8 h-8 rounded-full bg-zinc-800 border border-white/10 hover:ring-2 hover:ring-white/50 ring-offset-2 ring-offset-[#09090b] transition-all cursor-not-allowed opacity-50"></button>
+                    </div>
+                </div>
+
+                <!-- Size Selector -->
+                <div class="flex flex-col gap-3">
+                    <p class="text-xs tracking-[0.2em] text-white uppercase flex justify-between items-center">
+                        <span>Size</span>
+                        <a href="#" class="text-[10px] text-zinc-500 hover:text-white transition-colors underline decoration-zinc-800 hover:decoration-white underline-offset-4">Size Guide</a>
+                    </p>
+                    <div class="grid grid-cols-4 gap-3 mt-2">
+                        <button class="py-3.5 border border-white/10 rounded-lg text-xs hover:border-white transition-colors bg-white/5 uppercase tracking-widest text-white shadow-sm hover:shadow-[0_0_15px_rgba(255,255,255,0.1)]">S</button>
+                        <button class="py-3.5 border border-white rounded-lg text-xs hover:border-white transition-colors bg-white text-black uppercase tracking-widest font-semibold shadow-[0_0_20px_rgba(255,255,255,0.2)]">M</button>
+                        <button class="py-3.5 border border-white/10 rounded-lg text-xs hover:border-white transition-colors bg-white/5 uppercase tracking-widest text-white shadow-sm hover:shadow-[0_0_15px_rgba(255,255,255,0.1)]">L</button>
+                        <button class="py-3.5 border border-white/5 rounded-lg text-xs transition-colors bg-black uppercase tracking-widest text-zinc-700 cursor-not-allowed relative overflow-hidden">
+                            <span class="relative z-10">XL</span>
+                            <div class="absolute inset-0 w-full h-px bg-zinc-800 top-1/2 -ml-2 transform rotate-45 scale-150"></div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Add to Cart Button -->
+                <div class="fixed bottom-24 left-0 w-full px-4 z-50 lg:static lg:bottom-auto lg:left-auto lg:w-full lg:px-0 lg:z-auto mt-2 lg:mt-6">
+                    <button class="quick-add-btn w-full bg-white text-black font-semibold py-4 px-6 rounded-full lg:rounded-lg shadow-[0_20px_40px_rgba(0,0,0,1)] lg:shadow-[0_0_30px_rgba(255,255,255,0.15)] hover:shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:scale-[1.02] active:scale-[0.98] uppercase tracking-[0.2em] text-xs transition-all duration-300">
+                        Add to Cart
+                    </button>
+                    <div class="flex items-center justify-center gap-2 mt-5">
+                       <svg class="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                       <p class="text-[10px] uppercase tracking-widest text-emerald-500/80">In Stock & Ready to Ship</p>
+                    </div>
+                </div>
+
+                <!-- Accordions -->
+                <div class="flex flex-col border-t border-white/10 mt-2">
+                     <div class="py-6 border-b border-white/5 flex justify-between items-center cursor-pointer group">
+                         <h4 class="text-xs tracking-[0.2em] uppercase text-zinc-300 group-hover:text-white transition-colors">Details</h4>
+                         <svg class="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                     </div>
+                     <div class="py-4 px-2 text-[13px] text-zinc-400 font-light leading-relaxed tracking-wide">
+                         Engineered with a high-stretch micro-knit and featuring a bold deep-U cutout with supportive halter neck cross-straps. The Vanguard Top defies gravity with a flawless silhouette and uncompromising performance wrap. Finished with the signature white Trident logo mapping.
+                     </div>
+                     <div class="py-6 border-b border-white/5 flex justify-between items-center cursor-pointer group">
+                         <h4 class="text-xs tracking-[0.2em] uppercase text-zinc-300 group-hover:text-white transition-colors">Materials & Care</h4>
+                         <svg class="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                     </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="assets/product-data.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const productId = params.get('id') || 'essentials-halter-top-black';
+    if (!window.LegginXProducts) return;
+
+    const p = window.LegginXProducts.find(prod => prod.id === productId) || window.LegginXProducts[0];
+
+    document.title = p.name + " - LegginX Elite";
+    document.querySelector('h1').textContent = p.name;
+    document.querySelector('.text-xl.text-zinc-400').textContent = p.price;
+    
+    // Better color parsing (take the last word or two of the name)
+    const nameParts = p.name.split(' ');
+    const displayColor = nameParts.length > 2 ? nameParts.slice(-2).join(' ') : nameParts[nameParts.length - 1];
+    
+    document.querySelector('#pdp-color-label').innerHTML = `Color: <span class="text-zinc-400 ml-1">${displayColor}</span>`;
+    
+    // Inject Image Stack without clipping aspects
+    const gallery = document.getElementById('pdp-image-gallery');
+    let stackHtml = '';
+    p.images.forEach(img => {
+        stackHtml += `
+            <div class="w-full rounded-2xl overflow-hidden relative group">
+                <img src="${img}" alt="${p.name}" class="w-full h-auto object-cover opacity-90 transition-opacity duration-700 hover:opacity-100 bg-[#111113]">
+            </div>
+        `;
+    });
+    gallery.innerHTML = stackHtml;
+
+    // Replace description text inside the accordion div
+    const accordionDesc = document.querySelector('.flex.flex-col.border-t.border-white\\/5.mt-2 > div:nth-child(2)');
+    if(accordionDesc && p.desc) {
+        accordionDesc.innerHTML = `<div class="prose prose-invert prose-sm text-zinc-400 max-w-none">${p.desc}</div>`;
+    } else if (accordionDesc) {
+        accordionDesc.innerHTML = `<p>Shop the exclusive ${p.name} collection. Engineered with premium LegginX fabric for unmatched performance.</p>`;
+    }
+});
+</script>
+
+<!-- MOBILE BOTTOM NAV -->
+<nav class="lg:hidden fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-[320px] bg-black/80 backdrop-blur-2xl rounded-full z-[100] border border-white/10 flex items-center justify-between px-8 py-4 shadow-[0_20px_40px_rgba(0,0,0,0.8)]">
+  <a href="index.html" class="text-zinc-400 hover:text-white transition-colors">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
+  </a>
+  <a href="all-items.html" class="text-white transition-colors">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>
+  </a>
+  <a href="cart.html" class="text-zinc-400 hover:text-white transition-colors relative">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg>
+  </a>
+  <a href="profile.html" class="text-zinc-400 hover:text-white transition-colors">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+  </a>
+</nav>
+
+</body>
+</html>

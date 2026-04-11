@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rival Shorts - LegginX Elite</title>
+    <link rel="stylesheet" href="assets/rival-shorts-revamp.css?v=9">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="assets/legginx-animations.js?v=4" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="assets/legginx-threejs.js" defer></script>
+    <style>
+        body { font-family: 'Outfit', sans-serif; background-color: #09090b; color: #ededed; }
+        .glass-panel {
+            background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #ffffff, #888888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .reveal-glow {
+            transition: box-shadow 0.5s ease, border-color 0.5s ease;
+        }
+        .reveal-glow:hover {
+            box-shadow: 0 0 40px rgba(150, 150, 150, 0.15);
+            border-color: rgba(255,255,255,0.15);
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen antialiased selection:bg-white selection:text-black">
+
+<!-- HEADER SECTION -->
+<header class="fixed top-0 left-0 right-0 z-[100] w-full transition-all duration-300 bg-transparent flex flex-col font-['Outfit'] antialiased group" id="legginx-header">
+  <div class="bg-black text-white text-xs font-semibold tracking-widest uppercase text-center py-2 relative z-20 w-full">
+    Free Shipping All Orders
+  </div>
+  <div class="w-full px-6 md:px-12 py-4 flex items-center justify-between transition-all duration-500 bg-gradient-to-b from-black/80 to-transparent group-hover:bg-black/90 group-hover:backdrop-blur-md">
+    <nav class="hidden lg:flex items-center gap-8 flex-1">
+      <a href="rival.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Rival</a>
+      <a href="glow.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Glow</a>
+      <a href="aura.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Aura</a>
+      <a href="all-items.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors" style="color: #cbd5e1;">All Items</a>
+      <a href="essentials.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Essentials</a>
+    </nav>
+
+    <div class="flex-1 flex justify-center items-center">
+      <a href="index.html" class="text-white hover:scale-110 transition-transform duration-500 filter drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
+        <svg viewBox="0 0 100 100" fill="currentColor" class="w-8 h-8 md:w-10 md:h-10">
+          <path d="M 50 2 L 34 22 L 44 22 L 44 42 C 44 55, 28 55, 28 35 L 28 28 L 34 32 L 20 6 L 6 32 L 14 28 C 14 55, 34 60, 44 60 C 36 61, 36 66, 44 67 L 44 71 C 36 72, 36 77, 44 78 L 44 98 L 56 98 L 56 78 C 64 77, 64 72, 56 71 L 56 67 C 64 66, 64 61, 56 60 C 66 60, 86 55, 86 28 L 94 32 L 80 6 L 66 32 L 72 28 L 72 35 C 72 55, 56 55, 56 42 L 56 22 L 66 22 Z" />
+        </svg>
+      </a>
+    </div>
+
+    <div class="flex flex-1 items-center justify-end gap-6 text-white">
+      <a href="#" class="hover:text-zinc-400 transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+      </a>
+      <a href="profile.html" class="hover:text-zinc-400 transition-colors hidden sm:block">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+      </a>
+      <a href="cart.html" class="hover:text-zinc-400 transition-colors flex items-center relative">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
+        <span id="cart-count" class="absolute -top-2 -right-2 bg-white text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center transition-transform duration-300">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+<script>
+  window.addEventListener('scroll', () => {
+    const header = document.getElementById('legginx-header');
+    if(window.scrollY > 50) {
+      header.classList.add('bg-black/90', 'backdrop-blur-md', 'shadow-2xl');
+      header.classList.remove('bg-transparent');
+    } else {
+      header.classList.remove('bg-black/90', 'backdrop-blur-md', 'shadow-2xl');
+      header.classList.add('bg-transparent');
+    }
+  });
+</script>
+
+<!-- HERO SECTION -->
+<div class="relative w-full min-h-screen py-24 flex items-center justify-center overflow-hidden bg-[#09090b] font-['Outfit'] antialiased">
+  
+  <div class="absolute inset-0 w-full h-full">
+    <img src="images/hero_image.png" alt="Defy Gravity" class="w-full h-full object-cover object-[center_30%] opacity-70 animate-on-scroll transform duration-[2000ms] scale-100 hover:scale-105 ease-out transition-transform">
+    <div class="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/40 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#09090b]/80 via-[#09090b]/20 to-transparent"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#09090b] to-transparent z-10"></div>
+    
+    <!-- ThreeJS Particle Canvas -->
+    <div id="hero-canvas-container" class="absolute inset-0 z-0 pointer-events-none mix-blend-screen opacity-60"></div>
+  </div>
+
+  <div class="relative z-10 w-full max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-12 flex flex-col items-start justify-center h-full">
+    <div class="max-w-3xl animate-on-scroll opacity-0 translate-y-12 transition-all duration-[1200ms] ease-out">
+      
+      <span class="text-sm md:text-base uppercase tracking-[0.4em] text-zinc-400 mb-6 block font-medium flex items-center gap-4">
+        <span class="w-12 h-px bg-zinc-500"></span>ESSENTIALS COLLECTION
+      </span>
+
+      <h1 class="text-6xl md:text-8xl lg:text-[10rem] font-bold tracking-tighter uppercase text-white leading-[0.85] mb-8" style="text-shadow: 0 10px 40px rgba(0,0,0,0.8);">
+        CORE<br>ESSENTIALS.
+      </h1>
+
+      <p class="text-lg md:text-xl text-zinc-300 font-light max-w-xl mb-12 leading-relaxed">
+        The foundational building blocks of your performance wardrobe. Uncompromising daily wear.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-6">
+        <a href="#" class="relative group overflow-hidden px-10 py-5 bg-white text-black text-sm uppercase tracking-widest font-semibold rounded-full min-w-[200px] text-center transition-all hover:bg-zinc-200 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]">
+          <span class="relative z-10">Shop Women</span>
+        </a>
+        <a href="#" class="relative px-10 py-5 bg-white/5 backdrop-blur-md border border-white/20 text-white text-sm uppercase tracking-widest font-medium rounded-full min-w-[200px] text-center transition-all hover:bg-white/10 hover:border-white/40">
+          Shop Men
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="legginx-section py-20 px-4 sm:px-6 lg:px-12 w-full max-w-[90rem] mx-auto relative z-20">
+  
+  <!-- Header -->
+  <div class="mb-16 text-center animate-on-scroll opacity-0 translate-y-8 transition-all duration-[1000ms] ease-out">
+    <span class="text-xs uppercase tracking-[0.3em] text-zinc-500 mb-4 block font-semibold">New Arrival</span>
+    <h2 class="text-5xl md:text-7xl font-bold tracking-tight uppercase text-gradient pb-2">
+      RIVAL SERIES
+    </h2>
+    <p class="mt-6 max-w-2xl text-lg text-zinc-400 mx-auto font-light leading-relaxed">
+      A masterpiece of engineering. Second-skin feel, zero distractions, and unparalleled aesthetic dominance.
+    </p>
+  </div>
+
+  <!-- Product Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-8">
+    
+    <!-- Peach Shorts -->
+    <div class="legginx-product-card group relative flex flex-col rounded-2xl glass-panel reveal-glow p-2 animate-on-scroll opacity-0 translate-y-8 transition-all duration-[1000ms] ease-out" style="transition-delay: 0ms;">
+      <div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-black flex-grow">
+        <a href="product.html?id=aura_obsidian" class="absolute inset-0 z-0 cursor-pointer block">
+          <img src="images/aura_obsidian.png" alt="Aura Bra - Obsidian" class="legginx-product-image w-full h-full object-center object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700">
+        </a>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+        <form method="post" action="#" class="absolute bottom-4 left-4 right-4 transform translate-y-8 group-hover:translate-y-0 transition-all duration-500 z-10 opacity-0 group-hover:opacity-100">
+          <button type="button" class="quick-add-btn w-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium py-3.5 px-4 rounded-lg shadow-2xl hover:bg-white hover:text-black hover:border-white uppercase tracking-widest text-xs transition-all duration-300 cursor-pointer">Quick Add</button>
+        </form>
+      </div>
+      <div class="mt-5 mb-2 px-3 flex flex-row items-center justify-between">
+        <h3 class="text-base font-medium text-white tracking-wide"><a href="product.html?id=aura_obsidian" class="hover:text-zinc-300 transition-colors">Aura Obsidian</a></h3>
+        <p class="text-sm text-zinc-500 font-light">$48.00</p>
+      </div>
+    </div>
+
+    <!-- Sky Shorts -->
+    <div class="legginx-product-card group relative flex flex-col rounded-2xl glass-panel reveal-glow p-2 animate-on-scroll opacity-0 translate-y-8 transition-all duration-[1000ms] ease-out" style="transition-delay: 150ms;">
+      <div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-black flex-grow">
+        <a href="product.html?id=aura_frost" class="absolute inset-0 z-0 cursor-pointer block">
+          <img src="images/aura_frost.png" alt="Aura Bra - Frost" class="legginx-product-image w-full h-full object-center object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700">
+        </a>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+        <form method="post" action="#" class="absolute bottom-4 left-4 right-4 transform translate-y-8 group-hover:translate-y-0 transition-all duration-500 z-10 opacity-0 group-hover:opacity-100">
+          <button type="button" class="quick-add-btn w-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium py-3.5 px-4 rounded-lg shadow-2xl hover:bg-white hover:text-black hover:border-white uppercase tracking-widest text-xs transition-all duration-300 cursor-pointer">Quick Add</button>
+        </form>
+      </div>
+      <div class="mt-5 mb-2 px-3 flex flex-row items-center justify-between">
+        <h3 class="text-base font-medium text-white tracking-wide"><a href="product.html?id=aura_frost" class="hover:text-zinc-300 transition-colors">Aura Frost</a></h3>
+        <p class="text-sm text-zinc-500 font-light">$48.00</p>
+      </div>
+    </div>
+
+    <!-- Navy Shorts -->
+    <div class="legginx-product-card group relative flex flex-col rounded-2xl glass-panel reveal-glow p-2 animate-on-scroll opacity-0 translate-y-8 transition-all duration-[1000ms] ease-out" style="transition-delay: 300ms;">
+      <div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-black flex-grow">
+        <a href="product.html?id=essential_midnight" class="absolute inset-0 z-0 cursor-pointer block">
+          <img src="images/essential_midnight.png" alt="Essential Halter - Midnight" class="legginx-product-image w-full h-full object-center object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700">
+        </a>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+        <form method="post" action="#" class="absolute bottom-4 left-4 right-4 transform translate-y-8 group-hover:translate-y-0 transition-all duration-500 z-10 opacity-0 group-hover:opacity-100">
+          <button type="button" class="quick-add-btn w-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium py-3.5 px-4 rounded-lg shadow-2xl hover:bg-white hover:text-black hover:border-white uppercase tracking-widest text-xs transition-all duration-300 cursor-pointer">Quick Add</button>
+        </form>
+      </div>
+      <div class="mt-5 mb-2 px-3 flex flex-row items-center justify-between">
+        <h3 class="text-base font-medium text-white tracking-wide"><a href="product.html?id=essential_midnight" class="hover:text-zinc-300 transition-colors">Ess. Midnight</a></h3>
+        <p class="text-sm text-zinc-500 font-light">$32.00</p>
+      </div>
+    </div>
+
+    <!-- Crimson Shorts -->
+    <div class="legginx-product-card group relative flex flex-col rounded-2xl glass-panel reveal-glow p-2 animate-on-scroll opacity-0 translate-y-8 transition-all duration-[1000ms] ease-out" style="transition-delay: 450ms;">
+      <div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-black flex-grow">
+        <a href="product.html?id=essential_mocha" class="absolute inset-0 z-0 cursor-pointer block">
+          <img src="images/essential_mocha.png" alt="Essential Halter - Mocha" class="legginx-product-image w-full h-full object-center object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700">
+        </a>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+        <form method="post" action="#" class="absolute bottom-4 left-4 right-4 transform translate-y-8 group-hover:translate-y-0 transition-all duration-500 z-10 opacity-0 group-hover:opacity-100">
+          <button type="button" class="quick-add-btn w-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium py-3.5 px-4 rounded-lg shadow-2xl hover:bg-white hover:text-black hover:border-white uppercase tracking-widest text-xs transition-all duration-300 cursor-pointer">Quick Add</button>
+        </form>
+      </div>
+      <div class="mt-5 mb-2 px-3 flex flex-row items-center justify-between">
+        <h3 class="text-base font-medium text-white tracking-wide"><a href="product.html?id=essential_mocha" class="hover:text-zinc-300 transition-colors">Ess. Mocha</a></h3>
+        <p class="text-sm text-zinc-500 font-light">$32.00</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+<!-- MOBILE BOTTOM NAV -->
+<nav class="lg:hidden fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-[320px] bg-black/80 backdrop-blur-2xl rounded-full z-[100] border border-white/10 flex items-center justify-between px-8 py-4 shadow-[0_20px_40px_rgba(0,0,0,0.8)]">
+  <a href="index.html" class="text-zinc-400 hover:text-white transition-colors">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
+  </a>
+  <a href="all-items.html" class="text-zinc-400 hover:text-white transition-colors">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>
+  </a>
+  <a href="cart.html" class="text-zinc-400 hover:text-white transition-colors relative">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg>
+  </a>
+  <a href="profile.html" class="text-zinc-400 hover:text-white transition-colors">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+  </a>
+</nav>
+
+</body>
+</html>
