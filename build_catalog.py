@@ -75,10 +75,11 @@ def build_catalog():
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Items - LegginX Elite</title>
-    <link rel="stylesheet" href="assets/rival-shorts-revamp.css?v=8">
+    <link rel="stylesheet" href="assets/rival-shorts-revamp.css?v=9">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="assets/product-data.js"></script>
     <script src="assets/legginx-animations.js?v=5" defer></script>
+    <script src="assets/legginx-cart.js?v=1" defer></script>
     <style>
         body { font-family: 'Outfit', sans-serif; background-color: #09090b; color: #ededed; }
         .glass-panel {
