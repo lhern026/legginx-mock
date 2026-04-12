@@ -1,0 +1,138 @@
+<div class="legginx-section py-20 px-4 sm:px-6 lg:px-12 w-full max-w-[90rem] mx-auto bg-[#09090b] text-[#ededed] font-['Outfit'] antialiased relative z-20" data-section-id="{{ section.id }}">
+  <style>
+      .glass-panel {
+          background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+          border: 1px solid rgba(255,255,255,0.05);
+          box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+      }
+      .text-gradient {
+          background: linear-gradient(to right, #ffffff, #888888);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+      }
+      .reveal-glow {
+          transition: box-shadow 0.5s ease, border-color 0.5s ease;
+      }
+      .reveal-glow:hover {
+          box-shadow: 0 0 40px rgba(150, 150, 150, 0.15);
+          border-color: rgba(255,255,255,0.15);
+      }
+  </style>
+
+  {% if section.settings.title != blank %}
+    <div class="mb-16 text-center animate-on-scroll opacity-0 translate-y-8 transition-all duration-[1000ms] ease-out">
+      {% if section.settings.kicker != blank %}
+        <span class="text-xs uppercase tracking-[0.3em] text-zinc-500 mb-4 block font-semibold">{{ section.settings.kicker | escape }}</span>
+      {% endif %}
+      <h2 class="text-5xl md:text-7xl font-bold tracking-tight uppercase text-gradient pb-2">
+        {{ section.settings.title | escape }}
+      </h2>
+      {% if section.settings.subtitle != blank %}
+        <p class="mt-6 max-w-2xl text-lg text-zinc-400 mx-auto font-light leading-relaxed">
+          {{ section.settings.subtitle | escape }}
+        </p>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-8">
+    {%- assign collection = collections[section.settings.collection] -%}
+    
+    {%- if collection != blank and collection.products_count > 0 -%}
+      {%- for product in collection.products limit: section.settings.products_to_show -%}
+        <div class="legginx-product-card group relative flex flex-col rounded-2xl glass-panel reveal-glow p-2 animate-on-scroll opacity-0 translate-y-8 transition-all duration-[1000ms] ease-out" style="transition-delay: {{ forloop.index0 | times: 150 }}ms;">
+          <div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-black flex-grow">
+            {%- if product.featured_image -%}
+              <img src="{{ product.featured_image | img_url: '600x' }}" alt="{{ product.title | escape }}" class="legginx-product-image w-full h-full object-center object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700">
+            {%- else -%}
+              {{ 'product-1' | placeholder_svg_tag: 'w-full h-full object-center object-cover text-gray-800 opacity-50' }}
+            {%- endif -%}
+            
+            {%- if product.available == false -%}
+              <div class="absolute top-4 right-4 bg-white text-black text-xs font-bold px-3 py-1.5 uppercase tracking-widest rounded-md shadow-lg">Sold Out</div>
+            {%- endif -%}
+            
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+            
+            <form method="post" action="/cart/add" class="absolute bottom-4 left-4 right-4 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 z-10 opacity-0 group-hover:opacity-100">
+              <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+              <button type="submit" class="w-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium py-3.5 px-4 rounded-lg shadow-2xl hover:bg-white hover:text-black hover:border-white uppercase tracking-widest text-xs transition-all duration-300" {% if product.available == false %}disabled{% endif %}>
+                {% if product.available %}Quick Add / {{ product.price | money }}{% else %}Sold Out{% endif %}
+              </button>
+            </form>
+          </div>
+          
+          <div class="mt-5 mb-2 px-3 flex flex-row items-center justify-between">
+            <h3 class="text-base font-medium text-white tracking-wide">
+              <a href="{{ product.url }}">
+                <span aria-hidden="true" class="absolute inset-0 z-0"></span>
+                {{ product.title }}
+              </a>
+            </h3>
+            <p class="text-sm text-zinc-500 font-light">{{ product.price | money }}</p>
+          </div>
+        </div>
+      {%- endfor -%}
+    {%- else -%}
+      {%- for i in (1..section.settings.products_to_show) -%}
+        <div class="legginx-product-card group relative flex flex-col rounded-2xl glass-panel reveal-glow p-2 animate-on-scroll opacity-0 translate-y-8 transition-all duration-[1000ms] ease-out" style="transition-delay: {{ forloop.index0 | times: 150 }}ms;">
+          <div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-black flex-grow">
+            {{ 'product-' | append: i | placeholder_svg_tag: 'w-full h-full object-center object-cover text-gray-800 opacity-50' }}
+          </div>
+          <div class="mt-5 mb-2 px-3 flex flex-row items-center justify-between">
+            <h3 class="text-base font-medium text-white tracking-wide">Product Title</h3>
+            <p class="text-sm text-zinc-500 font-light">$24.00</p>
+          </div>
+        </div>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "LegginX Premium Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker (Overline)",
+      "default": "New Arrival"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "RIVAL SERIES"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "A masterpiece of engineering. Second-skin feel, zero distractions, and unparalleled aesthetic dominance."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 12,
+      "step": 4,
+      "default": 4,
+      "label": "Products to show"
+    }
+  ],
+  "presets": [
+    {
+      "name": "LegginX Premium Grid",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}

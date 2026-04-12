@@ -1,0 +1,115 @@
+<div class="relative w-full min-h-screen py-24 flex items-center justify-center overflow-hidden bg-[#09090b] font-['Outfit'] antialiased" data-section-id="{{ section.id }}">
+  
+  <!-- Background Image with Overlay -->
+  <div class="absolute inset-0 w-full h-full">
+    {%- if section.settings.image != blank -%}
+      <img src="{{ section.settings.image | img_url: 'master' }}" alt="{{ section.settings.heading | escape }}" class="w-full h-full object-cover object-center opacity-70 animate-on-scroll transform duration-[2000ms] scale-100 hover:scale-105 ease-out transition-transform">
+    {%- else -%}
+      {{ 'lifestyle-2' | placeholder_svg_tag: 'w-full h-full object-cover object-center opacity-50' }}
+    {%- endif -%}
+    <!-- Deep gradient overlay for text readability and moody aesthetic -->
+    <div class="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/40 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#09090b]/80 via-transparent to-transparent"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#09090b] to-transparent z-10"></div>
+    
+    <!-- ThreeJS Particle Canvas -->
+    <div id="hero-canvas-container" class="absolute inset-0 z-0 pointer-events-none mix-blend-screen opacity-60"></div>
+  </div>
+
+  <!-- Content Container -->
+  <div class="relative z-10 w-full max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-12 flex flex-col items-start justify-center h-full">
+    <div class="max-w-3xl animate-on-scroll opacity-0 translate-y-12 transition-all duration-[1200ms] ease-out">
+      
+      {% if section.settings.kicker != blank %}
+        <span class="text-sm md:text-base uppercase tracking-[0.4em] text-zinc-400 mb-6 block font-medium flex items-center gap-4">
+          <span class="w-12 h-px bg-zinc-500"></span>{{ section.settings.kicker | escape }}
+        </span>
+      {% endif %}
+
+      {% if section.settings.heading != blank %}
+        <h1 class="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter uppercase text-white leading-[0.9] mb-8" style="text-shadow: 0 10px 40px rgba(0,0,0,0.8);">
+          {{ section.settings.heading | escape }}
+        </h1>
+      {% endif %}
+
+      {% if section.settings.subheading != blank %}
+        <p class="text-lg md:text-xl text-zinc-300 font-light max-w-xl mb-12 leading-relaxed">
+          {{ section.settings.subheading | escape }}
+        </p>
+      {% endif %}
+
+      <div class="flex flex-col sm:flex-row gap-6">
+        {% if section.settings.button_label_1 != blank %}
+          <a href="{{ section.settings.button_link_1 }}" class="relative group overflow-hidden px-8 py-4 bg-white text-black text-sm uppercase tracking-widest font-semibold rounded-full min-w-[180px] text-center transition-all hover:bg-zinc-200 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]">
+            <span class="relative z-10">{{ section.settings.button_label_1 | escape }}</span>
+          </a>
+        {% endif %}
+
+        {% if section.settings.button_label_2 != blank %}
+          <a href="{{ section.settings.button_link_2 }}" class="relative px-8 py-4 bg-white/5 backdrop-blur-md border border-white/20 text-white text-sm uppercase tracking-widest font-medium rounded-full min-w-[180px] text-center transition-all hover:bg-white/10 hover:border-white/40">
+            {{ section.settings.button_label_2 | escape }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "LegginX Premium Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero Image (High Res)"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Overline Text",
+      "default": "FW26 Collection"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "UNSTOPPABLE."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Built for those who refuse to compromise. Material science meets ruthless design."
+    },
+    {
+      "type": "text",
+      "id": "button_label_1",
+      "label": "Button 1 Label",
+      "default": "Shop Women"
+    },
+    {
+      "type": "url",
+      "id": "button_link_1",
+      "label": "Button 1 Link"
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Button 2 Label",
+      "default": "Shop Men"
+    },
+    {
+      "type": "url",
+      "id": "button_link_2",
+      "label": "Button 2 Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "LegginX Premium Hero",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}

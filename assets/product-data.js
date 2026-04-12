@@ -2,8 +2,9 @@ window.LegginXProducts = [
   {
     "id": "copy-competitor-shorts-plum",
     "category": "Competitor Shorts 1",
+    "cat_handle": "competitor-shorts-1",
     "name": "Rival Shorts - Crimson",
-    "price": "$24.00",
+    "price": "$24",
     "desc": "<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\"><strong>True to size.</strong></p>\n<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\">If you are in between sizes we recommend sizing up for a more relaxed fit.</p>\n<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\">Model: 118LBS, Wearing Small</p>",
     "images": [
       "images/catalog/competitor-shorts-1/copy-competitor-shorts-plum/DSC06612_6942089a-e3d0-45bf-9035-4402562b95e7.jpg",
@@ -13,8 +14,9 @@ window.LegginXProducts = [
   {
     "id": "competitor-shorts-1",
     "category": "Competitor Shorts 1",
+    "cat_handle": "competitor-shorts-1",
     "name": "Rival Shorts - Rose",
-    "price": "$24.00",
+    "price": "$24",
     "desc": "<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\"><strong>True to size.</strong></p>\n<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\">If you are in between sizes we recommend sizing up for a more relaxed fit.</p>\n<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\">Model: 118LBS, Wearing Small</p>",
     "images": [
       "images/catalog/competitor-shorts-1/competitor-shorts-1/DSC06576_d3a62d85-9c6c-4f54-b7d1-c8dbdb1928ba.jpg",
@@ -24,8 +26,9 @@ window.LegginXProducts = [
   {
     "id": "competitor-shorts-navy",
     "category": "Competitor Shorts 1",
+    "cat_handle": "competitor-shorts-1",
     "name": "Rival Shorts - Navy",
-    "price": "$24.00",
+    "price": "$24",
     "desc": "<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\"><strong>True to size.</strong></p>\n<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\">If you are in between sizes we recommend sizing up for a more relaxed fit.</p>\n<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\">Model: 118LBS, Wearing Small</p>",
     "images": [
       "images/catalog/competitor-shorts-1/competitor-shorts-navy/DSC06550.jpg",
@@ -35,8 +38,9 @@ window.LegginXProducts = [
   {
     "id": "competitor-shorts-pearl",
     "category": "Competitor Shorts 1",
+    "cat_handle": "competitor-shorts-1",
     "name": "Rival Shorts - Pearl",
-    "price": "$24.00",
+    "price": "$24",
     "desc": "<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\"><strong>True to size.</strong></p>\n<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\">If you are in between sizes we recommend sizing up for a more relaxed fit.</p>\n<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\">Model: 118LBS, Wearing Small</p>",
     "images": [
       "images/catalog/competitor-shorts-1/competitor-shorts-pearl/DSC06517_4046c974-a7c0-45fc-bcac-5d05314a77eb.jpg",
@@ -46,8 +50,9 @@ window.LegginXProducts = [
   {
     "id": "grayish-purple-shorts",
     "category": "Competitor Shorts 1",
+    "cat_handle": "competitor-shorts-1",
     "name": "Rival Shorts - Plum",
-    "price": "$24.00",
+    "price": "$24",
     "desc": "<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\"><strong>True to size.</strong></p>\n<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\">If you are in between sizes we recommend sizing up for a more relaxed fit.</p>\n<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\">Model: 118LBS, Wearing Small</p>",
     "images": [
       "images/catalog/competitor-shorts-1/grayish-purple-shorts/DSC06601_2de336ea-88e8-4a7b-ad01-0c37431a631a.jpg",
@@ -57,8 +62,9 @@ window.LegginXProducts = [
   {
     "id": "copy-competitor-shorts-crimson",
     "category": "Competitor Shorts 1",
+    "cat_handle": "competitor-shorts-1",
     "name": "Rival Shorts - Jade",
-    "price": "$24.00",
+    "price": "$24",
     "desc": "<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\"><strong>True to size.</strong></p>\n<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\">If you are in between sizes we recommend sizing up for a more relaxed fit.</p>\n<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\">Model: 118LBS, Wearing Small</p>",
     "images": [
       "images/catalog/competitor-shorts-1/copy-competitor-shorts-crimson/DSC06293.jpg",
@@ -68,8 +74,9 @@ window.LegginXProducts = [
   {
     "id": "competitor-shorts",
     "category": "Competitor Shorts 1",
+    "cat_handle": "competitor-shorts-1",
     "name": "Rival Shorts - Mint",
-    "price": "$24.00",
+    "price": "$24",
     "desc": "<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\"><strong>True to size.</strong></p>\n<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\">If you are in between sizes we recommend sizing up for a more relaxed fit.</p>\n<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\">Model: 118LBS, Wearing Small</p>",
     "images": [
       "images/catalog/competitor-shorts-1/competitor-shorts/DSC06313.jpg",
@@ -79,8 +86,9 @@ window.LegginXProducts = [
   {
     "id": "competitor-shorts-sky",
     "category": "Competitor Shorts 1",
+    "cat_handle": "competitor-shorts-1",
     "name": "Rival Shorts - Sky",
-    "price": "$24.00",
+    "price": "$24",
     "desc": "<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\"><strong>True to size.</strong></p>\n<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\">If you are in between sizes we recommend sizing up for a more relaxed fit.</p>\n<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\">Model: 118LBS, Wearing Small</p>",
     "images": [
       "images/catalog/competitor-shorts-1/competitor-shorts-sky/DSC06532.jpg",
@@ -90,8 +98,9 @@ window.LegginXProducts = [
   {
     "id": "rival-shorts-jade",
     "category": "Competitor Shorts 1",
+    "cat_handle": "competitor-shorts-1",
     "name": "Rival Shorts - Sage",
-    "price": "$24.00",
+    "price": "$24",
     "desc": "<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\"><strong>True to size.</strong></p>\n<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\">If you are in between sizes we recommend sizing up for a more relaxed fit.</p>\n<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\">Model: 118LBS, Wearing Small</p>",
     "images": [
       "images/catalog/competitor-shorts-1/rival-shorts-jade/DSC06563.jpg",
@@ -101,8 +110,9 @@ window.LegginXProducts = [
   {
     "id": "rival-shorts-peach",
     "category": "Competitor Shorts 1",
+    "cat_handle": "competitor-shorts-1",
     "name": "Rival Shorts - Peach",
-    "price": "$24.00",
+    "price": "$24",
     "desc": "<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\"><strong>True to size.</strong></p>\n<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\">If you are in between sizes we recommend sizing up for a more relaxed fit.</p>\n<p style=\"white-space: pre-wrap;\" data-rte-preserve-empty=\"true\">Model: 118LBS, Wearing Small</p>",
     "images": [
       "images/catalog/competitor-shorts-1/rival-shorts-peach/DSC06591_cdafbaba-8b44-40ed-986a-b9509a409673.jpg",
@@ -112,8 +122,9 @@ window.LegginXProducts = [
   {
     "id": "glow-leggings",
     "category": "Glow Leggings",
+    "cat_handle": "glow-leggings",
     "name": "Glow Leggings - Olive",
-    "price": "$29.00",
+    "price": "$29",
     "desc": "<p>Buttery soft textured high rise flared leggings made for gym and lifestyle everyday use</p>",
     "images": [
       "images/catalog/glow-leggings/glow-leggings/DSC06652.jpg",
@@ -123,8 +134,9 @@ window.LegginXProducts = [
   {
     "id": "glow-leggings-olive-copy",
     "category": "Glow Leggings",
+    "cat_handle": "glow-leggings",
     "name": "Glow Leggings - Ivory",
-    "price": "$29.00",
+    "price": "$29",
     "desc": "<p>Buttery soft textured high rise flared leggings made for gym and lifestyle everyday use</p>",
     "images": [
       "images/catalog/glow-leggings/glow-leggings-olive-copy/DSC06759_8b686709-6801-461e-a120-5ce18f04b0ee.jpg",
@@ -134,8 +146,9 @@ window.LegginXProducts = [
   {
     "id": "glow-leggings-hazel",
     "category": "Glow Leggings",
+    "cat_handle": "glow-leggings",
     "name": "Glow Leggings - Hazel",
-    "price": "$29.00",
+    "price": "$29",
     "desc": "<p>Buttery soft textured high rise flared leggings made for gym and lifestyle everyday use</p>",
     "images": [
       "images/catalog/glow-leggings/glow-leggings-hazel/DSC06693_77335376-d449-4698-8b57-784d3b7e113c.jpg",
@@ -145,8 +158,9 @@ window.LegginXProducts = [
   {
     "id": "glow-leggings-lavender",
     "category": "Glow Leggings",
+    "cat_handle": "glow-leggings",
     "name": "Glow Leggings - Lavender",
-    "price": "$29.00",
+    "price": "$29",
     "desc": "<p>Buttery soft textured high rise flared leggings made for gym and lifestyle everyday use</p>",
     "images": [
       "images/catalog/glow-leggings/glow-leggings-lavender/DSC06625_c03bc4c9-52bb-482e-84a3-cc7094528f63.jpg",
@@ -156,8 +170,9 @@ window.LegginXProducts = [
   {
     "id": "glow-leggings-sky",
     "category": "Glow Leggings",
+    "cat_handle": "glow-leggings",
     "name": "Glow Leggings - Sky",
-    "price": "$29.00",
+    "price": "$29",
     "desc": "<p>Buttery soft textured high rise flared leggings made for gym and lifestyle everyday use</p>",
     "images": [
       "images/catalog/glow-leggings/glow-leggings-sky/DSC06706.jpg",
@@ -167,8 +182,9 @@ window.LegginXProducts = [
   {
     "id": "glow-leggings-shadow",
     "category": "Glow Leggings",
+    "cat_handle": "glow-leggings",
     "name": "Glow Leggings - Shadow",
-    "price": "$29.00",
+    "price": "$29",
     "desc": "<p>Buttery soft textured high rise flared leggings made for gym and lifestyle everyday use</p>",
     "images": [
       "images/catalog/glow-leggings/glow-leggings-shadow/DSC06681_899dc05f-ecd8-46e8-954b-0e065b180dee.jpg",
@@ -178,8 +194,9 @@ window.LegginXProducts = [
   {
     "id": "glow-leggings-almond",
     "category": "Glow Leggings",
+    "cat_handle": "glow-leggings",
     "name": "Glow Leggings - Almond",
-    "price": "$29.00",
+    "price": "$29",
     "desc": "<p>Buttery soft textured high rise flared leggings made for gym and lifestyle everyday use</p>",
     "images": [
       "images/catalog/glow-leggings/glow-leggings-almond/DSC06742_b6700105-0732-4e09-8543-9639ec6289d6.jpg",
@@ -189,8 +206,9 @@ window.LegginXProducts = [
   {
     "id": "glow-leggings-royal",
     "category": "Glow Leggings",
+    "cat_handle": "glow-leggings",
     "name": "Glow Leggings - Royal",
-    "price": "$29.00",
+    "price": "$29",
     "desc": "<p>Buttery soft textured high rise flared leggings made for gym and lifestyle everyday use</p>",
     "images": [
       "images/catalog/glow-leggings/glow-leggings-royal/DSC06719_522e309b-7e5b-4e4d-b19a-a106faf3ff74.jpg",
@@ -200,8 +218,9 @@ window.LegginXProducts = [
   {
     "id": "glow-leggings-navy",
     "category": "Glow Leggings",
+    "cat_handle": "glow-leggings",
     "name": "Glow Leggings - Navy",
-    "price": "$29.00",
+    "price": "$29",
     "desc": "<p>Buttery soft textured high rise flared leggings made for gym and lifestyle everyday use</p>",
     "images": [
       "images/catalog/glow-leggings/glow-leggings-navy/DSC06670_c0389ba4-13d3-4f6c-89e5-1ad2fd15a739.jpg",
@@ -211,8 +230,9 @@ window.LegginXProducts = [
   {
     "id": "glow-leggings-onyx",
     "category": "Glow Leggings",
+    "cat_handle": "glow-leggings",
     "name": "Glow Leggings - Onyx",
-    "price": "$29.00",
+    "price": "$29",
     "desc": "<p>Buttery soft textured high rise flared leggings made for gym and lifestyle everyday use</p>",
     "images": [
       "images/catalog/glow-leggings/glow-leggings-onyx/DSC06766_cb5305f7-44d2-49f8-b065-de4981367923.jpg",
@@ -222,8 +242,9 @@ window.LegginXProducts = [
   {
     "id": "glow-leggings-stone",
     "category": "Glow Leggings",
+    "cat_handle": "glow-leggings",
     "name": "Glow Leggings - Stone",
-    "price": "$29.00",
+    "price": "$29",
     "desc": "<p>Buttery soft textured high rise flared leggings made for gym and lifestyle everyday use</p>",
     "images": [
       "images/catalog/glow-leggings/glow-leggings-stone/DSC06728.jpg",
@@ -233,8 +254,9 @@ window.LegginXProducts = [
   {
     "id": "dark-gray-leggings",
     "category": "Competitor Series Leggings",
+    "cat_handle": "competitor-series-leggings",
     "name": "Rival Leggings - Shadow",
-    "price": "$29.00",
+    "price": "$29",
     "desc": "<p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Scrunched</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Thin Waistband</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Maximum Stretch Fabric Around Glute Area</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Low Waisted</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Ribbed Waistband</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">True to size.</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">If you are in between sizes we recommend sizing up for a more relaxed fit.</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Model: 118LBS, Wearing Small</p>",
     "images": [
       "images/catalog/competitor-series-leggings/dark-gray-leggings/3DCA6FC5-F1BE-4DFF-8A55-ED15541362FC.jpg",
@@ -247,8 +269,9 @@ window.LegginXProducts = [
   {
     "id": "pink-leggings",
     "category": "Competitor Series Leggings",
+    "cat_handle": "competitor-series-leggings",
     "name": "Rival Leggings - Rose",
-    "price": "$29.00",
+    "price": "$29",
     "desc": "<p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Scrunched</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Thin Waistband</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Maximum Stretch Fabric Around Glute Area</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Low Waisted</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Ribbed Waistband</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">True to size.</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">If you are in between sizes we recommend sizing up for a more relaxed fit.</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Model: 118LBS, Wearing Small</p>",
     "images": [
       "images/catalog/competitor-series-leggings/pink-leggings/0472059D-47E3-42E1-A4BF-7C56D78AE11E.jpg",
@@ -261,8 +284,9 @@ window.LegginXProducts = [
   {
     "id": "mint-green-leggings",
     "category": "Competitor Series Leggings",
+    "cat_handle": "competitor-series-leggings",
     "name": "Rival Leggings - Mint",
-    "price": "$29.00",
+    "price": "$29",
     "desc": "<p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Scrunched</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Thin Waistband</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Maximum Stretch Fabric Around Glute Area</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Low Waisted</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Ribbed Waistband</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">True to size.</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">If you are in between sizes we recommend sizing up for a more relaxed fit.</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Model: 118LBS, Wearing Small</p>",
     "images": [
       "images/catalog/competitor-series-leggings/mint-green-leggings/97920CCA-B136-4E27-B998-D10651369A04.jpg",
@@ -275,8 +299,9 @@ window.LegginXProducts = [
   {
     "id": "light-gray-leggings",
     "category": "Competitor Series Leggings",
+    "cat_handle": "competitor-series-leggings",
     "name": "Rival Leggings - Pearl",
-    "price": "$29.00",
+    "price": "$29",
     "desc": "<p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Scrunched</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Thin Waistband</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Maximum Stretch Fabric Around Glute Area</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Low Waisted</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Ribbed Waistband</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">True to size.</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">If you are in between sizes we recommend sizing up for a more relaxed fit.</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Model: 118LBS, Wearing Small</p>",
     "images": [
       "images/catalog/competitor-series-leggings/light-gray-leggings/212A9330-694E-459A-8E8E-9C74919A4A7E.jpg",
@@ -289,8 +314,9 @@ window.LegginXProducts = [
   {
     "id": "teal-leggings",
     "category": "Competitor Series Leggings",
+    "cat_handle": "competitor-series-leggings",
     "name": "Rival Leggings - Teal",
-    "price": "$29.00",
+    "price": "$29",
     "desc": "<p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Scrunched</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Thin Waistband</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Maximum Stretch Fabric Around Glute Area</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Low Waisted</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Ribbed Waistband</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">True to size.</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">If you are in between sizes we recommend sizing up for a more relaxed fit.</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Model: 118LBS, Wearing Small</p>",
     "images": [
       "images/catalog/competitor-series-leggings/teal-leggings/137186B0-BFFE-4BF7-B5FD-2E4DE9172688.jpg",
@@ -303,8 +329,9 @@ window.LegginXProducts = [
   {
     "id": "purplish-gray-leggings",
     "category": "Competitor Series Leggings",
+    "cat_handle": "competitor-series-leggings",
     "name": "Rival Leggings - Plum",
-    "price": "$29.00",
+    "price": "$29",
     "desc": "<p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Scrunched</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Thin Waistband</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Maximum Stretch Fabric Around Glute Area</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Low Waisted</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Ribbed Waistband</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">True to size.</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">If you are in between sizes we recommend sizing up for a more relaxed fit.</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Model: 118LBS, Wearing Small</p>",
     "images": [
       "images/catalog/competitor-series-leggings/purplish-gray-leggings/6AC7D24B-89DD-4ACD-8340-A073C9BD2DCA.jpg",
@@ -317,8 +344,9 @@ window.LegginXProducts = [
   {
     "id": "pine-green-leggings",
     "category": "Competitor Series Leggings",
+    "cat_handle": "competitor-series-leggings",
     "name": "Rival Leggings - Jade",
-    "price": "$29.00",
+    "price": "$29",
     "desc": "<p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Scrunched</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Thin Waistband</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Maximum Stretch Fabric Around Glute Area</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Low Waisted</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Ribbed Waistband</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">True to size.</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">If you are in between sizes we recommend sizing up for a more relaxed fit.</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Model: 118LBS, Wearing Small</p>",
     "images": [
       "images/catalog/competitor-series-leggings/pine-green-leggings/0CEE74C9-E098-41B0-8075-FC022000E25B.jpg",
@@ -331,8 +359,9 @@ window.LegginXProducts = [
   {
     "id": "sky-blue-leggings",
     "category": "Competitor Series Leggings",
+    "cat_handle": "competitor-series-leggings",
     "name": "Rival Leggings - Sky",
-    "price": "$29.00",
+    "price": "$29",
     "desc": "<p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Scrunched</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Thin Waistband</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Maximum Stretch Fabric Around Glute Area</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Low Waisted</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Ribbed Waistband</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">True to size.</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">If you are in between sizes we recommend sizing up for a more relaxed fit.</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Model: 118LBS, Wearing Small</p>",
     "images": [
       "images/catalog/competitor-series-leggings/sky-blue-leggings/0650EBEA-1EC5-4B54-AF91-5DA61B7E673B.jpg",
@@ -345,8 +374,9 @@ window.LegginXProducts = [
   {
     "id": "wine-red-leggings",
     "category": "Competitor Series Leggings",
+    "cat_handle": "competitor-series-leggings",
     "name": "Rival Leggings - Crimson",
-    "price": "$29.00",
+    "price": "$29",
     "desc": "<p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Scrunched</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Thin Waistband</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Maximum Stretch Fabric Around Glute Area</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Low Waisted</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Ribbed Waistband</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">True to size.</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">If you are in between sizes we recommend sizing up for a more relaxed fit.</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Model: 118LBS, Wearing Small</p>",
     "images": [
       "images/catalog/competitor-series-leggings/wine-red-leggings/32FCB487-EE9F-4BFA-9765-9D9D6DE684AD.jpg",
@@ -359,8 +389,9 @@ window.LegginXProducts = [
   {
     "id": "navy-blue-leggings",
     "category": "Competitor Series Leggings",
+    "cat_handle": "competitor-series-leggings",
     "name": "Rival Leggings - Navy",
-    "price": "$29.00",
+    "price": "$29",
     "desc": "<p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Scrunched</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Thin Waistband</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Maximum Stretch Fabric Around Glute Area</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Low Waisted</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Ribbed Waistband</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">True to size.</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">If you are in between sizes we recommend sizing up for a more relaxed fit.</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Model: 118LBS, Wearing Small</p>",
     "images": [
       "images/catalog/competitor-series-leggings/navy-blue-leggings/141AA15B-2AA0-4BF2-A576-006B6D9CE26C.jpg",
@@ -373,8 +404,9 @@ window.LegginXProducts = [
   {
     "id": "royal-blue-leggings",
     "category": "Competitor Series Leggings",
+    "cat_handle": "competitor-series-leggings",
     "name": "Rival Leggings - Royal",
-    "price": "$29.00",
+    "price": "$29",
     "desc": "<p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Scrunched</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Thin Waistband</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Maximum Stretch Fabric Around Glute Area</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Low Waisted</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Ribbed Waistband</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">True to size.</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">If you are in between sizes we recommend sizing up for a more relaxed fit.</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Model: 118LBS, Wearing Small</p>",
     "images": [
       "images/catalog/competitor-series-leggings/royal-blue-leggings/3AC1665F-A293-43C6-A40F-FEA00EC7D42B.jpg",
@@ -387,8 +419,9 @@ window.LegginXProducts = [
   {
     "id": "brown-leggings",
     "category": "Competitor Series Leggings",
+    "cat_handle": "competitor-series-leggings",
     "name": "Rival Leggings - Chestnut",
-    "price": "$29.00",
+    "price": "$29",
     "desc": "<p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Scrunched</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Thin Waistband</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Maximum Stretch Fabric Around Glute Area</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Low Waisted</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Ribbed Waistband</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">True to size.</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">If you are in between sizes we recommend sizing up for a more relaxed fit.</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Model: 118LBS, Wearing Small</p>",
     "images": [
       "images/catalog/competitor-series-leggings/brown-leggings/500BDEB0-558A-43E3-A140-5B739652DAFF.jpg",
@@ -401,8 +434,9 @@ window.LegginXProducts = [
   {
     "id": "peach-leggings",
     "category": "Competitor Series Leggings",
+    "cat_handle": "competitor-series-leggings",
     "name": "Rival Leggings - Peach",
-    "price": "$29.00",
+    "price": "$29",
     "desc": "<p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Scrunched</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Thin Waistband</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Maximum Stretch Fabric Around Glute Area</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Low Waisted</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Ribbed Waistband</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">True to size.</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">If you are in between sizes we recommend sizing up for a more relaxed fit.</p><p style=\"text-align: center; ; white-space:pre-wrap;\" data-rte-preserve-empty=\"true\">Model: 118LBS, Wearing Small</p>",
     "images": [
       "images/catalog/competitor-series-leggings/peach-leggings/32600277-0284-432E-A6EC-E5A69D44BBB8.jpg",
@@ -415,8 +449,9 @@ window.LegginXProducts = [
   {
     "id": "glow-shorts-template-copy-copy-copy-copy-copy",
     "category": "Competitor Shorts",
+    "cat_handle": "competitor-shorts",
     "name": "Glow Shorts - Lavender",
-    "price": "$26.00",
+    "price": "$26",
     "desc": "<p><strong style=\"white-space-collapse: preserve; font-size: 0.875rem;\"><em>If you are in between sizes we recommend sizing up for a more relaxed fit.</em></strong></p>\n<p><em><span style=\"white-space-collapse: preserve; font-size: 0.875rem;\">Ultra-Thin &amp; Soft Texture</span></em></p>\n<p class=\"\" style=\"white-space: pre-wrap;\"><em>Model: 124LBS, Wearing Small</em></p>\n<p>\u00a0</p>",
     "images": [
       "images/catalog/competitor-shorts/glow-shorts-template-copy-copy-copy-copy-copy/10-DSC05561.jpg",
@@ -429,8 +464,9 @@ window.LegginXProducts = [
   {
     "id": "pocket-shorts-ivory",
     "category": "Competitor Shorts",
+    "cat_handle": "competitor-shorts",
     "name": "Glow Shorts - Ivory",
-    "price": "$26.00",
+    "price": "$26",
     "desc": "<p><strong style=\"white-space-collapse: preserve; font-size: 0.875rem;\"><em>If you are in between sizes we recommend sizing up for a more relaxed fit.</em></strong></p>\n<p><em><span style=\"white-space-collapse: preserve; font-size: 0.875rem;\">Ultra-Thin &amp; Soft Texture</span></em></p>\n<p class=\"\" style=\"white-space: pre-wrap;\"><em>Model: 124LBS, Wearing Small</em></p>",
     "images": [
       "images/catalog/competitor-shorts/pocket-shorts-ivory/46-DSC05695.jpg",
@@ -443,8 +479,9 @@ window.LegginXProducts = [
   {
     "id": "glow-shorts-template",
     "category": "Competitor Shorts",
+    "cat_handle": "competitor-shorts",
     "name": "Glow Shorts - Magenta",
-    "price": "$26.00",
+    "price": "$26",
     "desc": "<p><strong style=\"white-space-collapse: preserve; font-size: 0.875rem;\"><em>If you are in between sizes we recommend sizing up for a more relaxed fit.</em></strong></p>\n<p><em><span style=\"white-space-collapse: preserve; font-size: 0.875rem;\">Ultra-Thin &amp; Soft Texture</span></em></p>\n<p class=\"\" style=\"white-space: pre-wrap;\"><em>Model: 124LBS, Wearing Small</em></p>\n<p>\u00a0</p>",
     "images": [
       "images/catalog/competitor-shorts/glow-shorts-template/10-DSC05361.jpg",
@@ -457,8 +494,9 @@ window.LegginXProducts = [
   {
     "id": "glow-template-copy-copy-copy",
     "category": "Competitor Shorts",
+    "cat_handle": "competitor-shorts",
     "name": "Glow Shorts - Hazel",
-    "price": "$26.00",
+    "price": "$26",
     "desc": "<p><strong style=\"white-space-collapse: preserve; font-size: 0.875rem;\"><em>If you are in between sizes we recommend sizing up for a more relaxed fit.</em></strong></p>\n<p><em><span style=\"white-space-collapse: preserve; font-size: 0.875rem;\">Ultra-Thin &amp; Soft Texture</span></em></p>\n<p class=\"\" style=\"white-space: pre-wrap;\"><em>Model: 124LBS, Wearing Small</em></p>\n<p>\u00a0</p>",
     "images": [
       "images/catalog/competitor-shorts/glow-template-copy-copy-copy/36-DSC05643.jpg",
@@ -471,8 +509,9 @@ window.LegginXProducts = [
   {
     "id": "glow-shorts-template-copy",
     "category": "Competitor Shorts",
+    "cat_handle": "competitor-shorts",
     "name": "Glow Shorts - Almond",
-    "price": "$26.00",
+    "price": "$26",
     "desc": "<p><strong style=\"white-space-collapse: preserve; font-size: 0.875rem;\"><em>If you are in between sizes we recommend sizing up for a more relaxed fit.</em></strong></p>\n<p><em><span style=\"white-space-collapse: preserve; font-size: 0.875rem;\">Ultra-Thin &amp; Soft Texture</span></em></p>\n<p class=\"\" style=\"white-space: pre-wrap;\"><em>Model: 124LBS, Wearing Small</em></p>\n<p>\u00a0</p>",
     "images": [
       "images/catalog/competitor-shorts/glow-shorts-template-copy/16-DSC05487.jpg",
@@ -485,8 +524,9 @@ window.LegginXProducts = [
   {
     "id": "glow-template-copy-copy-copy-copy",
     "category": "Competitor Shorts",
+    "cat_handle": "competitor-shorts",
     "name": "Glow Shorts - Peach",
-    "price": "$26.00",
+    "price": "$26",
     "desc": "<p><strong style=\"white-space-collapse: preserve; font-size: 0.875rem;\"><em>If you are in between sizes we recommend sizing up for a more relaxed fit.</em></strong></p>\n<p><em><span style=\"white-space-collapse: preserve; font-size: 0.875rem;\">Ultra-Thin &amp; Soft Texture</span></em></p>\n<p class=\"\" style=\"white-space: pre-wrap;\"><em>Model: 124LBS, Wearing Small</em></p>\n<p>\u00a0</p>",
     "images": [
       "images/catalog/competitor-shorts/glow-template-copy-copy-copy-copy/11-DSC05366.jpg",
@@ -499,8 +539,9 @@ window.LegginXProducts = [
   {
     "id": "glow-shorts-template-copy-1",
     "category": "Competitor Shorts",
+    "cat_handle": "competitor-shorts",
     "name": "Glow Shorts - Stone",
-    "price": "$26.00",
+    "price": "$26",
     "desc": "<p><strong style=\"white-space-collapse: preserve; font-size: 0.875rem;\"><em>If you are in between sizes we recommend sizing up for a more relaxed fit.</em></strong></p>\n<p><em><span style=\"white-space-collapse: preserve; font-size: 0.875rem;\">Ultra-Thin &amp; Soft Texture</span></em></p>\n<p class=\"\" style=\"white-space: pre-wrap;\"><em>Model: 124LBS, Wearing Small</em></p>\n<p>\u00a0</p>",
     "images": [
       "images/catalog/competitor-shorts/glow-shorts-template-copy-1/1-DSC05464.jpg",
@@ -513,8 +554,9 @@ window.LegginXProducts = [
   {
     "id": "glow-shorts-template-copy-copy-2",
     "category": "Competitor Shorts",
+    "cat_handle": "competitor-shorts",
     "name": "Glow Shorts - Blossom",
-    "price": "$26.00",
+    "price": "$26",
     "desc": "<p><strong style=\"white-space-collapse: preserve; font-size: 0.875rem;\"><em>If you are in between sizes we recommend sizing up for a more relaxed fit.</em></strong></p>\n<p><em><span style=\"white-space-collapse: preserve; font-size: 0.875rem;\">Ultra-Thin &amp; Soft Texture</span></em></p>\n<p class=\"\" style=\"white-space: pre-wrap;\"><em>Model: 124LBS, Wearing Small</em></p>\n<p>\u00a0</p>",
     "images": [
       "images/catalog/competitor-shorts/glow-shorts-template-copy-copy-2/1-DSC05386.jpg",
@@ -527,8 +569,9 @@ window.LegginXProducts = [
   {
     "id": "glow-shorts-template-copy-copy",
     "category": "Competitor Shorts",
+    "cat_handle": "competitor-shorts",
     "name": "Glow Shorts - Chestnut",
-    "price": "$26.00",
+    "price": "$26",
     "desc": "<p><strong style=\"white-space-collapse: preserve; font-size: 0.875rem;\"><em>If you are in between sizes we recommend sizing up for a more relaxed fit.</em></strong></p>\n<p><em><span style=\"white-space-collapse: preserve; font-size: 0.875rem;\">Ultra-Thin &amp; Soft Texture</span></em></p>\n<p class=\"\" style=\"white-space: pre-wrap;\"><em>Model: 124LBS, Wearing Small</em></p>\n<p>\u00a0</p>",
     "images": [
       "images/catalog/competitor-shorts/glow-shorts-template-copy-copy/1-DSC05321.jpg",
@@ -541,8 +584,9 @@ window.LegginXProducts = [
   {
     "id": "glow-shorts-template-copy-copy-copy-copy",
     "category": "Competitor Shorts",
+    "cat_handle": "competitor-shorts",
     "name": "Glow Shorts - Emerald",
-    "price": "$26.00",
+    "price": "$26",
     "desc": "<p><strong style=\"white-space-collapse: preserve; font-size: 0.875rem;\"><em>If you are in between sizes we recommend sizing up for a more relaxed fit.</em></strong></p>\n<p><em><span style=\"white-space-collapse: preserve; font-size: 0.875rem;\">Ultra-Thin &amp; Soft Texture</span></em></p>\n<p class=\"\" style=\"white-space: pre-wrap;\"><em>Model: 124LBS, Wearing Small</em></p>\n<p>\u00a0</p>",
     "images": [
       "images/catalog/competitor-shorts/glow-shorts-template-copy-copy-copy-copy/11-DSC05747.jpg",
@@ -555,8 +599,9 @@ window.LegginXProducts = [
   {
     "id": "glow-shorts-template-copy-copy-copy",
     "category": "Competitor Shorts",
+    "cat_handle": "competitor-shorts",
     "name": "Glow Shorts - Navy",
-    "price": "$26.00",
+    "price": "$26",
     "desc": "<p><strong style=\"white-space-collapse: preserve; font-size: 0.875rem;\"><em>If you are in between sizes we recommend sizing up for a more relaxed fit.</em></strong></p>\n<p><em><span style=\"white-space-collapse: preserve; font-size: 0.875rem;\">Ultra-Thin &amp; Soft Texture</span></em></p>\n<p class=\"\" style=\"white-space: pre-wrap;\"><em>Model: 124LBS, Wearing Small</em></p>\n<p>\u00a0</p>",
     "images": [
       "images/catalog/competitor-shorts/glow-shorts-template-copy-copy-copy/11-DSC05444.jpg",
@@ -569,8 +614,9 @@ window.LegginXProducts = [
   {
     "id": "pocket-shorts-mint-green",
     "category": "Competitor Shorts",
+    "cat_handle": "competitor-shorts",
     "name": "Glow Shorts - Mint",
-    "price": "$26.00",
+    "price": "$26",
     "desc": "<p><strong style=\"white-space-collapse: preserve; font-size: 0.875rem;\"><em>If you are in between sizes we recommend sizing up for a more relaxed fit.</em></strong></p>\n<p><em><span style=\"white-space-collapse: preserve; font-size: 0.875rem;\">Ultra-Thin &amp; Soft Texture</span></em></p>\n<p class=\"\" style=\"white-space: pre-wrap;\"><em>Model: 124LBS, Wearing Small</em></p>\n<p>\u00a0</p>",
     "images": [
       "images/catalog/competitor-shorts/pocket-shorts-mint-green/31-DSC05588.jpg",
@@ -583,8 +629,9 @@ window.LegginXProducts = [
   {
     "id": "glow-shorts-template-copy-2",
     "category": "Competitor Shorts",
+    "cat_handle": "competitor-shorts",
     "name": "Glow Shorts - Ember",
-    "price": "$26.00",
+    "price": "$26",
     "desc": "<p><strong style=\"white-space-collapse: preserve; font-size: 0.875rem;\"><em>If you are in between sizes we recommend sizing up for a more relaxed fit.</em></strong></p>\n<p><em><span style=\"white-space-collapse: preserve; font-size: 0.875rem;\">Ultra-Thin &amp; Soft Texture</span></em></p>\n<p class=\"\" style=\"white-space: pre-wrap;\"><em>Model: 124LBS, Wearing Small</em></p>\n<p>\u00a0</p>",
     "images": [
       "images/catalog/competitor-shorts/glow-shorts-template-copy-2/16-DSC05619.jpg",
@@ -597,8 +644,9 @@ window.LegginXProducts = [
   {
     "id": "glow-shorts-template-copy-copy-1",
     "category": "Competitor Shorts",
+    "cat_handle": "competitor-shorts",
     "name": "Glow Shorts - Royal",
-    "price": "$26.00",
+    "price": "$26",
     "desc": "<p><strong style=\"white-space-collapse: preserve; font-size: 0.875rem;\"><em>If you are in between sizes we recommend sizing up for a more relaxed fit.</em></strong></p>\n<p><em><span style=\"white-space-collapse: preserve; font-size: 0.875rem;\">Ultra-Thin &amp; Soft Texture</span></em></p>\n<p class=\"\" style=\"white-space: pre-wrap;\"><em>Model: 124LBS, Wearing Small</em></p>\n<p>\u00a0</p>",
     "images": [
       "images/catalog/competitor-shorts/glow-shorts-template-copy-copy-1/21-DSC05771.jpg",
@@ -611,8 +659,9 @@ window.LegginXProducts = [
   {
     "id": "glow-shorts-mint-copy",
     "category": "Competitor Shorts",
+    "cat_handle": "competitor-shorts",
     "name": "Glow Shorts - Sky",
-    "price": "$26.00",
+    "price": "$26",
     "desc": "<p><strong style=\"white-space-collapse: preserve; font-size: 0.875rem;\"><em>If you are in between sizes we recommend sizing up for a more relaxed fit.</em></strong></p>\n<p><em><span style=\"white-space-collapse: preserve; font-size: 0.875rem;\">Ultra-Thin &amp; Soft Texture</span></em></p>\n<p class=\"\" style=\"white-space: pre-wrap;\"><em>Model: 124LBS, Wearing Small</em></p>\n<p>\u00a0</p>",
     "images": [
       "images/catalog/competitor-shorts/glow-shorts-mint-copy/10-DSC05439.jpg",
@@ -625,8 +674,9 @@ window.LegginXProducts = [
   {
     "id": "glow-template-copy-copy",
     "category": "Competitor Shorts",
+    "cat_handle": "competitor-shorts",
     "name": "Glow Shorts - Onyx",
-    "price": "$26.00",
+    "price": "$26",
     "desc": "<p><strong style=\"white-space-collapse: preserve; font-size: 0.875rem;\"><em>If you are in between sizes we recommend sizing up for a more relaxed fit.</em></strong></p>\n<p><em><span style=\"white-space-collapse: preserve; font-size: 0.875rem;\">Ultra-Thin &amp; Soft Texture</span></em></p>\n<p class=\"\" style=\"white-space: pre-wrap;\"><em>Model: 124LBS, Wearing Small</em></p>\n<p>\u00a0</p>",
     "images": [
       "images/catalog/competitor-shorts/glow-template-copy-copy/41-DSC05669.jpg",
@@ -639,8 +689,9 @@ window.LegginXProducts = [
   {
     "id": "glow-template-copy",
     "category": "Competitor Shorts",
+    "cat_handle": "competitor-shorts",
     "name": "Glow Shorts - Blush",
-    "price": "$26.00",
+    "price": "$26",
     "desc": "<p><strong style=\"white-space-collapse: preserve; font-size: 0.875rem;\"><em>If you are in between sizes we recommend sizing up for a more relaxed fit.</em></strong></p>\n<p><em><span style=\"white-space-collapse: preserve; font-size: 0.875rem;\">Ultra-Thin &amp; Soft Texture</span></em></p>\n<p class=\"\" style=\"white-space: pre-wrap;\"><em>Model: 124LBS, Wearing Small</em></p>\n<p>\u00a0</p>",
     "images": [
       "images/catalog/competitor-shorts/glow-template-copy/26-DSC05568.jpg",
@@ -653,8 +704,9 @@ window.LegginXProducts = [
   {
     "id": "aura-cross-front-halter-neck-sports-bra-copy",
     "category": "Aura",
+    "cat_handle": "aura",
     "name": "Aura Sports Bra - Black",
-    "price": "$24.00",
+    "price": "$24",
     "desc": "<p>Super soft, super cute, minimal coverage to show off your upper body</p>\n<ul>\n<li>Cute, comfy</li>\n<li>Flattering halter neck shape</li>\n<li>Sliders in the back to get the right fit &amp; lift</li>\n<li>Super soft fabric</li>\n<li>Minimal coverage shows off your upper body</li>\n</ul>",
     "images": [
       "images/catalog/aura/aura-cross-front-halter-neck-sports-bra-copy/black.png",
@@ -667,8 +719,9 @@ window.LegginXProducts = [
   {
     "id": "cross-front-halter-neck-sports-bra",
     "category": "Aura",
+    "cat_handle": "aura",
     "name": "Aura Sports Bra - White",
-    "price": "$24.00",
+    "price": "$24",
     "desc": "<p>Super soft, super cute, minimal coverage to show off your upper body</p>\n<ul>\n<li>Cute, comfy</li>\n<li>Flattering halter neck shape</li>\n<li>Sliders in the back to get the right fit &amp; lift</li>\n<li>Super soft fabric</li>\n<li>Minimal coverage shows off your upper body</li>\n</ul>",
     "images": [
       "images/catalog/aura/cross-front-halter-neck-sports-bra/frontofbrawhite.png",
@@ -681,8 +734,9 @@ window.LegginXProducts = [
   {
     "id": "essentials-halter-top-brown",
     "category": "Essential Bras",
+    "cat_handle": "essential-bras",
     "name": "Essentials Halter Top - Hazel",
-    "price": "$24.00",
+    "price": "$24",
     "desc": "",
     "images": [
       "images/catalog/essential-bras/essentials-halter-top-brown/Firefly_change_the_color_of_the_bra_to_brown_694928.png",
@@ -693,8 +747,9 @@ window.LegginXProducts = [
   {
     "id": "essentials-halter-top-khaki",
     "category": "Essential Bras",
+    "cat_handle": "essential-bras",
     "name": "Essentials Halter Top - Chocolate Gray",
-    "price": "$24.00",
+    "price": "$24",
     "desc": "",
     "images": [
       "images/catalog/essential-bras/essentials-halter-top-khaki/Firefly_Gemini_Flash_change_color_of_the_bra_to_hex_color_code_5c5253_829796.png",
@@ -705,8 +760,9 @@ window.LegginXProducts = [
   {
     "id": "essentials-halter-top-black",
     "category": "Essential Bras",
+    "cat_handle": "essential-bras",
     "name": "Essentials Halter Top - Black",
-    "price": "$24.00",
+    "price": "$24",
     "desc": "",
     "images": [
       "images/catalog/essential-bras/essentials-halter-top-black/blackback.png",
@@ -717,8 +773,9 @@ window.LegginXProducts = [
   {
     "id": "essentials-halter-top-white",
     "category": "Essential Bras",
+    "cat_handle": "essential-bras",
     "name": "Essentials Halter Top - Ivory",
-    "price": "$24.00",
+    "price": "$24",
     "desc": "",
     "images": [
       "images/catalog/essential-bras/essentials-halter-top-white/closeup-finalpictureofhalterbrafront.jpg",
@@ -727,3 +784,23 @@ window.LegginXProducts = [
     ]
   }
 ];
+window.LegginXIG = {
+  "handle": "@legginx",
+  "url": "https://www.instagram.com/legginx",
+  "stats": {
+    "posts": 34,
+    "followers": 338,
+    "following": 10
+  },
+  "recent_captions": [
+    "Aura Sports Bra is live now \u2728 Your new favorite fit\u2014soft, clean...",
+    "gym essentials \u03a8 \u00b7 squat & rdl combo in a full @legginx set \u00b7 Push yourself... my legs have seriously grown SO MUCH...",
+    "off season flow outfit: @legginx i do it all for my future self @dfyne.official code ASHLEY origin bra + impact shorts in espresso vision shrug in umber.",
+    "easy on the eyes, heavy on the discipline\ud83d\udda4 @legginx Black ... Quiet focus. Loud results. Lately the grind hasn't been easy, and I won't pretend it has. Excuses come easy, growth doesn't.",
+    "RIVAL SHORTS \u2014 MINT \u2728 For those who live the lifestyle. LEGGINX.COM \u03a8 | earn your physique. Athlete: @yvonnacastillo \u00b7 #npcwellness #npcbikini."
+  ],
+  "linked_accounts": [
+    "@yvonnacastillo",
+    "@dfyne.official"
+  ]
+};

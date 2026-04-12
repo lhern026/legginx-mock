@@ -1,0 +1,75 @@
+<header class="fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 bg-transparent flex flex-col font-['Outfit'] antialiased group" id="legginx-header" data-section-id="{{ section.id }}">
+  <!-- Top Announcement Bar -->
+  <div class="bg-black text-white text-xs font-semibold tracking-widest uppercase text-center py-2 relative z-20 w-full">
+    {{ section.settings.announcement | escape }}
+  </div>
+
+  <!-- Main Navbar -->
+  <div class="w-full px-6 md:px-12 py-4 flex items-center justify-between transition-all duration-500 bg-gradient-to-b from-black/80 to-transparent group-hover:bg-black/90 group-hover:backdrop-blur-md">
+    
+    <!-- Left Navigation -->
+    <nav class="hidden lg:flex items-center gap-8 flex-1">
+      <a href="#" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Rival</a>
+      <a href="#" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Glow</a>
+      <a href="#" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Aura</a>
+      <a href="#" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Essentials</a>
+    </nav>
+
+    <!-- Center Logo (Trident) -->
+    <div class="flex-1 flex justify-center items-center">
+      <a href="/" class="text-white hover:scale-110 transition-transform duration-500 filter drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
+        <svg viewBox="0 0 100 100" fill="currentColor" class="w-8 h-8 md:w-10 md:h-10">
+          <path d="M 50 2 L 34 22 L 44 22 L 44 42 C 44 55, 28 55, 28 35 L 28 28 L 34 32 L 20 6 L 6 32 L 14 28 C 14 55, 34 60, 44 60 C 36 61, 36 66, 44 67 L 44 71 C 36 72, 36 77, 44 78 L 44 98 L 56 98 L 56 78 C 64 77, 64 72, 56 71 L 56 67 C 64 66, 64 61, 56 60 C 66 60, 86 55, 86 28 L 94 32 L 80 6 L 66 32 L 72 28 L 72 35 C 72 55, 56 55, 56 42 L 56 22 L 66 22 Z" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- Right Icons -->
+    <div class="flex flex-1 items-center justify-end gap-6 text-white">
+      <a href="#" class="hover:text-zinc-400 transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
+      </a>
+      <a href="#" class="hover:text-zinc-400 transition-colors hidden sm:block">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+      </a>
+      <a href="#" class="hover:text-zinc-400 transition-colors flex items-center relative">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
+        <span class="absolute -top-2 -right-2 bg-white text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Add scroll effect to header
+  window.addEventListener('scroll', () => {
+    const header = document.getElementById('legginx-header');
+    if(window.scrollY > 50) {
+      header.classList.add('bg-black/90', 'backdrop-blur-md', 'shadow-2xl');
+      header.classList.remove('bg-transparent');
+    } else {
+      header.classList.remove('bg-black/90', 'backdrop-blur-md', 'shadow-2xl');
+      header.classList.add('bg-transparent');
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "LegginX Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "announcement",
+      "label": "Announcement Text",
+      "default": "Free Shipping All Orders"
+    }
+  ],
+  "presets": [
+    {
+      "name": "LegginX Header",
+      "category": "Header"
+    }
+  ]
+}
+{% endschema %}

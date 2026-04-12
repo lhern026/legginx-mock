@@ -42,16 +42,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
   animateElements.forEach(el => observer.observe(el));
 
-  // ─── Smooth Parallax for Hero Image ────────────────
+  // ─── Hero Entrance Animation ───────────────────────
+  const heroLines = document.querySelectorAll('.hero-line');
+  if (heroLines.length) {
+    setTimeout(() => {
+      heroLines.forEach(line => {
+        line.classList.remove('translate-y-full');
+        line.classList.add('translate-y-0', 'opacity-100');
+      });
+    }, 400);
+  }
+
+  // ─── Constant Slow Zoom (Ken Burns) for Hero Image ──
   const heroImg = document.querySelector('[class*="hero"] img, .hero-bg img');
   if (heroImg) {
+    heroImg.style.transition = 'transform 10s ease-out';
+    setTimeout(() => {
+      heroImg.style.transform = 'scale(1.1)';
+    }, 100);
+
     let ticking = false;
     window.addEventListener('scroll', () => {
       if (!ticking) {
         requestAnimationFrame(() => {
           const scrolled = window.scrollY;
           if (scrolled < window.innerHeight) {
-            heroImg.style.transform = `scale(${1 + scrolled * 0.0003}) translateY(${scrolled * 0.15}px)`;
+            // Keep the constant zoom base but add scroll parallax on top
+            heroImg.style.transform = `scale(${1.1 + scrolled * 0.0003}) translateY(${scrolled * 0.15}px)`;
           }
           ticking = false;
         });

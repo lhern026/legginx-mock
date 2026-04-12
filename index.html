@@ -38,29 +38,22 @@
      HEADER
      ════════════════════════════════════════════════════════════ -->
 <header class="fixed top-0 left-0 right-0 z-[100] w-full transition-all duration-300 bg-transparent flex flex-col font-['Outfit'] antialiased group" id="legginx-header">
-  <!-- Announcement Bar -->
   <div class="bg-black text-white text-[10px] sm:text-xs font-semibold tracking-widest uppercase text-center py-2 relative z-20 w-full">
     Free Shipping on All Orders
   </div>
-
-  <!-- Main Nav Row -->
   <div class="w-full px-5 md:px-12 py-4 flex items-center justify-between transition-all duration-500 bg-gradient-to-b from-black/80 to-transparent group-hover:bg-black/90 group-hover:backdrop-blur-md">
-
-    <!-- Left: Hamburger (mobile only) / Links (desktop) -->
     <div class="flex-1 flex items-center">
-      <button id="mobile-nav-toggle" class="lg:hidden text-white hover:text-zinc-400 transition-colors" aria-label="Open menu">
+      <button id="mobile-nav-toggle" class="lg:hidden text-white hover:text-zinc-400 transition-colors">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"/></svg>
       </button>
       <nav class="hidden lg:flex items-center gap-8">
-        <a href="rival.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Rival</a>
-        <a href="glow.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Glow</a>
-        <a href="aura.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Aura</a>
-        <a href="all-items.html" class="text-xs font-medium uppercase tracking-[0.2em] text-zinc-300 hover:text-white transition-colors">All Items</a>
-        <a href="essentials.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Essentials</a>
+        <a href="rival.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400">Rival</a>
+        <a href="glow.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400">Glow</a>
+        <a href="aura.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400">Aura</a>
+        <a href="all-items.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400">All Items</a>
+        <a href="essentials.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400">Essentials</a>
       </nav>
     </div>
-
-    <!-- Center: Logo -->
     <div class="flex-shrink-0">
       <a href="index.html" class="text-white hover:scale-110 transition-transform duration-500 block filter drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
         <svg viewBox="0 0 100 100" fill="currentColor" class="w-8 h-8 md:w-10 md:h-10">
@@ -68,22 +61,13 @@
         </svg>
       </a>
     </div>
-
-    <!-- Right: Utility Icons -->
     <div class="flex flex-1 items-center justify-end gap-5 text-white">
-      <a href="#" class="hover:text-zinc-400 transition-colors hidden sm:block">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
-      </a>
-      <a href="profile.html" class="hover:text-zinc-400 transition-colors hidden sm:block">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
-      </a>
-      <a href="cart.html" class="hover:text-zinc-400 transition-colors flex items-center relative">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
-        <span id="cart-count" class="absolute -top-2 -right-2 bg-white text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center transition-transform duration-300">0</span>
-      </a>
+      <a href="profile.html" class="hover:text-zinc-400"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg></a>
+      <a href="cart.html" class="relative group"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg><span id="cart-count" class="absolute -top-2 -right-2 bg-white text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span></a>
     </div>
   </div>
 </header>
+
 
 <!-- ════════════════════════════════════════════════════════════
      MOBILE NAV DRAWER (hidden on desktop)
@@ -127,26 +111,28 @@
 
   <!-- Hero Content -->
   <div class="relative z-10 w-full max-w-[90rem] mx-auto px-5 sm:px-6 lg:px-12 flex flex-col items-start justify-end lg:justify-center h-full pb-8 lg:pb-0">
-    <div class="max-w-3xl animate-on-scroll opacity-0 translate-y-12 transition-all duration-[1200ms] ease-out">
+    <div class="max-w-4xl">
 
       <!-- Trust Badge -->
-      <div class="flex items-center gap-2.5 mb-5 lg:mb-6">
+      <div class="animate-on-scroll opacity-0 translate-y-4 transition-all duration-1000 ease-out flex items-center gap-2.5 mb-5 lg:mb-6">
         <div class="flex text-amber-400 text-xs tracking-wider">★★★★★</div>
         <span class="text-[11px] uppercase tracking-[0.2em] text-white/50 font-medium">4.8 · Rated by 10,000+ Athletes</span>
       </div>
 
       <!-- Headline -->
-      <h1 class="text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[6.5rem] font-bold tracking-tight lg:tracking-tighter uppercase text-white leading-[1] lg:leading-[0.9] mb-5 lg:mb-6" style="text-shadow: 0 8px 30px rgba(0,0,0,0.7);">
-        Performance<br>Wear That<br class="sm:hidden"> Moves<br class="hidden sm:block"> With You
+      <h1 class="text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[6.5rem] font-bold tracking-tight lg:tracking-tighter uppercase text-white leading-[1] lg:leading-[0.9] mb-5 lg:mb-6 overflow-hidden" style="text-shadow: 0 8px 30px rgba(0,0,0,0.7);">
+        <span class="hero-line block opacity-0 translate-y-full transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)]">Performance</span>
+        <span class="hero-line block opacity-0 translate-y-full transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] delay-100">Wear That</span>
+        <span class="hero-line block opacity-0 translate-y-full transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] delay-200"><br class="sm:hidden">Moves With You</span>
       </h1>
 
       <!-- Subheadline -->
-      <p class="text-base sm:text-lg md:text-xl lg:text-xl text-zinc-300/90 font-light max-w-md lg:max-w-xl mb-7 lg:mb-8 leading-relaxed">
+      <p class="animate-on-scroll opacity-0 translate-y-8 transition-all duration-[1200ms] ease-out delay-500 text-base sm:text-lg md:text-xl lg:text-xl text-zinc-300/90 font-light max-w-md lg:max-w-xl mb-7 lg:mb-8 leading-relaxed">
         Breathable. Sculpting. Built for high-output training.
       </p>
 
       <!-- CTA Stack -->
-      <div class="flex flex-col gap-3 w-full sm:w-auto">
+      <div class="animate-on-scroll opacity-0 translate-y-8 transition-all duration-[1200ms] ease-out delay-700 flex flex-col gap-3 w-full sm:w-auto">
         <a href="all-items.html" class="px-10 py-4 lg:py-5 bg-white text-black text-xs lg:text-sm uppercase tracking-[0.2em] font-bold rounded-full text-center transition-all duration-300 hover:bg-zinc-100 hover:shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:scale-[1.02] active:scale-[0.98]">
           Shop FW26 Collection
         </a>
@@ -265,7 +251,96 @@
 </div>
 
 <!-- ════════════════════════════════════════════════════════════
-     MOBILE BOTTOM DOCK (hidden on desktop)
+     JOIN THE ELITE (INSTAGRAM)
+     ════════════════════════════════════════════════════════════ -->
+<section class="py-24 px-6 sm:px-12 w-full border-t border-white/5 bg-black/20 font-['Outfit']">
+  <div class="max-w-[90rem] mx-auto">
+    <div class="flex flex-col md:flex-row items-end justify-between mb-12 gap-8">
+      <div class="max-w-2xl text-left">
+        <span class="text-xs uppercase tracking-[0.4em] text-zinc-500 mb-4 block font-semibold">Community</span>
+        <h2 class="text-5xl md:text-8xl font-bold uppercase text-white leading-tight">JOIN THE<br>ELITE Ψ</h2>
+      </div>
+      <div class="flex flex-col items-start md:items-end gap-4 text-left md:text-right">
+        <p class="text-zinc-400 text-sm tracking-wide">338 Followers / 34 Posts</p>
+        <a href="https://www.instagram.com/legginx" target="_blank" class="px-8 py-4 bg-white/5 border border-white/10 hover:bg-white hover:text-black transition-all rounded-full uppercase text-xs tracking-widest font-bold">Follow @legginx</a>
+      </div>
+    </div>
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="ig-grid">
+      <div class="aspect-square relative group overflow-hidden rounded-xl bg-zinc-900 border border-white/5">
+        <img src="images/catalog/aura/aura-cross-front-halter-neck-sports-bra-copy/blackbrafront.png" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-6 text-center">
+            <p class="text-[10px] text-white font-light leading-relaxed italic">"Aura Sports Bra is live now ✨ Your new favorite fit..."</p>
+        </div>
+      </div>
+      <div class="aspect-square relative group overflow-hidden rounded-xl bg-zinc-900 border border-white/5">
+        <img src="images/catalog/competitor-series-leggings/pink-leggings/0472059D-47E3-42E1-A4BF-7C56D78AE11E.jpg" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-6 text-center">
+            <p class="text-[10px] text-white font-light leading-relaxed italic">"gym essentials Ψ · squat & rdl combo in a full @legginx set..."</p>
+        </div>
+      </div>
+      <div class="aspect-square relative group overflow-hidden rounded-xl bg-zinc-900 border border-white/5">
+        <img src="images/catalog/competitor-shorts-1/competitor-shorts/DSC06313.jpg" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-6 text-center">
+            <p class="text-[10px] text-white font-light leading-relaxed italic">"off season flow outfit: @legginx i do it all for my future self..."</p>
+        </div>
+      </div>
+      <div class="aspect-square relative group overflow-hidden rounded-xl bg-zinc-900 border border-white/5">
+        <img src="images/catalog/glow-leggings/glow-leggings/DSC06652.jpg" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-6 text-center">
+            <p class="text-[10px] text-white font-light leading-relaxed italic">"easy on the eyes, heavy on the discipline🖤 @legginx Black..."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     FOOTER
+     ════════════════════════════════════════════════════════════ -->
+<footer class="bg-black py-20 px-8 border-t border-white/5 font-['Outfit'] w-full">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-left">
+    <div>
+      <h4 class="text-white text-sm uppercase tracking-widest font-bold mb-6">About LegginX</h4>
+      <p class="text-zinc-500 text-sm leading-relaxed">Elite performance wear engineered for those who demand the absolute best from their bodies and their gear. Earn your physique.</p>
+    </div>
+    <div>
+      <h4 class="text-white text-sm uppercase tracking-widest font-bold mb-6">Shop</h4>
+      <ul class="flex flex-col gap-3 text-sm text-zinc-500">
+        <li><a href="rival.html" class="hover:text-white transition-colors">Rival Series</a></li>
+        <li><a href="glow.html" class="hover:text-white transition-colors">Glow Collection</a></li>
+        <li><a href="aura.html" class="hover:text-white transition-colors">Aura Bras</a></li>
+        <li><a href="all-items.html" class="hover:text-white transition-colors">Essentials</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-white text-sm uppercase tracking-widest font-bold mb-6">Support</h4>
+      <ul class="flex flex-col gap-3 text-sm text-zinc-500">
+        <li><a href="privacy-policy.html" class="hover:text-white transition-colors">Privacy Policy</a></li>
+        <li><a href="refund-policy.html" class="hover:text-white transition-colors">Refund Policy</a></li>
+        <li><a href="shipping-policy.html" class="hover:text-white transition-colors">Shipping Policy</a></li>
+        <li><a href="terms-of-service.html" class="hover:text-white transition-colors">Terms of Service</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-white text-sm uppercase tracking-widest font-bold mb-6">Connect</h4>
+      <p class="text-zinc-500 text-sm mb-4">Email: contact@legginx.com</p>
+      <p class="text-zinc-500 text-sm mb-4">Address: PO Box 4154, Riverside CA 92514</p>
+      <div class="flex gap-4">
+        <a href="https://www.instagram.com/legginx" target="_blank" class="text-white hover:text-zinc-400 flex items-center gap-2">
+          <span>Instagram</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="mt-20 pt-8 border-t border-white/5 text-center text-zinc-600 text-xs tracking-widest uppercase">
+    &copy; 2026 LEGGINX.COM — ALL RIGHTS RESERVED.
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════════════════
+     MOBILE BOTTOM DOCK
      ════════════════════════════════════════════════════════════ -->
 <nav class="lg:hidden fixed bottom-5 left-1/2 -translate-x-1/2 w-[88%] max-w-[300px] bg-black/85 backdrop-blur-2xl rounded-full z-[100] border border-white/10 flex items-center justify-around px-6 py-3.5 shadow-[0_15px_40px_rgba(0,0,0,0.9)]">
   <a href="index.html" class="text-white transition-colors">
@@ -274,7 +349,7 @@
   <a href="all-items.html" class="text-zinc-500 hover:text-white transition-colors">
     <svg class="w-[22px] h-[22px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"/></svg>
   </a>
-  <a href="cart.html" class="text-zinc-500 hover:text-white transition-colors">
+  <a href="cart.html" class="text-zinc-500 hover:text-white transition-colors relative">
     <svg class="w-[22px] h-[22px]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg>
   </a>
   <a href="profile.html" class="text-zinc-500 hover:text-white transition-colors">

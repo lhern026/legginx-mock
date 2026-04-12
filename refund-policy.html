@@ -3,20 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Collection - LegginX Elite</title>
+    <title>Refund Policy - LegginX</title>
     <link rel="stylesheet" href="assets/rival-shorts-revamp.css?v=9">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="assets/product-data.js"></script>
-    <script src="assets/legginx-animations.js?v=5" defer></script>
-    <script src="assets/legginx-cart.js?v=1" defer></script>
-    <style>
-        body { font-family: 'Outfit', sans-serif; background-color: #09090b; color: #ededed; display: flex; flex-direction: column; min-h-screen; }
-        .glass-panel { background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.05); }
-        .reveal-glow:hover { box-shadow: 0 0 40px rgba(150, 150, 150, 0.15); border-color: rgba(255,255,255,0.15); }
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-    </style>
 </head>
-<body class="antialiased selection:bg-white selection:text-black">
+<body class="bg-[#09090b] text-white font['Outfit'] min-h-screen flex flex-col">
 
 <header class="fixed top-0 left-0 right-0 z-[100] w-full transition-all duration-300 bg-transparent flex flex-col font-['Outfit'] antialiased group" id="legginx-header">
   <div class="bg-black text-white text-[10px] sm:text-xs font-semibold tracking-widest uppercase text-center py-2 relative z-20 w-full">
@@ -49,14 +40,30 @@
   </div>
 </header>
 
-<div class="relative w-full pt-40 pb-24 px-4 sm:px-6 lg:px-12 bg-[#09090b]">
-    <div class="max-w-[1400px] mx-auto w-full relative z-20">
-        <div class="flex items-center justify-between mb-12 border-b border-white/5 pb-6">
-            <h1 class="text-3xl md:text-5xl font-light text-white tracking-widest uppercase">The Collection</h1>
-            <p class="text-sm text-zinc-500 font-light tracking-wide">57 Items</p>
-        </div>
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-8" id="product-grid"></div>
-    </div>
+<div class="pt-40 pb-24 px-8 max-w-4xl mx-auto leading-relaxed">
+    <h1 class="text-4xl font-bold uppercase tracking-widest mb-12">Refund Policy</h1>
+    <div class="text-zinc-400 whitespace-pre-wrap">Refund policy
+We have a 30-day return policy, which means you have 30 days after receiving your item to request a return.
+To be eligible for a return, your item must be in the same condition that you received it, unworn or unused, with tags, and in its original packaging. You’ll also need the receipt or proof of purchase.
+To start a return, you can contact us at
+contact@legginx.com
+. Please note that returns will need to be sent to the following address: [INSERT RETURN ADDRESS]
+If your return is accepted, we’ll send you a return shipping label, as well as instructions on how and where to send your package. Items sent back to us without first requesting a return will not be accepted.
+You can always contact us for any return question at
+contact@legginx.com
+.
+Damages and issues
+Please inspect your order upon reception and contact us immediately if the item is defective, damaged or if you receive the wrong item, so that we can evaluate the issue and make it right.
+Exceptions / non-returnable items
+Certain types of items cannot be returned, like perishable goods (such as food, flowers, or plants), custom products (such as special orders or personalized items), and personal care goods (such as beauty products). We also do not accept returns for hazardous materials, flammable liquids, or gases. Please get in touch if you have questions or concerns about your specific item.
+Unfortunately, we cannot accept returns on sale items or gift cards.
+Exchanges
+The fastest way to ensure you get what you want is to return the item you have, and once the return is accepted, make a separate purchase for the new item.
+European Union 14 day cooling off period
+Notwithstanding the above, if the merchandise is being shipped into the European Union, you have the right to cancel or return your order within 14 days, for any reason and without a justification. As above, your item must be in the same condition that you received it, unworn or unused, with tags, and in its original packaging. You’ll also need the receipt or proof of purchase.
+Refunds
+We will notify you once we’ve received and inspected your return, and let you know if the refund was approved or not. If approved, you’ll be automatically refunded on your original payment method within 10 business days. Please remember it can take some time for your bank or credit card company to process and post the refund too.
+If more than 15 business days have passed since we’ve approved your return, please contact us at contact@legginx.com.</div>
 </div>
 
 <footer class="bg-black py-20 px-8 border-t border-white/5 font-['Outfit'] mt-auto">
@@ -97,36 +104,4 @@
   </div>
 </footer>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const grid = document.getElementById('product-grid');
-    const filterCats = null;
-    const products = window.LegginXProducts.filter(p => !filterCats || filterCats.includes(p.cat_handle));
-    
-    let htmlStr = '';
-    products.forEach(p => {
-        let slidesStr = '';
-        p.images.forEach(img => {
-            slidesStr += `<a href="product.html?id=${p.id}" class="w-full h-full flex-shrink-0 snap-center cursor-pointer block"><img src="${img}" class="w-full h-full object-cover object-top opacity-80 hover:opacity-100 transition-opacity"></a>`;
-        });
-        htmlStr += `
-        <div class="legginx-product-card group relative flex flex-col rounded-xl glass-panel reveal-glow p-2 transition-transform hover:-translate-y-1">
-          <div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-black flex-grow">
-            <div class="relative w-full h-full flex snap-x snap-mandatory overflow-x-auto hide-scrollbar scroll-smooth" id="slider-${p.id}">${slidesStr}</div>
-            <button class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-black/40 rounded-full text-white opacity-0 group-hover:opacity-100 z-10" onclick="document.getElementById('slider-${p.id}').scrollBy({left: -300, behavior: 'smooth'})">&#10094;</button>
-            <button class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-black/40 rounded-full text-white opacity-0 group-hover:opacity-100 z-10" onclick="document.getElementById('slider-${p.id}').scrollBy({left: 300, behavior: 'smooth'})">&#10095;</button>
-            <form class="absolute bottom-4 left-4 right-4 translate-y-8 group-hover:translate-y-0 transition-all opacity-0 group-hover:opacity-100 z-10">
-              <button type="button" class="quick-add-btn w-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium py-3 px-4 rounded-lg hover:bg-white hover:text-black uppercase tracking-widest text-xs transition-all">Quick Add / ${p.price}</button>
-            </form>
-          </div>
-          <div class="mt-4 px-2">
-            <p class="text-[10px] text-zinc-500 uppercase tracking-widest">${p.category}</p>
-            <h3 class="text-sm font-medium text-white truncate mt-1"><a href="product.html?id=${p.id}">${p.name}</a></h3>
-            <p class="text-sm text-zinc-400 mt-1">${p.price}</p>
-          </div>
-        </div>`;
-    });
-    grid.innerHTML = htmlStr;
-});
-</script>
 </body></html>
