@@ -6,25 +6,128 @@
     <title>Vanguard Halter Top - LegginX Elite</title>
     <link rel="stylesheet" href="assets/rival-shorts-revamp.css?v=9">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="assets/legginx-animations.js" defer></script>
     <script src="assets/product-data.js"></script>
     <script src="assets/legginx-cart.js" defer></script>
-    <script src="assets/legginx-3d-viewer.js" defer></script>
     <style>
         body { font-family: 'Outfit', sans-serif; background-color: #09090b; color: #ededed; }
         .glass-panel {
             background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
         }
-        .text-gradient {
-            background: linear-gradient(to right, #ffffff, #888888);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .text-gradient { background: linear-gradient(to right,#fff,#888); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+
+        /* ── Premium Gallery ── */
+        #pdp-gallery { display:flex; flex-direction:column; gap:12px; width:100%; }
+
+        /* Main image pane */
+        #pdp-main-wrap {
+            position:relative; width:100%; aspect-ratio:4/5;
+            background:#0d0d10; border-radius:20px; overflow:hidden;
+            border:1px solid rgba(255,255,255,0.06);
+            cursor:zoom-in;
         }
+        #pdp-main-img {
+            width:100%; height:100%; object-fit:cover; object-position:top;
+            transition:opacity .45s cubic-bezier(.16,1,.3,1), transform .1s ease;
+            will-change:transform;
+        }
+        #pdp-main-img.fading { opacity:0; }
+
+        /* Zoom-lens overlay (desktop) */
+        #pdp-lens {
+            position:absolute; inset:0; pointer-events:none;
+            background:rgba(255,255,255,0.04); opacity:0;
+            transition:opacity .2s;
+        }
+        #pdp-main-wrap:hover #pdp-lens { opacity:1; }
+
+        /* Thumbnail strip */
+        #pdp-thumbs {
+            display:flex; gap:8px; overflow-x:auto;
+            padding-bottom:4px;
+            scrollbar-width:none;
+        }
+        #pdp-thumbs::-webkit-scrollbar { display:none; }
+        .pdp-thumb {
+            flex-shrink:0; width:72px; height:88px;
+            border-radius:12px; overflow:hidden;
+            border:1px solid rgba(255,255,255,0.07);
+            cursor:pointer; transition:border-color .25s, opacity .25s;
+            opacity:.55;
+            background:#111;
+        }
+        .pdp-thumb img { width:100%; height:100%; object-fit:cover; object-position:top; }
+        .pdp-thumb.active {
+            border-color:rgba(255,255,255,0.55);
+            opacity:1;
+            box-shadow:0 0 18px rgba(255,255,255,0.08);
+        }
+        .pdp-thumb:hover { opacity:.85; }
+
+        /* Prev / Next arrows */
+        .pdp-arrow {
+            position:absolute; top:50%; transform:translateY(-50%);
+            width:36px; height:36px; border-radius:50%;
+            background:rgba(0,0,0,0.55); backdrop-filter:blur(8px);
+            border:1px solid rgba(255,255,255,0.1);
+            display:flex; align-items:center; justify-content:center;
+            color:rgba(255,255,255,0.7); cursor:pointer;
+            transition:background .2s, color .2s, opacity .2s;
+            z-index:10; opacity:0;
+        }
+        #pdp-main-wrap:hover .pdp-arrow { opacity:1; }
+        .pdp-arrow:hover { background:rgba(255,255,255,0.15); color:#fff; }
+        #pdp-prev { left:12px; }
+        #pdp-next { right:12px; }
+        .pdp-arrow svg { width:16px; height:16px; }
+
+        /* Image counter badge */
+        #pdp-counter {
+            position:absolute; bottom:14px; right:14px;
+            font-size:10px; letter-spacing:.15em; text-transform:uppercase;
+            color:rgba(255,255,255,0.4);
+            background:rgba(0,0,0,0.5); backdrop-filter:blur(8px);
+            border:1px solid rgba(255,255,255,0.08);
+            border-radius:99px; padding:4px 12px;
+            pointer-events:none;
+        }
+
+        /* ── Lightbox ── */
+        #pdp-lightbox {
+            display:none; position:fixed; inset:0; z-index:500;
+            background:rgba(0,0,0,0.95); backdrop-filter:blur(24px);
+            align-items:center; justify-content:center;
+        }
+        #pdp-lightbox.open { display:flex; }
+        #pdp-lb-img {
+            max-width:90vw; max-height:90vh;
+            border-radius:16px; object-fit:contain;
+            animation:lbIn .35s cubic-bezier(.16,1,.3,1);
+        }
+        @keyframes lbIn { from{transform:scale(.92);opacity:0} to{transform:scale(1);opacity:1} }
+        #pdp-lb-close {
+            position:absolute; top:20px; right:20px;
+            width:40px; height:40px; border-radius:50%;
+            background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1);
+            color:rgba(255,255,255,0.6); cursor:pointer; display:flex;
+            align-items:center; justify-content:center;
+            transition:background .2s;
+        }
+        #pdp-lb-close:hover { background:rgba(255,255,255,0.15); }
+        #pdp-lb-close svg { width:18px; height:18px; }
+        .lb-nav {
+            position:absolute; top:50%; transform:translateY(-50%);
+            width:44px; height:44px; border-radius:50%;
+            background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1);
+            color:rgba(255,255,255,0.6); cursor:pointer;
+            display:flex; align-items:center; justify-content:center;
+            transition:background .2s;
+        }
+        .lb-nav:hover { background:rgba(255,255,255,0.15); color:#fff; }
+        #lb-prev { left:16px; } #lb-next { right:16px; }
+        .lb-nav svg { width:20px; height:20px; }
     </style>
 </head>
 <body class="min-h-screen antialiased selection:bg-white selection:text-black">
@@ -135,28 +238,57 @@
 <div class="relative w-full min-h-screen pt-40 pb-24 px-4 sm:px-6 lg:px-12 bg-[#09090b] font-['Outfit'] antialiased">
     <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 relative z-20">
         
-        <!-- Left: Image Gallery (Scrollable) -->
+        <!-- Left: Premium Image Gallery -->
         <div class="w-full flex justify-center lg:justify-end relative">
-            <div class="w-full max-w-xl flex flex-col gap-4 hide-scrollbar pb-32">
+            <div class="w-full max-w-xl pb-32">
 
-                <!-- 3D Viewer Card -->
-                <div class="w-full rounded-2xl overflow-hidden relative group" style="background:#0d0d10;border:1px solid rgba(255,255,255,0.05);">
-                    <div id="pdp-3d-viewer" style="width:100%;height:520px;cursor:grab;" title="Drag to rotate"></div>
-                    <!-- Drag hint overlay -->
-                    <div id="pdp-3d-hint" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-black/60 backdrop-blur-md border border-white/10 rounded-full px-4 py-2 pointer-events-none transition-opacity duration-700">
-                        <svg class="w-3.5 h-3.5 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
-                        <span class="text-[9px] uppercase tracking-[0.2em] text-white/40">Drag to rotate</span>
+                <div id="pdp-gallery">
+                    <!-- Main image -->
+                    <div id="pdp-main-wrap">
+                        <img id="pdp-main-img" src="" alt="Product">
+                        <div id="pdp-lens"></div>
+
+                        <!-- Prev / Next -->
+                        <button class="pdp-arrow" id="pdp-prev" aria-label="Previous image">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/>
+                            </svg>
+                        </button>
+                        <button class="pdp-arrow" id="pdp-next" aria-label="Next image">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
+                            </svg>
+                        </button>
+
+                        <!-- Counter -->
+                        <div id="pdp-counter">1 / 1</div>
                     </div>
-                    <!-- Badge -->
-                    <div class="absolute top-4 left-4 bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-3 py-1.5">
-                        <span class="text-[9px] uppercase tracking-widest text-white/50">3D View</span>
-                    </div>
+
+                    <!-- Thumbnail strip -->
+                    <div id="pdp-thumbs"></div>
                 </div>
 
-                <!-- Static image stack -->
-                <div id="pdp-image-gallery"></div>
-
             </div>
+        </div>
+
+        <!-- Lightbox -->
+        <div id="pdp-lightbox">
+            <button id="pdp-lb-close" aria-label="Close">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+            <button class="lb-nav" id="lb-prev" aria-label="Previous">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/>
+                </svg>
+            </button>
+            <img id="pdp-lb-img" src="" alt="Product full view">
+            <button class="lb-nav" id="lb-next" aria-label="Next">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
+                </svg>
+            </button>
         </div>
 
         <!-- Right: Product Details (Sticky) -->
@@ -231,61 +363,146 @@
     </div>
 </div>
 
-<script src="assets/product-data.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const params = new URLSearchParams(window.location.search);
-    const productId = params.get('id') || 'essentials-halter-top-black';
+document.addEventListener('DOMContentLoaded', function() {
+    // ── Load product data ────────────────────────────
+    var params  = new URLSearchParams(window.location.search);
+    var pid     = params.get('id') || 'essentials-halter-top-black';
     if (!window.LegginXProducts) return;
 
-    const p = window.LegginXProducts.find(prod => prod.id === productId) || window.LegginXProducts[0];
+    var p = window.LegginXProducts.find(function(x){ return x.id === pid; }) || window.LegginXProducts[0];
 
-    document.title = p.name + ' - LegginX';
+    document.title = p.name + ' — LegginX';
     document.querySelector('h1').textContent = p.name;
     document.querySelector('.text-xl.text-zinc-400').textContent = p.price;
 
-    const nameParts = p.name.split(' ');
-    const displayColor = nameParts.length > 2 ? nameParts.slice(-2).join(' ') : nameParts[nameParts.length - 1];
-    document.querySelector('#pdp-color-label').innerHTML = 'Color: <span class="text-zinc-400 ml-1">' + displayColor + '</span>';
-
-    // Static image gallery
-    const gallery = document.getElementById('pdp-image-gallery');
-    if (gallery && p.images) {
-        gallery.innerHTML = p.images.map(function(img) {
-            return '<div class="w-full rounded-2xl overflow-hidden relative group mt-4"><img src="' + img + '" alt="' + p.name + '" class="w-full h-auto object-cover opacity-90 transition-opacity duration-700 hover:opacity-100 bg-[#111113]"></div>';
-        }).join('');
-    }
+    var nameParts    = p.name.split(' ');
+    var displayColor = nameParts.length > 2 ? nameParts.slice(-2).join(' ') : nameParts[nameParts.length - 1];
+    document.querySelector('#pdp-color-label').innerHTML =
+        'Color: <span class="text-zinc-400 ml-1">' + displayColor + '</span>';
 
     // Description accordion
-    const accordionDesc = document.querySelector('.flex.flex-col.border-t.border-white\\/10.mt-2 > div:nth-child(2)');
+    var accordionDesc = document.querySelector('.flex.flex-col.border-t.border-white\\/10.mt-2 > div:nth-child(2)');
     if (accordionDesc) {
         accordionDesc.innerHTML = p.desc
             ? '<div class="prose prose-invert prose-sm text-zinc-400 max-w-none">' + p.desc + '</div>'
-            : '<p>Shop the exclusive ' + p.name + ' collection. Engineered with premium LegginX fabric.</p>';
+            : '<p>Shop the exclusive ' + p.name + '. Engineered with premium LegginX fabric.</p>';
     }
 
-    // 3D Viewer – wait for script to load if deferred
-    function tryInit3D() {
-        if (window.LegginX3D) {
-            var firstImage = p.images && p.images[0] ? p.images[0] : null;
-            window.LegginX3D.init('pdp-3d-viewer', firstImage, { autoRotate: true });
-            var hint = document.getElementById('pdp-3d-hint');
-            var viewer = document.getElementById('pdp-3d-viewer');
-            if (viewer && hint) {
-                ['mousedown','touchstart'].forEach(function(ev) {
-                    viewer.addEventListener(ev, function() {
-                        hint.style.opacity = '0';
-                        setTimeout(function() { if (hint.parentNode) hint.parentNode.removeChild(hint); }, 700);
-                    }, { once: true });
-                });
-            }
+    // ── Gallery Engine ───────────────────────────────
+    var images  = (p.images && p.images.length) ? p.images : [''];
+    var current = 0;
+
+    var mainImg  = document.getElementById('pdp-main-img');
+    var thumbsEl = document.getElementById('pdp-thumbs');
+    var counter  = document.getElementById('pdp-counter');
+    var lbEl     = document.getElementById('pdp-lightbox');
+    var lbImg    = document.getElementById('pdp-lb-img');
+
+    function setImage(idx, instant) {
+        idx = (idx + images.length) % images.length;
+        current = idx;
+
+        if (instant) {
+            mainImg.src = images[idx];
         } else {
-            setTimeout(tryInit3D, 200);
+            mainImg.classList.add('fading');
+            setTimeout(function(){
+                mainImg.src = images[idx];
+                mainImg.classList.remove('fading');
+            }, 220);
+        }
+
+        // Update counter
+        counter.textContent = (idx + 1) + ' / ' + images.length;
+
+        // Update thumbs
+        document.querySelectorAll('.pdp-thumb').forEach(function(t, i){
+            t.classList.toggle('active', i === idx);
+        });
+
+        // Scroll active thumb into view
+        var activeThumb = thumbsEl.querySelector('.pdp-thumb.active');
+        if (activeThumb) {
+            activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         }
     }
-    tryInit3D();
 
-    // Wire Add to Cart button to actual product data
+    // Build thumbnails
+    images.forEach(function(src, i) {
+        var t = document.createElement('div');
+        t.className = 'pdp-thumb' + (i === 0 ? ' active' : '');
+        t.innerHTML = '<img src="' + src + '" alt="Product view ' + (i+1) + '">';
+        t.addEventListener('click', function(){ setImage(i); });
+        thumbsEl.appendChild(t);
+    });
+
+    // Set first image
+    setImage(0, true);
+
+    // Arrows
+    document.getElementById('pdp-prev').addEventListener('click', function(e){
+        e.stopPropagation(); setImage(current - 1);
+    });
+    document.getElementById('pdp-next').addEventListener('click', function(e){
+        e.stopPropagation(); setImage(current + 1);
+    });
+
+    // ── Magnetic Tilt on desktop ─────────────────────
+    var mainWrap = document.getElementById('pdp-main-wrap');
+    mainWrap.addEventListener('mousemove', function(e) {
+        var rect = mainWrap.getBoundingClientRect();
+        var xPct = (e.clientX - rect.left) / rect.width  - 0.5;  // -0.5 → 0.5
+        var yPct = (e.clientY - rect.top)  / rect.height - 0.5;
+        mainImg.style.transform =
+            'scale(1.04) rotateY(' + (xPct * 6) + 'deg) rotateX(' + (-yPct * 4) + 'deg)';
+        mainImg.style.transition = 'transform .08s ease';
+    });
+    mainWrap.addEventListener('mouseleave', function() {
+        mainImg.style.transform = 'scale(1) rotateY(0deg) rotateX(0deg)';
+        mainImg.style.transition = 'transform .5s cubic-bezier(.16,1,.3,1)';
+    });
+
+    // ── Lightbox ─────────────────────────────────────
+    mainWrap.addEventListener('click', function(e) {
+        if (e.target.closest('.pdp-arrow')) return;
+        lbImg.src = images[current];
+        lbEl.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    });
+    document.getElementById('pdp-lb-close').addEventListener('click', closeLb);
+    lbEl.addEventListener('click', function(e){
+        if (e.target === lbEl) closeLb();
+    });
+    function closeLb() {
+        lbEl.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+    document.getElementById('lb-prev').addEventListener('click', function(){
+        setImage(current - 1);
+        lbImg.src = images[current];
+    });
+    document.getElementById('lb-next').addEventListener('click', function(){
+        setImage(current + 1);
+        lbImg.src = images[current];
+    });
+
+    // ── Keyboard nav ─────────────────────────────────
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowLeft')  { setImage(current - 1); if (lbEl.classList.contains('open')) lbImg.src = images[current]; }
+        if (e.key === 'ArrowRight') { setImage(current + 1); if (lbEl.classList.contains('open')) lbImg.src = images[current]; }
+        if (e.key === 'Escape')     { closeLb(); }
+    });
+
+    // ── Touch swipe on main image ────────────────────
+    var touchStartX = 0;
+    mainWrap.addEventListener('touchstart', function(e){ touchStartX = e.touches[0].clientX; }, { passive: true });
+    mainWrap.addEventListener('touchend', function(e) {
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 40) setImage(dx < 0 ? current + 1 : current - 1);
+    });
+
+    // ── Add to Cart ──────────────────────────────────
     var addBtn = document.getElementById('pdp-add-to-cart');
     if (addBtn) {
         addBtn.addEventListener('click', function() {
@@ -294,7 +511,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.LegginXCart.addToCart({
                     id: p.id,
                     name: p.name,
-                    image: p.images && p.images[0] ? p.images[0] : '',
+                    image: images[0] || '',
                     price: priceNum
                 });
             }
@@ -302,6 +519,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 </script>
+
 
 
 <!-- MOBILE BOTTOM NAV -->
