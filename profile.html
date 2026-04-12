@@ -3,173 +3,597 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rival Shorts - LegginX Elite</title>
+    <title>My Account — LegginX</title>
     <link rel="stylesheet" href="assets/rival-shorts-revamp.css?v=9">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="assets/legginx-animations.js?v=4" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    <script src="assets/legginx-threejs.js" defer></script>
+    <script src="assets/legginx-cart.js?v=4" defer></script>
     <style>
-        body { font-family: 'Outfit', sans-serif; background-color: #09090b; color: #ededed; }
-        .glass-panel {
-            background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
-        }
-        .text-gradient {
-            background: linear-gradient(to right, #ffffff, #888888);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .reveal-glow {
-            transition: box-shadow 0.5s ease, border-color 0.5s ease;
-        }
-        .reveal-glow:hover {
-            box-shadow: 0 0 40px rgba(150, 150, 150, 0.15);
-            border-color: rgba(255,255,255,0.15);
-        }
+        * { box-sizing: border-box; }
+        body { font-family: 'Outfit', sans-serif; background: #0a0a0a; color: #fff; margin: 0; }
+
+        /* Tab system */
+        .tab-btn { background: none; border: none; cursor: pointer; font-family: 'Outfit', sans-serif; }
+        .tab-btn.active { color: #fff !important; border-bottom-color: #fff !important; }
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; }
+
+        /* Order status pill colours */
+        .badge-shipped    { background: rgba(59,130,246,0.12); color: #93c5fd; border: 1px solid rgba(59,130,246,0.25); }
+        .badge-delivered  { background: rgba(34,197,94,0.1);  color: #86efac; border: 1px solid rgba(34,197,94,0.2); }
+        .badge-processing { background: rgba(234,179,8,0.1);  color: #fde047; border: 1px solid rgba(234,179,8,0.2); }
+        .badge-returned   { background: rgba(239,68,68,0.1);  color: #fca5a5; border: 1px solid rgba(239,68,68,0.2); }
+
+        /* Tier progress bar */
+        @keyframes bar-grow { from { width: 0 } to { width: 72% } }
+        .tier-bar-fill { animation: bar-grow 1.1s cubic-bezier(0.34,1.2,0.64,1) 0.3s both; }
+
+        /* Stat card hover */
+        .stat-card { transition: border-color .2s, background .2s; }
+        .stat-card:hover { border-color: rgba(255,255,255,0.15) !important; background: rgba(255,255,255,0.04) !important; }
+
+        /* Order card hover */
+        .order-card { transition: border-color .2s; }
+        .order-card:hover { border-color: rgba(255,255,255,0.14) !important; }
+
+        /* Sidebar nav link */
+        .side-link { transition: color .18s, padding-left .18s; }
+        .side-link:hover { color: #fff !important; padding-left: 6px; }
+        .side-link.active { color: #fff !important; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
     </style>
 </head>
 <body class="min-h-screen antialiased selection:bg-white selection:text-black">
 
-<!-- HEADER SECTION -->
+<!-- ══════════════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════════════ -->
 <header class="fixed top-0 left-0 right-0 z-[100] w-full transition-all duration-300 bg-transparent flex flex-col font-['Outfit'] antialiased group" id="legginx-header">
-  <div class="bg-black text-white text-xs font-semibold tracking-widest uppercase text-center py-2 relative z-20 w-full">
+  <div class="bg-black text-white text-[10px] sm:text-xs font-semibold tracking-widest uppercase text-center py-2 relative z-20 w-full">
     Free Shipping All Orders
   </div>
-  <div class="w-full px-6 md:px-12 py-4 flex items-center justify-between transition-all duration-500 bg-gradient-to-b from-black/80 to-transparent group-hover:bg-black/90 group-hover:backdrop-blur-md">
-    <nav class="hidden lg:flex items-center gap-8 flex-1">
-      <a href="rival.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Rival</a>
-      <a href="glow.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Glow</a>
-      <a href="aura.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Aura</a>
-      <a href="all-items.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors" style="color: #cbd5e1;">All Items</a>
-      <a href="essentials.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Essentials</a>
-    </nav>
-
-    <div class="flex-1 flex justify-center items-center">
-      <a href="index.html" class="text-white hover:scale-110 transition-transform duration-500 filter drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
+  <div class="w-full px-5 md:px-12 py-4 flex items-center justify-between transition-all duration-500 bg-gradient-to-b from-black/80 to-transparent group-hover:bg-black/90 group-hover:backdrop-blur-md">
+    <div class="flex-1 flex items-center">
+      <button id="mobile-nav-toggle" class="lg:hidden text-white hover:text-zinc-400 transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"/></svg>
+      </button>
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="rival.html"     class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Rival</a>
+        <a href="glow.html"      class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Glow</a>
+        <a href="aura.html"      class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Aura</a>
+        <a href="all-items.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">All Items</a>
+        <a href="essentials.html"class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Essentials</a>
+      </nav>
+    </div>
+    <div class="flex-shrink-0">
+      <a href="index.html" class="text-white hover:scale-110 transition-transform duration-500 block filter drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
         <svg viewBox="0 0 100 100" fill="currentColor" class="w-8 h-8 md:w-10 md:h-10">
-          <path d="M 50 2 L 34 22 L 44 22 L 44 42 C 44 55, 28 55, 28 35 L 28 28 L 34 32 L 20 6 L 6 32 L 14 28 C 14 55, 34 60, 44 60 C 36 61, 36 66, 44 67 L 44 71 C 36 72, 36 77, 44 78 L 44 98 L 56 98 L 56 78 C 64 77, 64 72, 56 71 L 56 67 C 64 66, 64 61, 56 60 C 66 60, 86 55, 86 28 L 94 32 L 80 6 L 66 32 L 72 28 L 72 35 C 72 55, 56 55, 56 42 L 56 22 L 66 22 Z" />
+          <path d="M 50 4 L 55 34 L 70 34 L 75 17 L 80 34 L 80 40 L 55 40 L 55 92 L 50 98 L 45 92 L 45 40 L 20 40 L 20 34 L 25 17 L 30 34 L 45 34 Z" />
         </svg>
       </a>
     </div>
-
-    <div class="flex flex-1 items-center justify-end gap-6 text-white">
-      <a href="#" class="hover:text-zinc-400 transition-colors">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
-      </a>
-      <a href="profile.html" class="hover:text-zinc-400 transition-colors hidden sm:block">
+    <div class="flex flex-1 items-center justify-end gap-5 text-white">
+      <button class="hover:text-zinc-400 transition-colors">
+        <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/></svg>
+      </button>
+      <a href="profile.html" class="text-white">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
       </a>
-      <a href="cart.html" class="hover:text-zinc-400 transition-colors flex items-center relative">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
-        <span id="cart-count" class="absolute -top-2 -right-2 bg-white text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center transition-transform duration-300">0</span>
+      <a href="cart.html" class="relative group">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg>
+        <span id="cart-count" class="absolute -top-2 -right-2 bg-white text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
       </a>
     </div>
   </div>
 </header>
-<script>
-  window.addEventListener('scroll', () => {
-    const header = document.getElementById('legginx-header');
-    if(window.scrollY > 50) {
-      header.classList.add('bg-black/90', 'backdrop-blur-md', 'shadow-2xl');
-      header.classList.remove('bg-transparent');
-    } else {
-      header.classList.remove('bg-black/90', 'backdrop-blur-md', 'shadow-2xl');
-      header.classList.add('bg-transparent');
-    }
-  });
-</script>
 
+<!-- ══════════════════════════════════════════════════
+     MEMBER HERO BANNER
+══════════════════════════════════════════════════ -->
+<section style="padding-top:90px;background:linear-gradient(180deg,#111 0%,#0a0a0a 100%);
+                border-bottom:1px solid rgba(255,255,255,0.07)">
+  <div style="max-width:1100px;margin:0 auto;padding:40px 24px 0">
 
-<!-- PROFILE SECTION -->
-<div class="relative w-full min-h-screen pt-48 pb-32 px-4 sm:px-6 lg:px-12 bg-[#09090b] font-['Outfit'] antialiased">
-    <div class="max-w-6xl mx-auto w-full flex flex-col md:flex-row gap-12 relative z-20">
-        
-        <!-- Sidebar -->
-        <div class="w-full md:w-1/3 flex flex-col gap-6">
-            <div class="glass-panel rounded-2xl p-8 reveal-glow">
-                <div class="w-24 h-24 rounded-full border border-white/20 bg-white/5 flex items-center justify-center mb-6">
-                    <span class="text-3xl text-white font-light">E</span>
-                </div>
-                <h1 class="text-2xl font-semibold text-white tracking-wide uppercase mb-1">Elite Runner</h1>
-                <p class="text-zinc-400 text-sm font-light mb-6">elite@legginx.com</p>
-                <div class="h-px w-full bg-white/10 mb-6"></div>
-                <ul class="flex flex-col gap-4 text-sm font-medium uppercase tracking-widest">
-                    <li><a href="#" class="text-white hover:text-zinc-400 transition-colors">Overview</a></li>
-                    <li><a href="#" class="text-zinc-500 hover:text-zinc-300 transition-colors">Order History</a></li>
-                    <li><a href="#" class="text-zinc-500 hover:text-zinc-300 transition-colors">Saved Items</a></li>
-                    <li><a href="#" class="text-zinc-500 hover:text-zinc-300 transition-colors">Settings</a></li>
-                </ul>
-            </div>
-            
-            <div class="glass-panel rounded-2xl p-8 reveal-glow bg-gradient-to-br from-black to-zinc-900 border border-white/10 relative overflow-hidden">
-                <div class="absolute -right-4 -top-4 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
-                <h3 class="text-xs uppercase tracking-[0.3em] text-zinc-500 mb-2">Tier Status</h3>
-                <h2 class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-zinc-300 to-white uppercase mb-4">Vanguard Level</h2>
-                <div class="quick-add-btn w-full bg-white/10 h-1.5 rounded-full mb-3">
-                    <div class="bg-gradient-to-r from-zinc-500 to-white h-1.5 rounded-full w-[70%]"></div>
-                </div>
-                <p class="text-xs text-zinc-400 font-light">300 XP to next tier</p>
-            </div>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px;
+                padding-bottom:32px">
+      <!-- Left: Identity -->
+      <div style="display:flex;align-items:center;gap:20px">
+        <div style="width:72px;height:72px;border-radius:50%;
+                    background:linear-gradient(135deg,#2a2a2a 0%,#1a1a1a 100%);
+                    border:1px solid rgba(255,255,255,0.1);
+                    display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <span style="font-size:26px;font-weight:300;color:rgba(255,255,255,0.7)">E</span>
         </div>
-
-        <!-- Main Area -->
-        <div class="w-full md:w-2/3 flex flex-col gap-8">
-            <h2 class="text-3xl font-light text-white tracking-wide uppercase">Recent Orders</h2>
-            
-            <!-- Order Card -->
-            <div class="glass-panel rounded-2xl p-6 md:p-8 flex flex-col md:flex-row gap-8 items-center reveal-glow border border-white/5">
-                <div class="w-24 h-32 rounded-lg overflow-hidden bg-black flex-shrink-0">
-                    <img src="images/essential_mocha.png" class="w-full h-full object-cover opacity-80" alt="Order Image">
-                </div>
-                <div class="flex-1 flex flex-col gap-2 w-full">
-                    <div class="flex justify-between items-start w-full">
-                        <div>
-                            <span class="text-xs uppercase tracking-[0.2em] text-zinc-500 mb-1 block">Order #LGX-8429</span>
-                            <h3 class="text-lg font-medium text-white tracking-wide">Essential Halter - Mocha</h3>
-                        </div>
-                        <span class="text-sm text-zinc-400">$32.00</span>
-                    </div>
-                    <p class="text-sm text-zinc-500 font-light">Size: S | Qty: 1</p>
-                    <div class="mt-4 flex items-center gap-3">
-                        <span class="px-3 py-1 bg-white/10 rounded-full text-[10px] uppercase tracking-widest text-zinc-300 border border-white/10 shadow-sm">Shipped</span>
-                        <span class="text-xs text-zinc-500 font-light">Arriving Oct 28</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Order Card 2 -->
-            <div class="glass-panel rounded-2xl p-6 md:p-8 flex flex-col md:flex-row gap-8 items-center reveal-glow border border-white/5">
-                <div class="w-24 h-32 rounded-lg overflow-hidden bg-black flex-shrink-0">
-                    <img src="images/aura_frost.png" class="w-full h-full object-cover opacity-80" alt="Order Image">
-                </div>
-                <div class="flex-1 flex flex-col gap-2 w-full">
-                    <div class="flex justify-between items-start w-full">
-                        <div>
-                            <span class="text-xs uppercase tracking-[0.2em] text-zinc-500 mb-1 block">Order #LGX-7103</span>
-                            <h3 class="text-lg font-medium text-white tracking-wide">Aura Bra - Frost</h3>
-                        </div>
-                        <span class="text-sm text-zinc-400">$48.00</span>
-                    </div>
-                    <p class="text-sm text-zinc-500 font-light">Size: M | Qty: 2</p>
-                    <div class="mt-4 flex items-center gap-3">
-                        <span class="px-3 py-1 bg-white/10 rounded-full text-[10px] uppercase tracking-widest text-zinc-300 border border-white/10 shadow-sm">Delivered</span>
-                        <span class="text-xs text-zinc-500 font-light">Sept 12</span>
-                    </div>
-                </div>
-            </div>
-
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+            <h1 style="font-size:22px;font-weight:700;letter-spacing:-0.01em;color:#fff;line-height:1">
+              Elite Runner
+            </h1>
+            <!-- Tier badge -->
+            <span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.16em;
+                         color:#fbbf24;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.25);
+                         padding:3px 9px;border-radius:3px">
+              Vanguard
+            </span>
+          </div>
+          <p style="font-size:12px;color:rgba(255,255,255,0.35);font-weight:400">elite@legginx.com</p>
         </div>
+      </div>
+
+      <!-- Right: XP progress -->
+      <div style="min-width:220px;flex:1;max-width:340px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
+          <span style="font-size:10px;text-transform:uppercase;letter-spacing:0.18em;
+                       color:rgba(255,255,255,0.3);font-weight:500">Season XP</span>
+          <span style="font-size:11px;color:rgba(255,255,255,0.5);font-weight:500">700 / 1000</span>
+        </div>
+        <div style="height:3px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden">
+          <div class="tier-bar-fill"
+               style="height:100%;background:linear-gradient(90deg,rgba(251,191,36,0.6),rgba(251,191,36,1));
+                      border-radius:2px;width:0%"></div>
+        </div>
+        <p style="font-size:10px;color:rgba(255,255,255,0.22);margin-top:6px;font-weight:400">
+          300 XP to <strong style="color:rgba(251,191,36,0.6)">Apex Level</strong>
+        </p>
+      </div>
     </div>
-</div>
 
+    <!-- Stat chips row -->
+    <div style="display:flex;gap:0;border-top:1px solid rgba(255,255,255,0.07)">
+      <div class="stat-card"
+           style="flex:1;padding:18px 24px;border-right:1px solid rgba(255,255,255,0.07);
+                  border-radius:0;background:transparent;cursor:default">
+        <p style="font-size:20px;font-weight:700;color:#fff;letter-spacing:-0.02em;line-height:1;
+                  margin-bottom:4px">4</p>
+        <p style="font-size:10px;text-transform:uppercase;letter-spacing:0.15em;
+                  color:rgba(255,255,255,0.3);font-weight:500">Orders</p>
+      </div>
+      <div class="stat-card"
+           style="flex:1;padding:18px 24px;border-right:1px solid rgba(255,255,255,0.07);
+                  background:transparent;cursor:default">
+        <p style="font-size:20px;font-weight:700;color:#fff;letter-spacing:-0.02em;line-height:1;
+                  margin-bottom:4px">$228</p>
+        <p style="font-size:10px;text-transform:uppercase;letter-spacing:0.15em;
+                  color:rgba(255,255,255,0.3);font-weight:500">Total Spent</p>
+      </div>
+      <div class="stat-card"
+           style="flex:1;padding:18px 24px;border-right:1px solid rgba(255,255,255,0.07);
+                  background:transparent;cursor:default">
+        <p style="font-size:20px;font-weight:700;color:#fff;letter-spacing:-0.02em;line-height:1;
+                  margin-bottom:4px">700</p>
+        <p style="font-size:10px;text-transform:uppercase;letter-spacing:0.15em;
+                  color:rgba(255,255,255,0.3);font-weight:500">XP Earned</p>
+      </div>
+      <div class="stat-card"
+           style="flex:1;padding:18px 24px;background:transparent;cursor:default">
+        <p style="font-size:20px;font-weight:700;color:#fff;letter-spacing:-0.02em;line-height:1;
+                  margin-bottom:4px">2</p>
+        <p style="font-size:10px;text-transform:uppercase;letter-spacing:0.15em;
+                  color:rgba(255,255,255,0.3);font-weight:500">Saved Items</p>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- ══════════════════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════════════════ -->
+<main style="max-width:1100px;margin:0 auto;padding:0 24px 80px;display:flex;gap:32px;align-items:flex-start">
 
+  <!-- ── Sidebar Nav ──────────────────────────────── -->
+  <aside style="width:200px;flex-shrink:0;padding-top:36px;position:sticky;top:100px">
+    <nav style="display:flex;flex-direction:column;gap:2px">
+      <a href="#" class="side-link active tab-trigger"
+         data-tab="tab-overview"
+         style="font-size:11px;text-transform:uppercase;letter-spacing:0.15em;font-weight:600;
+                color:#fff;text-decoration:none;padding:9px 0;
+                border-bottom:1px solid rgba(255,255,255,0.06)">
+        Overview
+      </a>
+      <a href="#" class="side-link tab-trigger"
+         data-tab="tab-orders"
+         style="font-size:11px;text-transform:uppercase;letter-spacing:0.15em;font-weight:500;
+                color:rgba(255,255,255,0.35);text-decoration:none;padding:9px 0;
+                border-bottom:1px solid rgba(255,255,255,0.06)">
+        Order History
+      </a>
+      <a href="#" class="side-link tab-trigger"
+         data-tab="tab-saved"
+         style="font-size:11px;text-transform:uppercase;letter-spacing:0.15em;font-weight:500;
+                color:rgba(255,255,255,0.35);text-decoration:none;padding:9px 0;
+                border-bottom:1px solid rgba(255,255,255,0.06)">
+        Saved Items
+      </a>
+      <a href="#" class="side-link tab-trigger"
+         data-tab="tab-settings"
+         style="font-size:11px;text-transform:uppercase;letter-spacing:0.15em;font-weight:500;
+                color:rgba(255,255,255,0.35);text-decoration:none;padding:9px 0;
+                border-bottom:1px solid rgba(255,255,255,0.06)">
+        Settings
+      </a>
+    </nav>
 
-<!-- MOBILE BOTTOM NAV -->
+    <!-- Sign out -->
+    <button style="margin-top:28px;font-size:10px;text-transform:uppercase;letter-spacing:0.15em;
+                   color:rgba(255,255,255,0.2);background:none;border:none;cursor:pointer;
+                   font-family:'Outfit',sans-serif;padding:0;transition:color .18s"
+            onmouseover="this.style.color='rgba(239,68,68,0.6)'"
+            onmouseout="this.style.color='rgba(255,255,255,0.2)'">
+      Sign Out
+    </button>
+  </aside>
+
+  <!-- ── Content Area ─────────────────────────────── -->
+  <div style="flex:1;min-width:0;padding-top:36px">
+
+    <!-- ════ TAB: OVERVIEW ════════════════════════ -->
+    <div id="tab-overview" class="tab-panel active">
+
+      <!-- Section label -->
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+        <h2 style="font-size:11px;text-transform:uppercase;letter-spacing:0.22em;font-weight:600;
+                   color:rgba(255,255,255,0.35)">Recent Orders</h2>
+        <a href="#" class="tab-trigger" data-tab="tab-orders"
+           style="font-size:10px;text-transform:uppercase;letter-spacing:0.15em;font-weight:600;
+                  color:rgba(255,255,255,0.4);text-decoration:none;transition:color .18s"
+           onmouseover="this.style.color='#fff'"
+           onmouseout="this.style.color='rgba(255,255,255,0.4)'">View All →</a>
+      </div>
+
+      <!-- Order Card 1 -->
+      <div class="order-card"
+           style="border:1px solid rgba(255,255,255,0.07);
+                  padding:22px;margin-bottom:12px;
+                  background:rgba(255,255,255,0.015)">
+        <div style="display:flex;gap:18px;align-items:flex-start">
+          <!-- Product image -->
+          <div style="width:80px;height:96px;flex-shrink:0;overflow:hidden;
+                      background:#111;border:1px solid rgba(255,255,255,0.06)">
+            <img src="images/essential_mocha.png"
+                 style="width:100%;height:100%;object-fit:cover;opacity:0.85" alt="Essential Halter">
+          </div>
+          <!-- Details -->
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+                        margin-bottom:6px">
+              <div>
+                <p style="font-size:10px;color:rgba(255,255,255,0.28);letter-spacing:0.1em;
+                           text-transform:uppercase;font-weight:500;margin-bottom:4px">
+                  Order #LGX-8429
+                </p>
+                <h3 style="font-size:15px;font-weight:600;color:#fff;letter-spacing:-0.01em;
+                           line-height:1.2">Essential Halter – Mocha</h3>
+              </div>
+              <span style="font-size:15px;font-weight:600;color:#fff;flex-shrink:0;
+                           letter-spacing:-0.01em">$32.00</span>
+            </div>
+            <p style="font-size:11px;color:rgba(255,255,255,0.3);margin-bottom:14px">
+              Size: S &nbsp;·&nbsp; Qty: 1
+            </p>
+            <div style="display:flex;align-items:center;justify-content:space-between;
+                        flex-wrap:wrap;gap:10px">
+              <div style="display:flex;align-items:center;gap:10px">
+                <span class="badge-shipped"
+                      style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;
+                             padding:4px 10px;border-radius:3px">
+                  Shipped
+                </span>
+                <span style="font-size:11px;color:rgba(255,255,255,0.3)">Arriving Oct 28</span>
+              </div>
+              <div style="display:flex;gap:8px">
+                <button style="font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;
+                               font-weight:600;color:rgba(255,255,255,0.5);background:none;
+                               border:1px solid rgba(255,255,255,0.12);padding:6px 14px;
+                               cursor:pointer;font-family:'Outfit',sans-serif;
+                               transition:color .18s,border-color .18s"
+                        onmouseover="this.style.color='#fff';this.style.borderColor='rgba(255,255,255,0.35)'"
+                        onmouseout="this.style.color='rgba(255,255,255,0.5)';this.style.borderColor='rgba(255,255,255,0.12)'">
+                  Track Order
+                </button>
+                <button style="font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;
+                               font-weight:700;color:#0a0a0a;background:#fff;
+                               border:1px solid #fff;padding:6px 14px;
+                               cursor:pointer;font-family:'Outfit',sans-serif;
+                               transition:opacity .18s"
+                        onmouseover="this.style.opacity='0.85'"
+                        onmouseout="this.style.opacity='1'">
+                  Buy Again
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Card 2 -->
+      <div class="order-card"
+           style="border:1px solid rgba(255,255,255,0.07);
+                  padding:22px;margin-bottom:12px;
+                  background:rgba(255,255,255,0.015)">
+        <div style="display:flex;gap:18px;align-items:flex-start">
+          <div style="width:80px;height:96px;flex-shrink:0;overflow:hidden;
+                      background:#111;border:1px solid rgba(255,255,255,0.06)">
+            <img src="images/aura_frost.png"
+                 style="width:100%;height:100%;object-fit:cover;opacity:0.85" alt="Aura Bra">
+          </div>
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+                        margin-bottom:6px">
+              <div>
+                <p style="font-size:10px;color:rgba(255,255,255,0.28);letter-spacing:0.1em;
+                           text-transform:uppercase;font-weight:500;margin-bottom:4px">
+                  Order #LGX-7103
+                </p>
+                <h3 style="font-size:15px;font-weight:600;color:#fff;letter-spacing:-0.01em;
+                           line-height:1.2">Aura Bra – Frost</h3>
+              </div>
+              <span style="font-size:15px;font-weight:600;color:#fff;flex-shrink:0;
+                           letter-spacing:-0.01em">$96.00</span>
+            </div>
+            <p style="font-size:11px;color:rgba(255,255,255,0.3);margin-bottom:14px">
+              Size: M &nbsp;·&nbsp; Qty: 2
+            </p>
+            <div style="display:flex;align-items:center;justify-content:space-between;
+                        flex-wrap:wrap;gap:10px">
+              <div style="display:flex;align-items:center;gap:10px">
+                <span class="badge-delivered"
+                      style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;
+                             padding:4px 10px;border-radius:3px">
+                  Delivered
+                </span>
+                <span style="font-size:11px;color:rgba(255,255,255,0.3)">Sept 12</span>
+              </div>
+              <div style="display:flex;gap:8px">
+                <button style="font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;
+                               font-weight:600;color:rgba(255,255,255,0.5);background:none;
+                               border:1px solid rgba(255,255,255,0.12);padding:6px 14px;
+                               cursor:pointer;font-family:'Outfit',sans-serif;
+                               transition:color .18s,border-color .18s"
+                        onmouseover="this.style.color='#fff';this.style.borderColor='rgba(255,255,255,0.35)'"
+                        onmouseout="this.style.color='rgba(255,255,255,0.5)';this.style.borderColor='rgba(255,255,255,0.12)'">
+                  View Receipt
+                </button>
+                <button style="font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;
+                               font-weight:700;color:#0a0a0a;background:#fff;
+                               border:1px solid #fff;padding:6px 14px;
+                               cursor:pointer;font-family:'Outfit',sans-serif;
+                               transition:opacity .18s"
+                        onmouseover="this.style.opacity='0.85'"
+                        onmouseout="this.style.opacity='1'">
+                  Buy Again
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Card 3 -->
+      <div class="order-card"
+           style="border:1px solid rgba(255,255,255,0.07);
+                  padding:22px;margin-bottom:32px;
+                  background:rgba(255,255,255,0.015)">
+        <div style="display:flex;gap:18px;align-items:flex-start">
+          <div style="width:80px;height:96px;flex-shrink:0;overflow:hidden;
+                      background:#111;border:1px solid rgba(255,255,255,0.06)">
+            <img src="images/catalog/competitor-shorts-1/competitor-shorts/DSC06313.jpg"
+                 style="width:100%;height:100%;object-fit:cover;object-position:top;opacity:0.85" alt="Rival Shorts">
+          </div>
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+                        margin-bottom:6px">
+              <div>
+                <p style="font-size:10px;color:rgba(255,255,255,0.28);letter-spacing:0.1em;
+                           text-transform:uppercase;font-weight:500;margin-bottom:4px">
+                  Order #LGX-6891
+                </p>
+                <h3 style="font-size:15px;font-weight:600;color:#fff;letter-spacing:-0.01em;
+                           line-height:1.2">Rival Shorts – Navy</h3>
+              </div>
+              <span style="font-size:15px;font-weight:600;color:#fff;flex-shrink:0;
+                           letter-spacing:-0.01em">$44.00</span>
+            </div>
+            <p style="font-size:11px;color:rgba(255,255,255,0.3);margin-bottom:14px">
+              Size: S &nbsp;·&nbsp; Qty: 1
+            </p>
+            <div style="display:flex;align-items:center;justify-content:space-between;
+                        flex-wrap:wrap;gap:10px">
+              <div style="display:flex;align-items:center;gap:10px">
+                <span class="badge-processing"
+                      style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;
+                             padding:4px 10px;border-radius:3px">
+                  Processing
+                </span>
+                <span style="font-size:11px;color:rgba(255,255,255,0.3)">Est. Nov 2</span>
+              </div>
+              <div style="display:flex;gap:8px">
+                <button style="font-size:9.5px;text-transform:uppercase;letter-spacing:0.14em;
+                               font-weight:600;color:rgba(255,255,255,0.5);background:none;
+                               border:1px solid rgba(255,255,255,0.12);padding:6px 14px;
+                               cursor:pointer;font-family:'Outfit',sans-serif;
+                               transition:color .18s,border-color .18s"
+                        onmouseover="this.style.color='#fff';this.style.borderColor='rgba(255,255,255,0.35)'"
+                        onmouseout="this.style.color='rgba(255,255,255,0.5)';this.style.borderColor='rgba(255,255,255,0.12)'">
+                  Cancel Order
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Saved Items Preview -->
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+        <h2 style="font-size:11px;text-transform:uppercase;letter-spacing:0.22em;font-weight:600;
+                   color:rgba(255,255,255,0.35)">Saved Items</h2>
+        <a href="#" class="tab-trigger" data-tab="tab-saved"
+           style="font-size:10px;text-transform:uppercase;letter-spacing:0.15em;font-weight:600;
+                  color:rgba(255,255,255,0.4);text-decoration:none;transition:color .18s"
+           onmouseover="this.style.color='#fff'"
+           onmouseout="this.style.color='rgba(255,255,255,0.4)'">View All →</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px">
+        <!-- Saved item 1 -->
+        <div style="border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.015);
+                    transition:border-color .2s"
+             onmouseover="this.style.borderColor='rgba(255,255,255,0.16)'"
+             onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
+          <div style="height:160px;overflow:hidden;background:#111">
+            <img src="images/catalog/glow-leggings/glow-leggings/DSC06652.jpg"
+                 style="width:100%;height:100%;object-fit:cover;object-position:top;
+                        opacity:0.8;transition:opacity .3s"
+                 onmouseover="this.style.opacity='1'"
+                 onmouseout="this.style.opacity='0.8'">
+          </div>
+          <div style="padding:14px 16px">
+            <p style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.85);
+                      margin-bottom:2px">Glow Legging</p>
+            <p style="font-size:11px;color:rgba(255,255,255,0.3);margin-bottom:12px">Black · $58</p>
+            <button style="width:100%;height:34px;background:none;border:1px solid rgba(255,255,255,0.14);
+                           color:rgba(255,255,255,0.6);font-size:9px;text-transform:uppercase;
+                           letter-spacing:0.16em;font-weight:700;cursor:pointer;
+                           font-family:'Outfit',sans-serif;transition:background .18s,color .18s,border-color .18s"
+                    onmouseover="this.style.background='#fff';this.style.color='#0a0a0a';this.style.borderColor='#fff'"
+                    onmouseout="this.style.background='none';this.style.color='rgba(255,255,255,0.6)';this.style.borderColor='rgba(255,255,255,0.14)'">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+        <!-- Saved item 2 -->
+        <div style="border:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.015);
+                    transition:border-color .2s"
+             onmouseover="this.style.borderColor='rgba(255,255,255,0.16)'"
+             onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
+          <div style="height:160px;overflow:hidden;background:#111">
+            <img src="images/aura_obsidian.png"
+                 style="width:100%;height:100%;object-fit:cover;
+                        opacity:0.8;transition:opacity .3s"
+                 onmouseover="this.style.opacity='1'"
+                 onmouseout="this.style.opacity='0.8'">
+          </div>
+          <div style="padding:14px 16px">
+            <p style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.85);
+                      margin-bottom:2px">Aura Bra</p>
+            <p style="font-size:11px;color:rgba(255,255,255,0.3);margin-bottom:12px">Obsidian · $48</p>
+            <button style="width:100%;height:34px;background:none;border:1px solid rgba(255,255,255,0.14);
+                           color:rgba(255,255,255,0.6);font-size:9px;text-transform:uppercase;
+                           letter-spacing:0.16em;font-weight:700;cursor:pointer;
+                           font-family:'Outfit',sans-serif;transition:background .18s,color .18s,border-color .18s"
+                    onmouseover="this.style.background='#fff';this.style.color='#0a0a0a';this.style.borderColor='#fff'"
+                    onmouseout="this.style.background='none';this.style.color='rgba(255,255,255,0.6)';this.style.borderColor='rgba(255,255,255,0.14)'">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ TAB: ORDERS ══════════════════════════ -->
+    <div id="tab-orders" class="tab-panel">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+        <h2 style="font-size:11px;text-transform:uppercase;letter-spacing:0.22em;font-weight:600;
+                   color:rgba(255,255,255,0.35)">All Orders</h2>
+        <!-- Filter chips -->
+        <div style="display:flex;gap:6px">
+          <button style="font-size:9px;text-transform:uppercase;letter-spacing:0.12em;font-weight:600;
+                         color:#fff;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);
+                         padding:5px 12px;cursor:pointer;font-family:'Outfit',sans-serif">All</button>
+          <button style="font-size:9px;text-transform:uppercase;letter-spacing:0.12em;font-weight:600;
+                         color:rgba(255,255,255,0.35);background:none;border:1px solid rgba(255,255,255,0.07);
+                         padding:5px 12px;cursor:pointer;font-family:'Outfit',sans-serif;
+                         transition:color .18s,border-color .18s"
+                  onmouseover="this.style.color='#fff';this.style.borderColor='rgba(255,255,255,0.25)'"
+                  onmouseout="this.style.color='rgba(255,255,255,0.35)';this.style.borderColor='rgba(255,255,255,0.07)'">Active</button>
+          <button style="font-size:9px;text-transform:uppercase;letter-spacing:0.12em;font-weight:600;
+                         color:rgba(255,255,255,0.35);background:none;border:1px solid rgba(255,255,255,0.07);
+                         padding:5px 12px;cursor:pointer;font-family:'Outfit',sans-serif;
+                         transition:color .18s,border-color .18s"
+                  onmouseover="this.style.color='#fff';this.style.borderColor='rgba(255,255,255,0.25)'"
+                  onmouseout="this.style.color='rgba(255,255,255,0.35)';this.style.borderColor='rgba(255,255,255,0.07)'">Delivered</button>
+        </div>
+      </div>
+      <p style="font-size:12px;color:rgba(255,255,255,0.25);padding:48px 0;text-align:center;
+                border:1px solid rgba(255,255,255,0.06)">
+        Full order history coming soon
+      </p>
+    </div>
+
+    <!-- ════ TAB: SAVED ═══════════════════════════ -->
+    <div id="tab-saved" class="tab-panel">
+      <h2 style="font-size:11px;text-transform:uppercase;letter-spacing:0.22em;font-weight:600;
+                 color:rgba(255,255,255,0.35);margin-bottom:20px">Saved Items</h2>
+      <p style="font-size:12px;color:rgba(255,255,255,0.25);padding:48px 0;text-align:center;
+                border:1px solid rgba(255,255,255,0.06)">
+        Wishlist feature coming soon
+      </p>
+    </div>
+
+    <!-- ════ TAB: SETTINGS ════════════════════════ -->
+    <div id="tab-settings" class="tab-panel">
+      <h2 style="font-size:11px;text-transform:uppercase;letter-spacing:0.22em;font-weight:600;
+                 color:rgba(255,255,255,0.35);margin-bottom:24px">Account Settings</h2>
+
+      <!-- Form fields -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <div>
+          <label style="font-size:9.5px;text-transform:uppercase;letter-spacing:0.16em;
+                        color:rgba(255,255,255,0.3);font-weight:600;display:block;margin-bottom:7px">
+            First Name
+          </label>
+          <input type="text" value="Elite"
+                 style="width:100%;height:42px;background:rgba(255,255,255,0.03);
+                        border:1px solid rgba(255,255,255,0.1);color:#fff;font-size:13px;
+                        padding:0 14px;font-family:'Outfit',sans-serif;outline:none;
+                        transition:border-color .18s"
+                 onfocus="this.style.borderColor='rgba(255,255,255,0.35)'"
+                 onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+        </div>
+        <div>
+          <label style="font-size:9.5px;text-transform:uppercase;letter-spacing:0.16em;
+                        color:rgba(255,255,255,0.3);font-weight:600;display:block;margin-bottom:7px">
+            Last Name
+          </label>
+          <input type="text" value="Runner"
+                 style="width:100%;height:42px;background:rgba(255,255,255,0.03);
+                        border:1px solid rgba(255,255,255,0.1);color:#fff;font-size:13px;
+                        padding:0 14px;font-family:'Outfit',sans-serif;outline:none;
+                        transition:border-color .18s"
+                 onfocus="this.style.borderColor='rgba(255,255,255,0.35)'"
+                 onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+        </div>
+      </div>
+      <div style="margin-bottom:20px">
+        <label style="font-size:9.5px;text-transform:uppercase;letter-spacing:0.16em;
+                      color:rgba(255,255,255,0.3);font-weight:600;display:block;margin-bottom:7px">
+          Email Address
+        </label>
+        <input type="email" value="elite@legginx.com"
+               style="width:100%;height:42px;background:rgba(255,255,255,0.03);
+                      border:1px solid rgba(255,255,255,0.1);color:#fff;font-size:13px;
+                      padding:0 14px;font-family:'Outfit',sans-serif;outline:none;
+                      transition:border-color .18s"
+               onfocus="this.style.borderColor='rgba(255,255,255,0.35)'"
+               onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+      </div>
+      <button style="font-size:10px;text-transform:uppercase;letter-spacing:0.18em;font-weight:700;
+                     color:#0a0a0a;background:#fff;border:none;padding:13px 28px;
+                     cursor:pointer;font-family:'Outfit',sans-serif;transition:opacity .18s"
+              onmouseover="this.style.opacity='0.85'"
+              onmouseout="this.style.opacity='1'">
+        Save Changes
+      </button>
+    </div>
+
+  </div><!-- /content area -->
+</main>
+
+<!-- ══════════════════════════════════════════════════
+     MOBILE BOTTOM NAV
+══════════════════════════════════════════════════ -->
 <nav class="lg:hidden fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-[320px] bg-black/80 backdrop-blur-2xl rounded-full z-[100] border border-white/10 flex items-center justify-between px-8 py-4 shadow-[0_20px_40px_rgba(0,0,0,0.8)]">
   <a href="index.html" class="text-zinc-400 hover:text-white transition-colors">
     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
@@ -180,10 +604,46 @@
   <a href="cart.html" class="text-zinc-400 hover:text-white transition-colors relative">
     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg>
   </a>
-  <a href="profile.html" class="text-zinc-400 hover:text-white transition-colors">
+  <a href="profile.html" class="text-white">
     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
   </a>
 </nav>
 
+<script>
+  // Tab switching
+  document.querySelectorAll('.tab-trigger').forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      const target = el.dataset.tab;
+      if (!target) return;
+
+      // Panels
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById(target)?.classList.add('active');
+
+      // Sidebar links
+      document.querySelectorAll('.side-link').forEach(l => {
+        l.classList.remove('active');
+        l.style.color = 'rgba(255,255,255,0.35)';
+      });
+      document.querySelectorAll(`.side-link[data-tab="${target}"]`).forEach(l => {
+        l.classList.add('active');
+        l.style.color = '#fff';
+      });
+    });
+  });
+
+  // Header scroll
+  window.addEventListener('scroll', () => {
+    const h = document.getElementById('legginx-header');
+    if (window.scrollY > 50) {
+      h.classList.add('bg-black/90','backdrop-blur-md','shadow-2xl');
+      h.classList.remove('bg-transparent');
+    } else {
+      h.classList.remove('bg-black/90','backdrop-blur-md','shadow-2xl');
+      h.classList.add('bg-transparent');
+    }
+  });
+</script>
 </body>
 </html>

@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="assets/product-data.js"></script>
     <script src="assets/legginx-animations.js?v=5" defer></script>
-    <script src="assets/legginx-cart.js?v=1" defer></script>
+    <script src="assets/legginx-cart.js?v=4" defer></script>
     <style>
         body { font-family: 'Outfit', sans-serif; background-color: #09090b; color: #ededed; display: flex; flex-direction: column; min-h-screen; }
         .glass-panel { background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.05); }
@@ -38,7 +38,7 @@
     <div class="flex-shrink-0">
       <a href="index.html" class="text-white hover:scale-110 transition-transform duration-500 block filter drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
         <svg viewBox="0 0 100 100" fill="currentColor" class="w-8 h-8 md:w-10 md:h-10">
-          <path d="M 50 2 L 34 22 L 44 22 L 44 42 C 44 55, 28 55, 28 35 L 28 28 L 34 32 L 20 6 L 6 32 L 14 28 C 14 55, 34 60, 44 60 C 36 61, 36 66, 44 67 L 44 71 C 36 72, 36 77, 44 78 L 44 98 L 56 98 L 56 78 C 64 77, 64 72, 56 71 L 56 67 C 64 66, 64 61, 56 60 C 66 60, 86 55, 86 28 L 94 32 L 80 6 L 66 32 L 72 28 L 72 35 C 72 55, 56 55, 56 42 L 56 22 L 66 22 Z" />
+          <path d="M 50 4 L 55 34 L 70 34 L 75 17 L 80 34 L 80 40 L 55 40 L 55 92 L 50 98 L 45 92 L 45 40 L 20 40 L 20 34 L 25 17 L 30 34 L 45 34 Z" />
         </svg>
       </a>
     </div>
@@ -49,14 +49,61 @@
   </div>
 </header>
 
-<div class="relative w-full pt-40 pb-24 px-4 sm:px-6 lg:px-12 bg-[#09090b]">
-    <div class="max-w-[1400px] mx-auto w-full relative z-20">
-        <div class="flex items-center justify-between mb-12 border-b border-white/5 pb-6">
-            <h1 class="text-3xl md:text-5xl font-light text-white tracking-widest uppercase">The Collection</h1>
-            <p class="text-sm text-zinc-500 font-light tracking-wide">57 Items</p>
+<!-- ── Page header ── -->
+<div style="width:100%;background:#09090b;padding:120px 24px 56px;border-bottom:1px solid rgba(255,255,255,0.05);" class="font-['Outfit']">
+  <div style="max-width:90rem;margin:0 auto;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:12px;">
+      <div>
+        <span style="font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:#71717a;font-weight:600;display:block;margin-bottom:10px;">FW26 — Full Catalog</span>
+        <h1 style="font-size:clamp(2rem,5vw,4.5rem);font-weight:800;text-transform:uppercase;color:#fff;line-height:0.95;letter-spacing:-0.03em;">The Collection</h1>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+        <!-- Sort -->
+        <div style="position:relative;">
+          <select id="lgx-sort" style="appearance:none;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;padding:10px 36px 10px 16px;font-family:inherit;cursor:pointer;outline:none;">
+            <option value="default">Sort: Featured</option>
+            <option value="price-asc">Price: Low → High</option>
+            <option value="price-desc">Price: High → Low</option>
+            <option value="name">Name A–Z</option>
+          </select>
+          <svg style="position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;width:12px;height:12px;color:rgba(255,255,255,0.4);" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
         </div>
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-8" id="product-grid"></div>
+        <span id="lgx-count" style="font-size:11px;color:#52525b;letter-spacing:0.1em;">— items</span>
+      </div>
     </div>
+  </div>
+</div>
+
+<!-- ── Filter tabs ── -->
+<div style="width:100%;background:#09090b;border-bottom:1px solid rgba(255,255,255,0.05);position:sticky;top:72px;z-index:50;" class="font-['Outfit']">
+  <div style="max-width:90rem;margin:0 auto;padding:0 24px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;">
+    <div style="display:flex;gap:0;min-width:max-content;" id="lgx-filters">
+      <button class="lgx-filter-btn active" data-cat="all" style="padding:16px 24px;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#fff;background:transparent;border:none;border-bottom:2px solid #fff;cursor:pointer;font-family:inherit;white-space:nowrap;transition:color 0.2s;">All</button>
+      <button class="lgx-filter-btn" data-cat="competitor-shorts-1" style="padding:16px 24px;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.35);background:transparent;border:none;border-bottom:2px solid transparent;cursor:pointer;font-family:inherit;white-space:nowrap;transition:color 0.2s,border-color 0.2s;">Rival Shorts</button>
+      <button class="lgx-filter-btn" data-cat="competitor-series-leggings" style="padding:16px 24px;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.35);background:transparent;border:none;border-bottom:2px solid transparent;cursor:pointer;font-family:inherit;white-space:nowrap;transition:color 0.2s,border-color 0.2s;">Rival Leggings</button>
+      <button class="lgx-filter-btn" data-cat="competitor-shorts" style="padding:16px 24px;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.35);background:transparent;border:none;border-bottom:2px solid transparent;cursor:pointer;font-family:inherit;white-space:nowrap;transition:color 0.2s,border-color 0.2s;">Glow Shorts</button>
+      <button class="lgx-filter-btn" data-cat="glow-leggings" style="padding:16px 24px;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.35);background:transparent;border:none;border-bottom:2px solid transparent;cursor:pointer;font-family:inherit;white-space:nowrap;transition:color 0.2s,border-color 0.2s;">Glow Leggings</button>
+      <button class="lgx-filter-btn" data-cat="essential-bras" style="padding:16px 24px;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.35);background:transparent;border:none;border-bottom:2px solid transparent;cursor:pointer;font-family:inherit;white-space:nowrap;transition:color 0.2s,border-color 0.2s;">Essentials</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .lgx-all-card { display:flex; flex-direction:column; }
+  .lgx-all-card:hover .lgx-ac-front { opacity:0.35 !important; transform:scale(1.04); }
+  .lgx-all-card:hover .lgx-ac-back  { opacity:1 !important; transform:scale(1) !important; }
+  .lgx-all-card:hover .lgx-ac-qa    { transform:translateY(0) !important; opacity:1 !important; }
+  @media(max-width:1023px){ .lgx-ac-qa { transform:translateY(0) !important; opacity:1 !important; } }
+</style>
+
+<!-- ── Product grid ── -->
+<div style="width:100%;background:#09090b;padding:48px 24px 96px;" class="font-['Outfit']">
+  <div style="max-width:90rem;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px;" id="product-grid"
+         class="sm:grid-cols-3 lg:!grid-cols-4"
+         style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px;"></div>
+    <p id="lgx-empty" style="display:none;text-align:center;padding:80px 0;font-size:13px;color:#52525b;letter-spacing:0.1em;">No products found in this category.</p>
+  </div>
 </div>
 
 <footer class="bg-black py-20 px-8 border-t border-white/5 font-['Outfit'] mt-auto">
@@ -99,34 +146,103 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    const grid = document.getElementById('product-grid');
-    const filterCats = null;
-    const products = window.LegginXProducts.filter(p => !filterCats || filterCats.includes(p.cat_handle));
-    
-    let htmlStr = '';
-    products.forEach(p => {
-        let slidesStr = '';
-        p.images.forEach(img => {
-            slidesStr += `<a href="product.html?id=${p.id}" class="w-full h-full flex-shrink-0 snap-center cursor-pointer block"><img src="${img}" class="w-full h-full object-cover object-top opacity-80 hover:opacity-100 transition-opacity"></a>`;
-        });
-        htmlStr += `
-        <div class="legginx-product-card group relative flex flex-col rounded-xl glass-panel reveal-glow p-2 transition-transform hover:-translate-y-1">
-          <div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-black flex-grow">
-            <div class="relative w-full h-full flex snap-x snap-mandatory overflow-x-auto hide-scrollbar scroll-smooth" id="slider-${p.id}">${slidesStr}</div>
-            <button class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-black/40 rounded-full text-white opacity-0 group-hover:opacity-100 z-10" onclick="document.getElementById('slider-${p.id}').scrollBy({left: -300, behavior: 'smooth'})">&#10094;</button>
-            <button class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-black/40 rounded-full text-white opacity-0 group-hover:opacity-100 z-10" onclick="document.getElementById('slider-${p.id}').scrollBy({left: 300, behavior: 'smooth'})">&#10095;</button>
-            <form class="absolute bottom-4 left-4 right-4 translate-y-8 group-hover:translate-y-0 transition-all opacity-0 group-hover:opacity-100 z-10">
-              <button type="button" class="quick-add-btn w-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium py-3 px-4 rounded-lg hover:bg-white hover:text-black uppercase tracking-widest text-xs transition-all">Quick Add / ${p.price}</button>
-            </form>
+  const grid    = document.getElementById('product-grid');
+  const countEl = document.getElementById('lgx-count');
+  const emptyEl = document.getElementById('lgx-empty');
+  const sortEl  = document.getElementById('lgx-sort');
+
+  const colorMap = { crimson:'#c0392b', rose:'#e8a0a8', navy:'#1a2a4a', black:'#111', grey:'#888888', plum:'#5c2d5c', white:'#f5f5f5', sage:'#7a9e7e', mauve:'#a07080', blue:'#2563eb', pink:'#f472b6', green:'#16a34a', purple:'#7c3aed', brown:'#78350f', tan:'#c9a96e', sand:'#d4a76a', olive:'#6b7c1e', burgundy:'#800020', coral:'#ff6b6b', teal:'#0d9488' };
+
+  let activeCat = 'all';
+
+  function getColor(name) {
+    const part = (name.split(' - ')[1] || '').toLowerCase().trim();
+    return { name: part, hex: colorMap[part] || null };
+  }
+
+  function buildCard(p, idx) {
+    const hasBack = p.images && p.images.length > 1;
+    const swatch  = getColor(p.name);
+    const badge   = idx < 2 ? 'Best Seller' : idx === 3 ? 'New' : '';
+    return `
+      <div class="lgx-all-card" style="position:relative;">
+        <div style="position:relative;aspect-ratio:3/4;overflow:hidden;background:#0d0d0f;">
+          <a href="product.html?id=${p.id}" style="position:absolute;inset:0;display:block;">
+            <img src="${p.images[0]}" alt="${p.name}" class="lgx-ac-front" style="width:100%;height:100%;object-fit:cover;opacity:0.88;transition:opacity 0.55s,transform 0.65s ease;display:block;">
+            ${hasBack ? `<img src="${p.images[1]}" alt="${p.name} back" class="lgx-ac-back" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:0;transform:scale(1.03);transition:opacity 0.5s,transform 0.65s ease;display:block;">` : ''}
+          </a>
+          ${badge ? `<span style="position:absolute;top:10px;left:10px;z-index:4;font-size:8px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:4px 9px;${badge==='Best Seller'?'background:#fff;color:#000;':'background:rgba(9,9,11,0.85);color:#fff;border:1px solid rgba(255,255,255,0.3);'}">${badge}</span>` : ''}
+          <button type="button" class="lgx-ac-qa quick-add-btn" data-id="${p.id}" data-name="${p.name}" data-price="${p.price.replace(/[^0-9.]/g,'')}" data-image="${p.images[0]}" style="position:absolute;bottom:0;left:0;right:0;background:rgba(255,255,255,0.96);color:#000;border:none;padding:12px;font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;cursor:pointer;font-family:inherit;transform:translateY(100%);opacity:0;transition:transform 0.36s cubic-bezier(0.16,1,0.3,1),opacity 0.28s ease;z-index:5;">Add to Bag</button>
+        </div>
+        <div style="padding:14px 2px 8px;">
+          <div style="display:flex;justify-content:space-between;gap:8px;margin-bottom:6px;">
+            <a href="product.html?id=${p.id}" style="font-size:11px;font-weight:600;color:#e5e5e5;letter-spacing:0.06em;text-transform:uppercase;line-height:1.3;text-decoration:none;flex:1;">${p.name}</a>
+            <span style="font-size:12px;color:#71717a;white-space:nowrap;flex-shrink:0;">${p.price}</span>
           </div>
-          <div class="mt-4 px-2">
-            <p class="text-[10px] text-zinc-500 uppercase tracking-widest">${p.category}</p>
-            <h3 class="text-sm font-medium text-white truncate mt-1"><a href="product.html?id=${p.id}">${p.name}</a></h3>
-            <p class="text-sm text-zinc-400 mt-1">${p.price}</p>
-          </div>
-        </div>`;
+          ${swatch.hex ? `<div style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:12px;border-radius:50%;background:${swatch.hex};display:inline-block;border:1px solid rgba(255,255,255,0.1);"></span><span style="font-size:9px;color:#52525b;letter-spacing:0.1em;text-transform:capitalize;">${swatch.name}</span></div>` : ''}
+        </div>
+      </div>`;
+  }
+
+  function render() {
+    let products = window.LegginXProducts ? [...window.LegginXProducts] : [];
+    if (activeCat !== 'all') products = products.filter(p => p.cat_handle === activeCat);
+
+    const sortVal = sortEl ? sortEl.value : 'default';
+    if (sortVal === 'price-asc')  products.sort((a,b) => parseFloat(a.price.replace(/[^0-9.]/g,'')) - parseFloat(b.price.replace(/[^0-9.]/g,'')));
+    if (sortVal === 'price-desc') products.sort((a,b) => parseFloat(b.price.replace(/[^0-9.]/g,'')) - parseFloat(a.price.replace(/[^0-9.]/g,'')));
+    if (sortVal === 'name')       products.sort((a,b) => a.name.localeCompare(b.name));
+
+    countEl.textContent = `${products.length} Items`;
+    emptyEl.style.display = products.length ? 'none' : 'block';
+
+    // Group by cat for badge assignment, then render
+    const catIdx = {};
+    grid.innerHTML = products.map(p => {
+      const ci = catIdx[p.cat_handle] = (catIdx[p.cat_handle] || 0);
+      catIdx[p.cat_handle]++;
+      return buildCard(p, ci);
+    }).join('');
+
+    // Set responsive grid cols inline
+    grid.style.gridTemplateColumns = 'repeat(2,1fr)';
+
+    // Quick add bindings
+    grid.querySelectorAll('.quick-add-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        const d = btn.dataset;
+        if (window.LegginXCart) {
+          window.LegginXCart.addToCart({ id: d.id, name: d.name, price: parseFloat(d.price), image: d.image });
+        }
+      });
     });
-    grid.innerHTML = htmlStr;
+  }
+
+  // Filter tab clicks
+  document.querySelectorAll('.lgx-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeCat = btn.dataset.cat;
+      document.querySelectorAll('.lgx-filter-btn').forEach(b => {
+        const isActive = b === btn;
+        b.style.color       = isActive ? '#fff' : 'rgba(255,255,255,0.35)';
+        b.style.borderBottom = isActive ? '2px solid #fff' : '2px solid transparent';
+      });
+      render();
+    });
+  });
+
+  sortEl && sortEl.addEventListener('change', render);
+
+  // Responsive grid cols on resize
+  function applyGridCols() {
+    const w = window.innerWidth;
+    grid.style.gridTemplateColumns = w >= 1024 ? 'repeat(4,1fr)' : w >= 640 ? 'repeat(3,1fr)' : 'repeat(2,1fr)';
+  }
+  window.addEventListener('resize', applyGridCols);
+
+  render();
+  applyGridCols();
 });
 </script>
 </body></html>

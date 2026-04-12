@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="assets/legginx-animations.js" defer></script>
     <script src="assets/product-data.js"></script>
-    <script src="assets/legginx-cart.js" defer></script>
+    <script src="assets/legginx-cart.js?v=4" defer></script>
     <style>
         body { font-family: 'Outfit', sans-serif; background-color: #09090b; color: #ededed; }
         .glass-panel {
@@ -16,7 +16,7 @@
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
         }
-        .text-gradient { background: linear-gradient(to right,#fff,#888); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .text-gradient { background: linear-gradient(to right,#fff,#888); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
 
         /* ── Premium Gallery ── */
         #pdp-gallery { display:flex; flex-direction:column; gap:12px; width:100%; }
@@ -153,12 +153,12 @@
     <div class="flex-1 flex justify-center items-center">
       <a href="index.html" class="text-white hover:scale-110 transition-transform duration-500 filter drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
         <svg viewBox="0 0 100 100" fill="currentColor" class="w-8 h-8 md:w-10 md:h-10">
-          <path d="M 50 2 L 34 22 L 44 22 L 44 42 C 44 55, 28 55, 28 35 L 28 28 L 34 32 L 20 6 L 6 32 L 14 28 C 14 55, 34 60, 44 60 C 36 61, 36 66, 44 67 L 44 71 C 36 72, 36 77, 44 78 L 44 98 L 56 98 L 56 78 C 64 77, 64 72, 56 71 L 56 67 C 64 66, 64 61, 56 60 C 66 60, 86 55, 86 28 L 94 32 L 80 6 L 66 32 L 72 28 L 72 35 C 72 55, 56 55, 56 42 L 56 22 L 66 22 Z" />
+          <path d="M 50 4 L 55 34 L 70 34 L 75 17 L 80 34 L 80 40 L 55 40 L 55 92 L 50 98 L 45 92 L 45 40 L 20 40 L 20 34 L 25 17 L 30 34 L 45 34 Z" />
         </svg>
       </a>
     </div>
     <div class="flex flex-1 items-center justify-end gap-6 text-white">
-      <a href="#" class="hover:text-zinc-400 transition-colors">
+      <a href="#" id="search-trigger" class="hover:text-zinc-400 transition-colors">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
       </a>
       <a href="profile.html" class="hover:text-zinc-400 transition-colors hidden sm:block">
@@ -215,7 +215,7 @@
 <div id="mobile-nav-drawer" class="fixed top-0 left-0 h-full w-[80%] max-w-[320px] bg-[#09090b] z-[210] transform -translate-x-full transition-transform duration-300 ease-in-out border-r border-white/5 flex flex-col p-8 lg:hidden font-['Outfit']">
   <div class="flex justify-between items-center mb-12">
     <svg viewBox="0 0 100 100" fill="currentColor" class="w-8 h-8 text-white">
-      <path d="M 50 2 L 34 22 L 44 22 L 44 42 C 44 55, 28 55, 28 35 L 28 28 L 34 32 L 20 6 L 6 32 L 14 28 C 14 55, 34 60, 44 60 C 36 61, 36 66, 44 67 L 44 71 C 36 72, 36 77, 44 78 L 44 98 L 56 98 L 56 78 C 64 77, 64 72, 56 71 L 56 67 C 64 66, 64 61, 56 60 C 66 60, 86 55, 86 28 L 94 32 L 80 6 L 66 32 L 72 28 L 72 35 C 72 55, 56 55, 56 42 L 56 22 L 66 22 Z" />
+      <path d="M 50 4 L 55 34 L 70 34 L 75 17 L 80 34 L 80 40 L 55 40 L 55 92 L 50 98 L 45 92 L 45 40 L 20 40 L 20 34 L 25 17 L 30 34 L 45 34 Z" />
     </svg>
     <button id="mobile-nav-close" class="text-white hover:text-zinc-400 transition-colors">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -234,8 +234,21 @@
   </div>
 </div>
 
+<!-- BREADCRUMB -->
+<div style="width:100%;background:#09090b;padding:100px 24px 0;" class="font-['Outfit']">
+  <div style="max-width:90rem;margin:0 auto;">
+    <nav style="display:flex;align-items:center;gap:8px;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:#52525b;">
+      <a href="index.html" style="color:#52525b;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#52525b'">Home</a>
+      <span>›</span>
+      <a href="all-items.html" style="color:#52525b;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#52525b'">Collections</a>
+      <span>›</span>
+      <span id="pdp-breadcrumb-name" style="color:rgba(255,255,255,0.5);">Product</span>
+    </nav>
+  </div>
+</div>
+
 <!-- PRODUCT DETAIL SECTION -->
-<div class="relative w-full min-h-screen pt-40 pb-24 px-4 sm:px-6 lg:px-12 bg-[#09090b] font-['Outfit'] antialiased">
+<div class="relative w-full min-h-screen pt-10 pb-24 px-4 sm:px-6 lg:px-12 bg-[#09090b] font-['Outfit'] antialiased">
     <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 relative z-20">
         
         <!-- Left: Premium Image Gallery -->
@@ -302,8 +315,20 @@
                     <p class="text-xl text-zinc-400 font-light mt-3">$36.00</p>
                 </div>
                 
+                <!-- Review mini-strip -->
+                <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                  <div style="display:flex;align-items:center;gap:6px;">
+                    <span style="color:#f59e0b;font-size:12px;letter-spacing:1px;">★★★★★</span>
+                    <span style="font-size:12px;font-weight:700;color:#fff;">4.8</span>
+                  </div>
+                  <span style="width:1px;height:14px;background:rgba(255,255,255,0.1);display:inline-block;"></span>
+                  <button onclick="document.getElementById('pdp-reviews').scrollIntoView({behavior:'smooth'})" style="font-size:11px;color:rgba(255,255,255,0.4);background:none;border:none;cursor:pointer;font-family:inherit;letter-spacing:0.06em;text-decoration:underline;text-underline-offset:3px;padding:0;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">214 Reviews</button>
+                  <span style="width:1px;height:14px;background:rgba(255,255,255,0.1);display:inline-block;"></span>
+                  <span style="font-size:10px;color:#16a34a;font-weight:600;letter-spacing:0.1em;">✓ Best Seller</span>
+                </div>
+
                 <div class="h-px w-full bg-white/5"></div>
-                
+
                 <!-- Color Selector -->
                 <div class="flex flex-col gap-3">
                     <p class="text-xs tracking-[0.2em] text-white uppercase flex justify-between items-center">
@@ -337,9 +362,25 @@
                     <button id="pdp-add-to-cart" class="quick-add-btn w-full bg-white text-black font-semibold py-4 px-6 rounded-full lg:rounded-lg shadow-[0_20px_40px_rgba(0,0,0,1)] lg:shadow-[0_0_30px_rgba(255,255,255,0.15)] hover:shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:scale-[1.02] active:scale-[0.98] uppercase tracking-[0.2em] text-xs transition-all duration-300">
                         Add to Cart
                     </button>
-                    <div class="flex items-center justify-center gap-2 mt-5">
-                       <svg class="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                       <p class="text-[10px] uppercase tracking-widest text-emerald-500/80">In Stock &amp; Ready to Ship</p>
+                    <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;">
+                       <svg class="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                       <p class="text-[10px] uppercase tracking-widest text-emerald-500/80" style="margin-left:6px;">In Stock &amp; Ready to Ship</p>
+                    </div>
+
+                    <!-- Trust badges -->
+                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.06);margin-top:20px;">
+                      <div style="background:#09090b;padding:14px 10px;text-align:center;">
+                        <svg style="width:18px;height:18px;margin:0 auto 6px;color:rgba(255,255,255,0.5);" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19.5C7.305 19.5 3.5 15.694 3.5 11S7.305 2.5 12 2.5s8.5 3.806 8.5 8.5-3.805 9-8.5 9z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.5v5l3 3"/></svg>
+                        <p style="font-size:8px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.4);font-weight:600;line-height:1.4;">Fast<br>Delivery</p>
+                      </div>
+                      <div style="background:#09090b;padding:14px 10px;text-align:center;">
+                        <svg style="width:18px;height:18px;margin:0 auto 6px;color:rgba(255,255,255,0.5);" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 9.4L7.55 4.24M3.61 6.02L12 11m0 0v9M12 11l8.39-4.98"/></svg>
+                        <p style="font-size:8px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.4);font-weight:600;line-height:1.4;">Free<br>Returns</p>
+                      </div>
+                      <div style="background:#09090b;padding:14px 10px;text-align:center;">
+                        <svg style="width:18px;height:18px;margin:0 auto 6px;color:rgba(255,255,255,0.5);" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>
+                        <p style="font-size:8px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.4);font-weight:600;line-height:1.4;">Secure<br>Checkout</p>
+                      </div>
                     </div>
                 </div>
 
@@ -375,6 +416,53 @@ document.addEventListener('DOMContentLoaded', function() {
     document.title = p.name + ' — LegginX';
     document.querySelector('h1').textContent = p.name;
     document.querySelector('.text-xl.text-zinc-400').textContent = p.price;
+
+    // Breadcrumb
+    var bc = document.getElementById('pdp-breadcrumb-name');
+    if (bc) bc.textContent = p.name;
+
+    // Related products (same category, excluding current)
+    var relatedEl = document.getElementById('pdp-related');
+    if (relatedEl && window.LegginXProducts) {
+      var colorMap = { crimson:'#c0392b', rose:'#e8a0a8', navy:'#1a2a4a', black:'#111', grey:'#888888', plum:'#5c2d5c', white:'#f5f5f5', sage:'#7a9e7e', mauve:'#a07080', coral:'#ff6b6b', teal:'#0d9488' };
+      var related = window.LegginXProducts.filter(function(x){ return x.id !== p.id; }).slice(0, 4);
+      relatedEl.innerHTML = related.map(function(r) {
+        var colorPart = (r.name.split(' - ')[1] || '').toLowerCase().trim();
+        var swatchHex = colorMap[colorPart] || null;
+        var hasBack = r.images && r.images.length > 1;
+        return '<div style="position:relative;cursor:pointer;" onmouseover="var f=this.querySelector(\'.lgx-rf\');var b=this.querySelector(\'.lgx-rb\');var q=this.querySelector(\'.lgx-rq\');if(f)f.style.opacity=\'0.3\';if(b){b.style.opacity=\'1\';b.style.transform=\'scale(1)\';}if(q){q.style.transform=\'translateY(0)\';q.style.opacity=\'1\';}" onmouseout="var f=this.querySelector(\'.lgx-rf\');var b=this.querySelector(\'.lgx-rb\');var q=this.querySelector(\'.lgx-rq\');if(f)f.style.opacity=\'0.88\';if(b){b.style.opacity=\'0\';b.style.transform=\'scale(1.03)\';}if(q){q.style.transform=\'translateY(100%)\';q.style.opacity=\'0\';}">'
+          + '<div style="position:relative;aspect-ratio:3/4;overflow:hidden;background:#0d0d0f;">'
+          + '<a href="product.html?id=' + r.id + '" style="position:absolute;inset:0;display:block;">'
+          + '<img src="' + r.images[0] + '" alt="' + r.name + '" class="lgx-rf" style="width:100%;height:100%;object-fit:cover;opacity:0.88;transition:opacity 0.5s,transform 0.65s;display:block;">'
+          + (hasBack ? '<img src="' + r.images[1] + '" alt="' + r.name + ' back" class="lgx-rb" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:0;transform:scale(1.03);transition:opacity 0.5s,transform 0.65s;display:block;">' : '')
+          + '</a>'
+          + '<button class="lgx-rq quick-add-btn" data-id="' + r.id + '" data-name="' + r.name + '" data-price="' + r.price.replace(/[^0-9.]/g,'') + '" data-image="' + r.images[0] + '" style="position:absolute;bottom:0;left:0;right:0;background:rgba(255,255,255,0.96);color:#000;border:none;padding:12px;font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;cursor:pointer;font-family:inherit;transform:translateY(100%);opacity:0;transition:transform 0.36s cubic-bezier(0.16,1,0.3,1),opacity 0.28s;z-index:5;">Add to Bag</button>'
+          + '</div>'
+          + '<div style="padding:12px 2px 6px;">'
+          + '<div style="display:flex;justify-content:space-between;gap:8px;"><a href="product.html?id=' + r.id + '" style="font-size:11px;font-weight:600;color:#e5e5e5;text-transform:uppercase;letter-spacing:0.06em;text-decoration:none;flex:1;">' + r.name + '</a><span style="font-size:12px;color:#71717a;white-space:nowrap;">' + r.price + '</span></div>'
+          + (swatchHex ? '<div style="display:flex;align-items:center;gap:5px;margin-top:5px;"><span style="width:11px;height:11px;border-radius:50%;background:' + swatchHex + ';display:inline-block;border:1px solid rgba(255,255,255,0.1);"></span><span style="font-size:9px;color:#52525b;text-transform:capitalize;">' + colorPart + '</span></div>' : '')
+          + '</div>'
+          + '</div>';
+      }).join('');
+
+      // Bind quick add on related products
+      relatedEl.querySelectorAll('.quick-add-btn').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var d = btn.dataset;
+          if (window.LegginXCart) {
+            window.LegginXCart.addToCart({ id: d.id, name: d.name, price: parseFloat(d.price), image: d.image });
+          }
+        });
+      });
+
+      // Responsive grid
+      function updateRelatedGrid() {
+        relatedEl.style.gridTemplateColumns = window.innerWidth < 640 ? 'repeat(2,1fr)' : 'repeat(4,1fr)';
+      }
+      updateRelatedGrid();
+      window.addEventListener('resize', updateRelatedGrid);
+    }
 
     var nameParts    = p.name.split(' ');
     var displayColor = nameParts.length > 2 ? nameParts.slice(-2).join(' ') : nameParts[nameParts.length - 1];
@@ -522,8 +610,179 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-<!-- MOBILE BOTTOM NAV -->
-<nav class="lg:hidden fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-[320px] bg-black/80 backdrop-blur-2xl rounded-full z-[100] border border-white/10 flex items-center justify-between px-8 py-4 shadow-[0_20px_40px_rgba(0,0,0,0.8)]">
+<!-- ════════════════════════════════════════════════════════════
+     REVIEWS SECTION
+     ════════════════════════════════════════════════════════════ -->
+<section id="pdp-reviews" style="width:100%;background:#09090b;padding:80px 24px;border-top:1px solid rgba(255,255,255,0.05);" class="font-['Outfit']">
+  <div style="max-width:90rem;margin:0 auto;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:48px;">
+      <div>
+        <span style="font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:#71717a;font-weight:600;display:block;margin-bottom:10px;">Customer Reviews</span>
+        <div style="display:flex;align-items:center;gap:14px;">
+          <span style="font-size:clamp(2.5rem,5vw,4rem);font-weight:800;color:#fff;line-height:1;">4.8</span>
+          <div>
+            <div style="color:#f59e0b;font-size:16px;letter-spacing:2px;margin-bottom:4px;">★★★★★</div>
+            <p style="font-size:11px;color:#71717a;letter-spacing:0.08em;">Based on 214 reviews</p>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;min-width:200px;">
+        <div style="display:flex;align-items:center;gap:10px;font-size:10px;color:#71717a;">
+          <span style="width:32px;text-align:right;">5 ★</span>
+          <div style="flex:1;height:4px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;"><div style="width:78%;height:100%;background:#f59e0b;border-radius:2px;"></div></div>
+          <span style="width:28px;">78%</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:10px;color:#71717a;">
+          <span style="width:32px;text-align:right;">4 ★</span>
+          <div style="flex:1;height:4px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;"><div style="width:14%;height:100%;background:#f59e0b;border-radius:2px;"></div></div>
+          <span style="width:28px;">14%</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:10px;color:#71717a;">
+          <span style="width:32px;text-align:right;">3 ★</span>
+          <div style="flex:1;height:4px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;"><div style="width:5%;height:100%;background:#f59e0b;border-radius:2px;"></div></div>
+          <span style="width:28px;">5%</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:10px;color:#71717a;">
+          <span style="width:32px;text-align:right;">2 ★</span>
+          <div style="flex:1;height:4px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;"><div style="width:2%;height:100%;background:#f59e0b;border-radius:2px;"></div></div>
+          <span style="width:28px;">2%</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:10px;color:#71717a;">
+          <span style="width:32px;text-align:right;">1 ★</span>
+          <div style="flex:1;height:4px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;"><div style="width:1%;height:100%;background:#f59e0b;border-radius:2px;"></div></div>
+          <span style="width:28px;">1%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Review cards -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.05);">
+
+      <div style="background:#09090b;padding:28px 24px;">
+        <div style="color:#f59e0b;font-size:11px;letter-spacing:2px;margin-bottom:12px;">★★★★★</div>
+        <p style="font-size:13px;color:#e5e5e5;line-height:1.7;font-weight:300;margin-bottom:16px;">"These don't move. Squatted 200lbs and not once did I have to pull them up. The fit is sculpted without being restrictive. Best shorts I've ever trained in."</p>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div>
+            <p style="font-size:11px;font-weight:600;color:#fff;letter-spacing:0.06em;">Emma R.</p>
+            <p style="font-size:10px;color:#52525b;margin-top:2px;letter-spacing:0.08em;">Verified Purchase · Size S</p>
+          </div>
+          <span style="font-size:9px;color:#16a34a;font-weight:600;letter-spacing:0.1em;background:rgba(22,163,74,0.1);padding:3px 8px;">✓ Verified</span>
+        </div>
+      </div>
+
+      <div style="background:#09090b;padding:28px 24px;">
+        <div style="color:#f59e0b;font-size:11px;letter-spacing:2px;margin-bottom:12px;">★★★★★</div>
+        <p style="font-size:13px;color:#e5e5e5;line-height:1.7;font-weight:300;margin-bottom:16px;">"I was skeptical about another 'premium' brand but LegginX is different. The fabric is thick but breathable. Already ordered two more colors. Zero slippage, zero riding."</p>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div>
+            <p style="font-size:11px;font-weight:600;color:#fff;letter-spacing:0.06em;">Jade M.</p>
+            <p style="font-size:10px;color:#52525b;margin-top:2px;letter-spacing:0.08em;">Verified Purchase · Size M</p>
+          </div>
+          <span style="font-size:9px;color:#16a34a;font-weight:600;letter-spacing:0.1em;background:rgba(22,163,74,0.1);padding:3px 8px;">✓ Verified</span>
+        </div>
+      </div>
+
+      <div style="background:#09090b;padding:28px 24px;">
+        <div style="color:#f59e0b;font-size:11px;letter-spacing:2px;margin-bottom:12px;">★★★★☆</div>
+        <p style="font-size:13px;color:#e5e5e5;line-height:1.7;font-weight:300;margin-bottom:16px;">"Obsessed with the quality. Wore these for a full leg day and spin class back to back. They held up perfectly and still looked great. Shipping was fast too."</p>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div>
+            <p style="font-size:11px;font-weight:600;color:#fff;letter-spacing:0.06em;">Priya K.</p>
+            <p style="font-size:10px;color:#52525b;margin-top:2px;letter-spacing:0.08em;">Verified Purchase · Size S</p>
+          </div>
+          <span style="font-size:9px;color:#16a34a;font-weight:600;letter-spacing:0.1em;background:rgba(22,163,74,0.1);padding:3px 8px;">✓ Verified</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     RELATED PRODUCTS
+     ════════════════════════════════════════════════════════════ -->
+<section style="width:100%;background:#09090b;padding:80px 24px;border-top:1px solid rgba(255,255,255,0.05);" class="font-['Outfit']">
+  <div style="max-width:90rem;margin:0 auto;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:12px;">
+      <div>
+        <span style="font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:#71717a;font-weight:600;display:block;margin-bottom:8px;">You May Also Like</span>
+        <h2 style="font-size:clamp(1.5rem,3vw,2.5rem);font-weight:700;text-transform:uppercase;color:#fff;line-height:1;letter-spacing:-0.02em;">Complete the Look</h2>
+      </div>
+      <a href="all-items.html" style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.4);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:2px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">View All →</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;" id="pdp-related">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     SEARCH MODAL
+     ════════════════════════════════════════════════════════════ -->
+<div id="search-modal" class="fixed inset-0 z-[600] hidden opacity-0 transition-opacity duration-300">
+  <div class="absolute inset-0 bg-black/95 backdrop-blur-3xl"></div>
+  <div class="relative z-10 w-full h-full flex flex-col p-6 sm:p-20">
+    <div class="flex justify-end mb-12">
+      <button id="search-close" class="text-white hover:rotate-90 transition-transform duration-300 cursor-pointer">
+        <svg class="size-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+    </div>
+    <div class="max-w-4xl mx-auto w-full">
+      <input type="text" id="search-input" placeholder="SEARCH OUR CATALOG..." class="w-full bg-transparent border-b-2 border-white/20 py-6 text-2xl sm:text-5xl font-bold text-white uppercase tracking-tighter focus:outline-none focus:border-white transition-all placeholder:text-white/10">
+      <div id="search-results" class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-6"></div>
+    </div>
+  </div>
+</div>
+
+<footer class="bg-black py-20 px-8 border-t border-white/5 font-['Outfit'] w-full mt-24">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-left">
+    <div>
+      <h3 class="text-white text-xs font-bold uppercase tracking-[0.3em] mb-8">LEGGINX Ψ</h3>
+      <p class="text-zinc-500 text-sm leading-relaxed max-w-xs font-light">The pinnacle of performance-driven aesthetics. Join the elite.</p>
+    </div>
+    <div>
+      <h4 class="text-white text-[10px] font-bold uppercase tracking-[0.3em] mb-8">COLLECTIONS</h4>
+      <ul class="space-y-4 text-zinc-500 text-xs font-light tracking-wider">
+        <li><a href="rival-shorts.html" class="hover:text-white transition-colors uppercase">Rival Shorts</a></li>
+        <li><a href="rival-leggings.html" class="hover:text-white transition-colors uppercase">Rival Leggings</a></li>
+        <li><a href="glow-shorts.html" class="hover:text-white transition-colors uppercase">Glow Shorts</a></li>
+        <li><a href="glow-leggings.html" class="hover:text-white transition-colors uppercase">Glow Leggings</a></li>
+        <li><a href="essential-bras.html" class="hover:text-white transition-colors uppercase">Essential Bras</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-white text-[10px] font-bold uppercase tracking-[0.3em] mb-8">SUPPORT</h4>
+      <ul class="space-y-4 text-zinc-500 text-xs font-light tracking-wider">
+        <li><a href="contact.html" class="hover:text-white transition-colors uppercase">Contact Info</a></li>
+        <li><a href="shipping-policy.html" class="hover:text-white transition-colors uppercase">Shipping Policy</a></li>
+        <li><a href="refund-policy.html" class="hover:text-white transition-colors uppercase">Refund Policy</a></li>
+        <li><a href="privacy-policy.html" class="hover:text-white transition-colors uppercase">Privacy Policy</a></li>
+        <li><a href="terms-of-service.html" class="hover:text-white transition-colors uppercase">Terms of Service</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-white text-[10px] font-bold uppercase tracking-[0.3em] mb-8">SOCIAL</h4>
+      <div class="flex gap-6">
+        <a href="https://instagram.com/legginx" target="_blank" class="text-zinc-500 hover:text-white transition-colors">
+          <svg class="size-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+    <p class="text-[10px] text-zinc-600 uppercase tracking-widest">&copy; 2024 LEGGINX. ALL RIGHTS RESERVED. DESIGNED FOR PERFORMANCE.</p>
+    <div class="flex gap-4">
+      <img src="https://shoplineimg.com/assets/footer/card_visa.png" class="h-4 opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all cursor-crosshair" alt="Visa">
+      <img src="https://shoplineimg.com/assets/footer/card_master.png" class="h-4 opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all cursor-crosshair" alt="Mastercard">
+      <img src="https://shoplineimg.com/assets/footer/card_amex.png" class="h-4 opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all cursor-crosshair" alt="Amex">
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════════════════
+     MOBILE BOTTOM NAV
+     ════════════════════════════════════════════════════════════ -->
+<nav class="lg:hidden fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-[320px] bg-black/80 backdrop-blur-2xl rounded-full z-[100] border border-white/10 flex items-center justify-around px-8 py-4 shadow-[0_20px_40px_rgba(0,0,0,0.8)]">
   <a href="index.html" class="text-zinc-400 hover:text-white transition-colors">
     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
   </a>
@@ -537,6 +796,16 @@ document.addEventListener('DOMContentLoaded', function() {
     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
   </a>
 </nav>
+
+<script>
+  // Search Modal Toggle
+  const sTrig = document.getElementById('search-trigger');
+  const sClose = document.getElementById('search-close');
+  const sModal = document.getElementById('search-modal');
+  const sInput = document.getElementById('search-input');
+  if (sTrig) sTrig.onclick = () => { sModal.classList.remove('hidden'); setTimeout(()=>sModal.classList.remove('opacity-0'),10); sInput.focus(); document.body.style.overflow='hidden'; };
+  if (sClose) sClose.onclick = () => { sModal.classList.add('opacity-0'); setTimeout(()=>sModal.classList.add('hidden'),300); document.body.style.overflow=''; };
+</script>
 
 </body>
 </html>

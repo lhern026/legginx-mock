@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="assets/product-data.js"></script>
     <script src="assets/legginx-animations.js?v=5" defer></script>
-    <script src="assets/legginx-cart.js?v=1" defer></script>
+    <script src="assets/legginx-cart.js?v=4" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="assets/legginx-threejs.js" defer></script>
     <style>
@@ -23,6 +23,7 @@
         .text-gradient {
             background: linear-gradient(to right, #ffffff, #888888);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         .reveal-glow { transition: box-shadow 0.5s ease, border-color 0.5s ease; }
@@ -30,6 +31,72 @@
             box-shadow: 0 0 40px rgba(150, 150, 150, 0.15);
             border-color: rgba(255,255,255,0.15);
         }
+
+        /* ── Ticker Strip ── */
+        @keyframes lgx-ticker {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .lgx-ticker-track {
+            display: flex;
+            width: max-content;
+            animation: lgx-ticker 28s linear infinite;
+        }
+        .lgx-ticker-track:hover { animation-play-state: paused; }
+
+        /* ── Category Tiles ── */
+        .lgx-cat-tile { position: relative; overflow: hidden; cursor: pointer; }
+        .lgx-cat-tile img { transition: transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94); }
+        .lgx-cat-tile:hover img { transform: scale(1.06); }
+        .lgx-cat-tile .lgx-cat-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
+            transition: background 0.4s ease;
+        }
+        .lgx-cat-tile:hover .lgx-cat-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.18) 55%, transparent 100%);
+        }
+        .lgx-cat-btn {
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,0.6);
+            color: #fff;
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 10px 28px;
+            transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+        }
+        .lgx-cat-tile:hover .lgx-cat-btn {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+        }
+
+        /* ── Perks Strip ── */
+        .lgx-perk-icon { transition: transform 0.35s ease; }
+        .lgx-perk:hover .lgx-perk-icon { transform: translateY(-3px); }
+
+        /* ── Product Grid — hover image swap + quick add reveal ── */
+        .legginx-product-card:hover .lgx-img-front { opacity:0.35 !important; transform:scale(1.04); }
+        .legginx-product-card:hover .lgx-img-back  { opacity:1 !important; transform:scale(1) !important; }
+        .legginx-product-card:hover .lgx-qa-btn    { transform:translateY(0) !important; opacity:1 !important; }
+        @media(max-width:1023px) { .lgx-qa-btn { transform:translateY(0) !important; opacity:1 !important; } }
+
+        /* ── Bestsellers Marquee ── */
+        @keyframes lgx-scroll {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .lgx-best-track {
+            display: flex;
+            gap: 16px;
+            animation: lgx-scroll 40s linear infinite;
+            width: max-content;
+        }
+        .lgx-best-track:hover { animation-play-state: paused; }
+        .lgx-best-card { flex-shrink: 0; width: 240px; }
+        .lgx-best-card img { transition: transform 0.6s ease; }
+        .lgx-best-card:hover img { transform: scale(1.04); }
     </style>
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen antialiased selection:bg-white selection:text-black">
@@ -39,7 +106,7 @@
      ════════════════════════════════════════════════════════════ -->
 <header class="fixed top-0 left-0 right-0 z-[100] w-full transition-all duration-300 bg-transparent flex flex-col font-['Outfit'] antialiased group" id="legginx-header">
   <div class="bg-black text-white text-[10px] sm:text-xs font-semibold tracking-widest uppercase text-center py-2 relative z-20 w-full">
-    Free Shipping on All Orders
+    Free Shipping All Orders
   </div>
   <div class="w-full px-5 md:px-12 py-4 flex items-center justify-between transition-all duration-500 bg-gradient-to-b from-black/80 to-transparent group-hover:bg-black/90 group-hover:backdrop-blur-md">
     <div class="flex-1 flex items-center">
@@ -57,11 +124,14 @@
     <div class="flex-shrink-0">
       <a href="index.html" class="text-white hover:scale-110 transition-transform duration-500 block filter drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
         <svg viewBox="0 0 100 100" fill="currentColor" class="w-8 h-8 md:w-10 md:h-10">
-          <path d="M 50 2 L 34 22 L 44 22 L 44 42 C 44 55, 28 55, 28 35 L 28 28 L 34 32 L 20 6 L 6 32 L 14 28 C 14 55, 34 60, 44 60 C 36 61, 36 66, 44 67 L 44 71 C 36 72, 36 77, 44 78 L 44 98 L 56 98 L 56 78 C 64 77, 64 72, 56 71 L 56 67 C 64 66, 64 61, 56 60 C 66 60, 86 55, 86 28 L 94 32 L 80 6 L 66 32 L 72 28 L 72 35 C 72 55, 56 55, 56 42 L 56 22 L 66 22 Z" />
+          <path d="M 50 4 L 55 34 L 70 34 L 75 17 L 80 34 L 80 40 L 55 40 L 55 92 L 50 98 L 45 92 L 45 40 L 20 40 L 20 34 L 25 17 L 30 34 L 45 34 Z" />
         </svg>
       </a>
     </div>
     <div class="flex flex-1 items-center justify-end gap-5 text-white">
+      <button id="search-trigger" class="hover:text-zinc-400 transition-colors cursor-pointer">
+        <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/></svg>
+      </button>
       <a href="profile.html" class="hover:text-zinc-400"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg></a>
       <a href="cart.html" class="relative group"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg><span id="cart-count" class="absolute -top-2 -right-2 bg-white text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span></a>
     </div>
@@ -76,7 +146,7 @@
 <div id="mobile-nav-drawer" class="fixed top-0 left-0 h-full w-[80%] max-w-[320px] bg-[#09090b] z-[210] transform -translate-x-full transition-transform duration-300 ease-in-out border-r border-white/5 flex flex-col p-8 lg:hidden font-['Outfit']">
   <div class="flex justify-between items-center mb-12">
     <svg viewBox="0 0 100 100" fill="currentColor" class="w-8 h-8 text-white opacity-60">
-      <path d="M 50 2 L 34 22 L 44 22 L 44 42 C 44 55, 28 55, 28 35 L 28 28 L 34 32 L 20 6 L 6 32 L 14 28 C 14 55, 34 60, 44 60 C 36 61, 36 66, 44 67 L 44 71 C 36 72, 36 77, 44 78 L 44 98 L 56 98 L 56 78 C 64 77, 64 72, 56 71 L 56 67 C 64 66, 64 61, 56 60 C 66 60, 86 55, 86 28 L 94 32 L 80 6 L 66 32 L 72 28 L 72 35 C 72 55, 56 55, 56 42 L 56 22 L 66 22 Z" />
+      <path d="M 50 4 L 55 34 L 70 34 L 75 17 L 80 34 L 80 40 L 55 40 L 55 92 L 50 98 L 45 92 L 45 40 L 20 40 L 20 34 L 25 17 L 30 34 L 45 34 Z" />
     </svg>
     <button id="mobile-nav-close" class="text-white/60 hover:text-white transition-colors">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -98,197 +168,437 @@
 <!-- ════════════════════════════════════════════════════════════
      HERO SECTION
      ════════════════════════════════════════════════════════════ -->
-<div class="relative w-full min-h-[85vh] lg:min-h-screen py-16 lg:py-24 flex items-center justify-center overflow-hidden bg-[#09090b] font-['Outfit'] antialiased">
+<section id="lgx-hero" style="position:relative;width:100%;height:100vh;min-height:640px;overflow:hidden;background:#000;" class="font-['Outfit']">
 
-  <!-- Background Image + Overlays -->
-  <div class="absolute inset-0 w-full h-full">
-    <img src="images/hero_image.png" alt="Performance Wear" class="w-full h-full object-cover object-right lg:object-center opacity-70 animate-on-scroll transform duration-[2000ms] scale-100 hover:scale-105 ease-out transition-transform">
-    <div class="absolute inset-0 bg-gradient-to-t from-[#09090b] via-[#09090b]/40 to-transparent"></div>
-    <div class="absolute inset-0 bg-gradient-to-r from-[#09090b]/80 via-[#09090b]/20 to-transparent"></div>
-    <div class="absolute bottom-0 left-0 right-0 h-24 lg:h-48 bg-gradient-to-t from-[#09090b] to-transparent z-10"></div>
-    <div id="hero-canvas-container" class="absolute inset-0 z-0 pointer-events-none mix-blend-screen opacity-60"></div>
-  </div>
+  <!-- Background image -->
+  <img id="lgx-hero-img" src="images/hero_image.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:72% center;display:block;" aria-hidden="true">
 
-  <!-- Hero Content -->
-  <div class="relative z-10 w-full max-w-[90rem] mx-auto px-5 sm:px-6 lg:px-12 flex flex-col items-start justify-end lg:justify-center h-full pb-8 lg:pb-0">
-    <div class="max-w-4xl">
+  <!-- Gradient layers -->
+  <div style="position:absolute;inset:0;background:linear-gradient(108deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.68) 36%, rgba(0,0,0,0.22) 62%, transparent 100%);"></div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:38%;background:linear-gradient(to top,rgba(0,0,0,0.85),transparent);"></div>
+  <div style="position:absolute;top:0;left:0;right:0;height:28%;background:linear-gradient(to bottom,rgba(0,0,0,0.55),transparent);"></div>
 
-      <!-- Trust Badge -->
-      <div class="animate-on-scroll opacity-0 translate-y-4 transition-all duration-1000 ease-out flex items-center gap-2.5 mb-5 lg:mb-6">
-        <div class="flex text-amber-400 text-xs tracking-wider">★★★★★</div>
-        <span class="text-[11px] uppercase tracking-[0.2em] text-white/50 font-medium">4.8 · Rated by 10,000+ Athletes</span>
+  <!-- Three.js canvas -->
+  <div id="hero-canvas-container" style="position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:0.35;"></div>
+
+  <!-- ── Content — anchored to bottom-left ── -->
+  <div style="position:absolute;bottom:clamp(72px,11vh,130px);left:0;right:0;padding:0 clamp(20px,5.5vw,88px);z-index:10;">
+
+    <!-- Massive reveal headline -->
+    <h1 style="font-size:clamp(4rem,14vw,15rem);font-weight:900;text-transform:uppercase;line-height:0.86;letter-spacing:-0.04em;margin:0 0 clamp(20px,3.5vh,44px);overflow:visible;">
+
+      <div style="overflow:hidden;">
+        <div id="lgx-h1" style="color:#fff;transform:translateY(108%);transition:transform 1.05s cubic-bezier(0.16,1,0.3,1);">Sculpted.</div>
       </div>
 
-      <!-- Headline -->
-      <h1 class="text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[6.5rem] font-bold tracking-tight lg:tracking-tighter uppercase text-white leading-[1] lg:leading-[0.9] mb-5 lg:mb-6 overflow-hidden" style="text-shadow: 0 8px 30px rgba(0,0,0,0.7);">
-        <span class="hero-line block opacity-0 translate-y-full transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)]">Performance</span>
-        <span class="hero-line block opacity-0 translate-y-full transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] delay-100">Wear That</span>
-        <span class="hero-line block opacity-0 translate-y-full transition-all duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] delay-200"><br class="sm:hidden">Moves With You</span>
-      </h1>
+      <div style="overflow:hidden;">
+        <div id="lgx-h2" style="color:#fff;transform:translateY(108%);transition:transform 1.05s cubic-bezier(0.16,1,0.3,1) 0.09s;">Zero Slip.</div>
+      </div>
 
-      <!-- Subheadline -->
-      <p class="animate-on-scroll opacity-0 translate-y-8 transition-all duration-[1200ms] ease-out delay-500 text-base sm:text-lg md:text-xl lg:text-xl text-zinc-300/90 font-light max-w-md lg:max-w-xl mb-7 lg:mb-8 leading-relaxed">
-        Breathable. Sculpting. Built for high-output training.
+      <div style="overflow:hidden;">
+        <div id="lgx-h3" style="color:rgba(255,255,255,0.22);transform:translateY(108%);transition:transform 1.05s cubic-bezier(0.16,1,0.3,1) 0.18s;">
+          Built to <span id="lgx-cycle-word" style="color:#fff;">Win.</span>
+        </div>
+      </div>
+
+    </h1>
+
+    <!-- Sub row — fades in after lines -->
+    <div id="lgx-sub-row" style="display:flex;align-items:center;flex-wrap:wrap;gap:clamp(16px,3vw,40px);opacity:0;transform:translateY(18px);transition:opacity 0.85s ease,transform 0.85s ease;">
+      <p style="font-size:clamp(12px,1.05vw,14px);color:rgba(255,255,255,0.45);font-weight:300;letter-spacing:0.04em;line-height:1.75;max-width:300px;flex-shrink:0;">
+        Shorts that don't ride up.<br>Leggings built for real training.
       </p>
-
-      <!-- CTA Stack -->
-      <div class="animate-on-scroll opacity-0 translate-y-8 transition-all duration-[1200ms] ease-out delay-700 flex flex-col gap-3 w-full sm:w-auto">
-        <a href="all-items.html" class="px-10 py-4 lg:py-5 bg-white text-black text-xs lg:text-sm uppercase tracking-[0.2em] font-bold rounded-full text-center transition-all duration-300 hover:bg-zinc-100 hover:shadow-[0_0_40px_rgba(255,255,255,0.3)] hover:scale-[1.02] active:scale-[0.98]">
-          Shop FW26 Collection
-        </a>
-        <div class="flex gap-3">
-          <a href="all-items.html" class="flex-1 px-10 py-3.5 bg-white/5 backdrop-blur-md border border-white/15 text-white/80 text-[10px] lg:text-xs uppercase tracking-[0.2em] font-medium rounded-full text-center transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:text-white">
-            Shop Women's Apparel
-          </a>
-        </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <a href="all-items.html" style="display:inline-block;background:#fff;color:#000;padding:14px 34px;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;font-family:inherit;text-decoration:none;transition:background 0.2s,transform 0.15s;" onmouseover="this.style.background='#e5e5e5';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#fff';this.style.transform='none'">Shop Best Sellers →</a>
+        <a href="all-items.html" style="display:inline-block;background:transparent;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.22);padding:14px 34px;font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;font-family:inherit;text-decoration:none;transition:border-color 0.2s,color 0.2s;" onmouseover="this.style.borderColor='rgba(255,255,255,0.65)';this.style.color='#fff'" onmouseout="this.style.borderColor='rgba(255,255,255,0.22)';this.style.color='rgba(255,255,255,0.6)'">Find Your Fit</a>
       </div>
     </div>
+
+  </div>
+
+  <!-- ── Bottom collection nav ── -->
+  <div style="position:absolute;bottom:0;left:0;right:0;z-index:20;border-top:1px solid rgba(255,255,255,0.08);background:rgba(0,0,0,0.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);">
+    <div style="max-width:90rem;margin:0 auto;padding:0 clamp(20px,5.5vw,88px);display:flex;align-items:center;justify-content:space-between;height:54px;">
+      <div style="display:flex;gap:clamp(18px,3.5vw,48px);overflow-x:auto;scrollbar-width:none;">
+        <a href="rival.html"      style="font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.38);text-decoration:none;white-space:nowrap;transition:color 0.18s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.38)'">Rival</a>
+        <a href="glow.html"       style="font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.38);text-decoration:none;white-space:nowrap;transition:color 0.18s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.38)'">Glow</a>
+        <a href="aura.html"       style="font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.38);text-decoration:none;white-space:nowrap;transition:color 0.18s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.38)'">Aura</a>
+        <a href="essentials.html" style="font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.38);text-decoration:none;white-space:nowrap;transition:color 0.18s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.38)'">Essentials</a>
+        <a href="all-items.html"  style="font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.38);text-decoration:none;white-space:nowrap;transition:color 0.18s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.38)'">All Items</a>
+      </div>
+      <div style="width:18px;height:28px;border:1px solid rgba(255,255,255,0.14);border-radius:9px;display:flex;justify-content:center;padding-top:4px;flex-shrink:0;">
+        <div style="width:2px;height:5px;background:rgba(255,255,255,0.45);border-radius:1px;animation:lgx-scroll-dot 1.8s ease-in-out infinite;"></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<style>
+  @keyframes lgx-scroll-dot { 0%{opacity:1;transform:translateY(0)} 60%{opacity:0;transform:translateY(10px)} 100%{opacity:0;transform:translateY(10px)} }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // ── Hero text entrance — pure JS, no class dependency
+    const h1 = document.getElementById('lgx-h1');
+    const h2 = document.getElementById('lgx-h2');
+    const h3 = document.getElementById('lgx-h3');
+    const subRow = document.getElementById('lgx-sub-row');
+
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        if (h1) h1.style.transform = 'translateY(0)';
+        if (h2) h2.style.transform = 'translateY(0)';
+        if (h3) h3.style.transform = 'translateY(0)';
+      }, 80);
+      setTimeout(() => {
+        if (subRow) { subRow.style.opacity = '1'; subRow.style.transform = 'translateY(0)'; }
+      }, 620);
+    });
+
+    // ── Cycling word
+    const words = ['Win.', 'Compete.', 'Perform.', 'Dominate.', 'Train.'];
+    let idx = 0;
+    const wordEl = document.getElementById('lgx-cycle-word');
+    if (wordEl) {
+      setInterval(() => {
+        idx = (idx + 1) % words.length;
+        wordEl.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+        wordEl.style.opacity = '0';
+        wordEl.style.transform = 'translateY(-14px)';
+        setTimeout(() => {
+          wordEl.textContent = words[idx];
+          wordEl.style.transition = 'none';
+          wordEl.style.transform = 'translateY(14px)';
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            wordEl.style.transition = 'opacity 0.35s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1)';
+            wordEl.style.opacity = '1';
+            wordEl.style.transform = 'translateY(0)';
+          }));
+        }, 260);
+      }, 2800);
+    }
+
+    // ── Ken Burns + scroll parallax
+    const heroImg = document.getElementById('lgx-hero-img');
+    if (heroImg) {
+      heroImg.style.transition = 'transform 14s ease-out';
+      setTimeout(() => { heroImg.style.transform = 'scale(1.07)'; }, 60);
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            const sy = window.scrollY;
+            if (sy < window.innerHeight) {
+              heroImg.style.transform = `scale(${1.08 + sy * 0.00025}) translateY(${sy * 0.18}px)`;
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+    }
+  });
+</script>
+
+<!-- ════════════════════════════════════════════════════════════
+     TICKER STRIP
+     ════════════════════════════════════════════════════════════ -->
+<div style="background:#fff;overflow:hidden;border-top:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5;padding:12px 0;" class="relative w-full z-20">
+  <div class="lgx-ticker-track">
+    <!-- First set -->
+    <span style="display:flex;align-items:center;gap:32px;padding-right:32px;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#0a0a0a;white-space:nowrap;">
+      <span>★★★★★&nbsp; 4.8 · Rated by 10,000+ Athletes</span>
+      <span style="color:#ccc;">·</span>
+      <span>Free Shipping · All Orders</span>
+      <span style="color:#ccc;">·</span>
+      <span>FW26 Collection — Now Live</span>
+      <span style="color:#ccc;">·</span>
+      <span>Free Returns · 30 Days</span>
+      <span style="color:#ccc;">·</span>
+      <span>2-Day Express Delivery Available</span>
+      <span style="color:#ccc;">·</span>
+      <span>New Drops Every Week</span>
+      <span style="color:#ccc;">·</span>
+      <span>Worn By Elites · Built For Everyone</span>
+      <span style="color:#ccc;">·</span>
+    </span>
+    <!-- Duplicate for seamless loop -->
+    <span style="display:flex;align-items:center;gap:32px;padding-right:32px;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#0a0a0a;white-space:nowrap;">
+      <span>★★★★★&nbsp; 4.8 · Rated by 10,000+ Athletes</span>
+      <span style="color:#ccc;">·</span>
+      <span>Free Shipping · All Orders</span>
+      <span style="color:#ccc;">·</span>
+      <span>FW26 Collection — Now Live</span>
+      <span style="color:#ccc;">·</span>
+      <span>Free Returns · 30 Days</span>
+      <span style="color:#ccc;">·</span>
+      <span>2-Day Express Delivery Available</span>
+      <span style="color:#ccc;">·</span>
+      <span>New Drops Every Week</span>
+      <span style="color:#ccc;">·</span>
+      <span>Worn By Elites · Built For Everyone</span>
+      <span style="color:#ccc;">·</span>
+    </span>
   </div>
 </div>
 
 <!-- ════════════════════════════════════════════════════════════
-     FEATURED PRODUCTS
+     SHOP BY CATEGORY (Editorial Tiles)
      ════════════════════════════════════════════════════════════ -->
-<div class="legginx-section py-20 px-4 sm:px-6 lg:px-12 w-full max-w-[90rem] mx-auto relative z-20">
+<section style="width:100%;background:#09090b;padding:80px 24px 0;" class="font-['Outfit']">
+  <div style="max-width:90rem;margin:0 auto;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;gap:16px;flex-wrap:wrap;">
+      <div>
+        <span style="font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:#71717a;font-weight:600;display:block;margin-bottom:8px;">Collections</span>
+        <h2 style="font-size:clamp(2rem,5vw,4rem);font-weight:700;text-transform:uppercase;color:#fff;line-height:1;letter-spacing:-0.02em;">Shop The Range</h2>
+      </div>
+      <a href="all-items.html" style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#fff;border-bottom:1px solid rgba(255,255,255,0.3);padding-bottom:2px;white-space:nowrap;transition:border-color 0.2s;font-weight:600;" onmouseover="this.style.borderColor='#fff'" onmouseout="this.style.borderColor='rgba(255,255,255,0.3)'">View All →</a>
+    </div>
 
-  <!-- Section Header -->
-  <div class="mb-16 text-center animate-on-scroll opacity-0 translate-y-8 transition-all duration-[1000ms] ease-out">
-    <span class="text-xs uppercase tracking-[0.3em] text-zinc-500 mb-4 block font-semibold">New Arrival</span>
-    <h2 class="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight uppercase text-gradient pb-2">
-      RIVAL SERIES
-    </h2>
-    <p class="mt-6 max-w-2xl text-base sm:text-lg text-zinc-400 mx-auto font-light leading-relaxed">
-      A masterpiece of engineering. Second-skin feel, zero distractions, and unparalleled aesthetic dominance.
-    </p>
+    <!-- 3-col editorial grid -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;height:clamp(380px,52vw,620px);">
+
+      <!-- Rival — tall left -->
+      <a href="rival.html" class="lgx-cat-tile" style="grid-row:1;border-radius:4px;">
+        <img src="images/catalog/competitor-series-leggings/pink-leggings/0472059D-47E3-42E1-A4BF-7C56D78AE11E.jpg" alt="Rival" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="lgx-cat-overlay"></div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:28px 24px;">
+          <span style="font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(255,255,255,0.55);font-weight:600;display:block;margin-bottom:8px;">Performance</span>
+          <h3 style="font-size:clamp(1.4rem,2.8vw,2.4rem);font-weight:700;text-transform:uppercase;color:#fff;letter-spacing:-0.01em;line-height:1;margin-bottom:18px;">Rival</h3>
+          <span class="lgx-cat-btn">Shop Now</span>
+        </div>
+      </a>
+
+      <!-- Glow — top center -->
+      <a href="glow.html" class="lgx-cat-tile" style="grid-row:1;border-radius:4px;">
+        <img src="images/catalog/glow-leggings/glow-leggings/DSC06652.jpg" alt="Glow" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+        <div class="lgx-cat-overlay"></div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:28px 24px;">
+          <span style="font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(255,255,255,0.55);font-weight:600;display:block;margin-bottom:8px;">Sculpting</span>
+          <h3 style="font-size:clamp(1.4rem,2.8vw,2.4rem);font-weight:700;text-transform:uppercase;color:#fff;letter-spacing:-0.01em;line-height:1;margin-bottom:18px;">Glow</h3>
+          <span class="lgx-cat-btn">Shop Now</span>
+        </div>
+      </a>
+
+      <!-- Aura — right -->
+      <a href="aura.html" class="lgx-cat-tile" style="grid-row:1;border-radius:4px;">
+        <img src="images/catalog/aura/aura-cross-front-halter-neck-sports-bra-copy/blackbrafront.png" alt="Aura" style="width:100%;height:100%;object-fit:cover;display:block;">
+        <div class="lgx-cat-overlay"></div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:28px 24px;">
+          <span style="font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:rgba(255,255,255,0.55);font-weight:600;display:block;margin-bottom:8px;">Define</span>
+          <h3 style="font-size:clamp(1.4rem,2.8vw,2.4rem);font-weight:700;text-transform:uppercase;color:#fff;letter-spacing:-0.01em;line-height:1;margin-bottom:18px;">Aura</h3>
+          <span class="lgx-cat-btn">Shop Now</span>
+        </div>
+      </a>
+
+    </div>
   </div>
+</section>
 
-  <!-- Product Grid -->
-  <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-8 pb-28 lg:pb-12">
+<!-- ════════════════════════════════════════════════════════════
+     PERKS STRIP
+     ════════════════════════════════════════════════════════════ -->
+<section style="width:100%;background:#09090b;padding:64px 24px;border-bottom:1px solid rgba(255,255,255,0.05);" class="font-['Outfit']">
+  <div style="max-width:90rem;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;">
 
-    <!-- Product 1 -->
-    <div class="legginx-product-card group relative flex flex-col rounded-2xl glass-panel reveal-glow p-1.5 sm:p-2 animate-on-scroll opacity-0 translate-y-8 transition-all duration-[1000ms] ease-out" style="transition-delay: 0ms;">
-      <div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-black flex-grow">
-        <a href="product.html?id=aura_obsidian" class="absolute inset-0 z-0 cursor-pointer block">
-          <img src="images/aura_obsidian.png" alt="Aura Bra - Obsidian" class="legginx-product-image w-full h-full object-center object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700">
-        </a>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-        <!-- Desktop hover-only Quick Add -->
-        <form method="post" action="#" class="hidden lg:block absolute bottom-4 left-4 right-4 transform translate-y-8 lg:group-hover:translate-y-0 transition-all duration-500 z-10 opacity-0 lg:group-hover:opacity-100">
-          <button type="button" class="quick-add-btn w-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium py-3 px-4 rounded-lg shadow-2xl hover:bg-white hover:text-black hover:border-white uppercase tracking-widest text-xs transition-all duration-300 cursor-pointer">Quick Add</button>
-        </form>
+    <div class="lgx-perk" style="padding:24px 16px;">
+      <div class="lgx-perk-icon" style="margin:0 auto 16px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;">
+        <svg width="32" height="32" fill="none" stroke="#fff" stroke-width="1.4" viewBox="0 0 24 24"><path d="M12 19.5C7.305 19.5 3.5 15.694 3.5 11S7.305 2.5 12 2.5s8.5 3.806 8.5 8.5-3.805 9-8.5 9z" stroke-linecap="round"/><path d="M12 6.5v5l3 3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
-      <div class="mt-3 sm:mt-4 mb-1 px-2 sm:px-3 flex flex-row items-center justify-between">
-        <h3 class="text-sm sm:text-base font-medium text-white tracking-wide truncate"><a href="product.html?id=aura_obsidian" class="hover:text-zinc-300 transition-colors">Aura Obsidian</a></h3>
-        <p class="text-xs sm:text-sm text-zinc-500 font-light ml-2">$48</p>
-      </div>
-      <!-- Mobile persistent Add to Bag -->
-      <div class="lg:hidden px-2 pb-2 pt-1">
-        <button type="button" class="quick-add-btn w-full bg-white/[0.06] border border-white/10 text-white/70 font-medium py-2.5 px-3 rounded-lg uppercase tracking-widest text-[9px] transition-all duration-300 active:bg-white active:text-black active:scale-95">Add to Bag</button>
-      </div>
+      <p style="font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#fff;margin-bottom:6px;">2-Day Delivery</p>
+      <p style="font-size:11px;color:#71717a;letter-spacing:0.04em;line-height:1.5;">Express shipping on all orders over $75</p>
     </div>
 
-    <!-- Product 2 -->
-    <div class="legginx-product-card group relative flex flex-col rounded-2xl glass-panel reveal-glow p-1.5 sm:p-2 animate-on-scroll opacity-0 translate-y-8 transition-all duration-[1000ms] ease-out" style="transition-delay: 150ms;">
-      <div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-black flex-grow">
-        <a href="product.html?id=aura_frost" class="absolute inset-0 z-0 cursor-pointer block">
-          <img src="images/aura_frost.png" alt="Aura Bra - Frost" class="legginx-product-image w-full h-full object-center object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700">
-        </a>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-        <form method="post" action="#" class="hidden lg:block absolute bottom-4 left-4 right-4 transform translate-y-8 lg:group-hover:translate-y-0 transition-all duration-500 z-10 opacity-0 lg:group-hover:opacity-100">
-          <button type="button" class="quick-add-btn w-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium py-3 px-4 rounded-lg shadow-2xl hover:bg-white hover:text-black hover:border-white uppercase tracking-widest text-xs transition-all duration-300 cursor-pointer">Quick Add</button>
-        </form>
+    <div class="lgx-perk" style="padding:24px 16px;border-left:1px solid rgba(255,255,255,0.06);">
+      <div class="lgx-perk-icon" style="margin:0 auto 16px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;">
+        <svg width="32" height="32" fill="none" stroke="#fff" stroke-width="1.4" viewBox="0 0 24 24"><path d="M3 12h18M12 3c-4.97 5.5-4.97 12.5 0 18M12 3c4.97 5.5 4.97 12.5 0 18" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
-      <div class="mt-3 sm:mt-4 mb-1 px-2 sm:px-3 flex flex-row items-center justify-between">
-        <h3 class="text-sm sm:text-base font-medium text-white tracking-wide truncate"><a href="product.html?id=aura_frost" class="hover:text-zinc-300 transition-colors">Aura Frost</a></h3>
-        <p class="text-xs sm:text-sm text-zinc-500 font-light ml-2">$48</p>
-      </div>
-      <div class="lg:hidden px-2 pb-2 pt-1">
-        <button type="button" class="quick-add-btn w-full bg-white/[0.06] border border-white/10 text-white/70 font-medium py-2.5 px-3 rounded-lg uppercase tracking-widest text-[9px] transition-all duration-300 active:bg-white active:text-black active:scale-95">Add to Bag</button>
-      </div>
+      <p style="font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#fff;margin-bottom:6px;">Free Worldwide</p>
+      <p style="font-size:11px;color:#71717a;letter-spacing:0.04em;line-height:1.5;">Free standard shipping on every single order</p>
     </div>
 
-    <!-- Product 3 -->
-    <div class="legginx-product-card group relative flex flex-col rounded-2xl glass-panel reveal-glow p-1.5 sm:p-2 animate-on-scroll opacity-0 translate-y-8 transition-all duration-[1000ms] ease-out" style="transition-delay: 300ms;">
-      <div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-black flex-grow">
-        <a href="product.html?id=essential_midnight" class="absolute inset-0 z-0 cursor-pointer block">
-          <img src="images/essential_midnight.png" alt="Essential Halter - Midnight" class="legginx-product-image w-full h-full object-center object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700">
-        </a>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-        <form method="post" action="#" class="hidden lg:block absolute bottom-4 left-4 right-4 transform translate-y-8 lg:group-hover:translate-y-0 transition-all duration-500 z-10 opacity-0 lg:group-hover:opacity-100">
-          <button type="button" class="quick-add-btn w-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium py-3 px-4 rounded-lg shadow-2xl hover:bg-white hover:text-black hover:border-white uppercase tracking-widest text-xs transition-all duration-300 cursor-pointer">Quick Add</button>
-        </form>
+    <div class="lgx-perk" style="padding:24px 16px;border-left:1px solid rgba(255,255,255,0.06);">
+      <div class="lgx-perk-icon" style="margin:0 auto 16px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;">
+        <svg width="32" height="32" fill="none" stroke="#fff" stroke-width="1.4" viewBox="0 0 24 24"><path d="M16.5 9.4L7.55 4.24M3.61 6.02L12 11m0 0v9M12 11l8.39-4.98M3.61 6.02A2 2 0 013 7.73v8.54a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4a2 2 0 001-1.73V7.73a2 2 0 00-.61-1.71L12 2 3.61 6.02z" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
-      <div class="mt-3 sm:mt-4 mb-1 px-2 sm:px-3 flex flex-row items-center justify-between">
-        <h3 class="text-sm sm:text-base font-medium text-white tracking-wide truncate"><a href="product.html?id=essential_midnight" class="hover:text-zinc-300 transition-colors">Ess. Midnight</a></h3>
-        <p class="text-xs sm:text-sm text-zinc-500 font-light ml-2">$32</p>
-      </div>
-      <div class="lg:hidden px-2 pb-2 pt-1">
-        <button type="button" class="quick-add-btn w-full bg-white/[0.06] border border-white/10 text-white/70 font-medium py-2.5 px-3 rounded-lg uppercase tracking-widest text-[9px] transition-all duration-300 active:bg-white active:text-black active:scale-95">Add to Bag</button>
-      </div>
+      <p style="font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#fff;margin-bottom:6px;">Free Returns</p>
+      <p style="font-size:11px;color:#71717a;letter-spacing:0.04em;line-height:1.5;">Hassle-free returns within 30 days of purchase</p>
     </div>
 
-    <!-- Product 4 -->
-    <div class="legginx-product-card group relative flex flex-col rounded-2xl glass-panel reveal-glow p-1.5 sm:p-2 animate-on-scroll opacity-0 translate-y-8 transition-all duration-[1000ms] ease-out" style="transition-delay: 450ms;">
-      <div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-black flex-grow">
-        <a href="product.html?id=essential_mocha" class="absolute inset-0 z-0 cursor-pointer block">
-          <img src="images/essential_mocha.png" alt="Essential Halter - Mocha" class="legginx-product-image w-full h-full object-center object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700">
-        </a>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-        <form method="post" action="#" class="hidden lg:block absolute bottom-4 left-4 right-4 transform translate-y-8 lg:group-hover:translate-y-0 transition-all duration-500 z-10 opacity-0 lg:group-hover:opacity-100">
-          <button type="button" class="quick-add-btn w-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium py-3 px-4 rounded-lg shadow-2xl hover:bg-white hover:text-black hover:border-white uppercase tracking-widest text-xs transition-all duration-300 cursor-pointer">Quick Add</button>
-        </form>
+    <div class="lgx-perk" style="padding:24px 16px;border-left:1px solid rgba(255,255,255,0.06);">
+      <div class="lgx-perk-icon" style="margin:0 auto 16px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;">
+        <svg width="32" height="32" fill="none" stroke="#fff" stroke-width="1.4" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
-      <div class="mt-3 sm:mt-4 mb-1 px-2 sm:px-3 flex flex-row items-center justify-between">
-        <h3 class="text-sm sm:text-base font-medium text-white tracking-wide truncate"><a href="product.html?id=essential_mocha" class="hover:text-zinc-300 transition-colors">Ess. Mocha</a></h3>
-        <p class="text-xs sm:text-sm text-zinc-500 font-light ml-2">$32</p>
-      </div>
-      <div class="lg:hidden px-2 pb-2 pt-1">
-        <button type="button" class="quick-add-btn w-full bg-white/[0.06] border border-white/10 text-white/70 font-medium py-2.5 px-3 rounded-lg uppercase tracking-widest text-[9px] transition-all duration-300 active:bg-white active:text-black active:scale-95">Add to Bag</button>
-      </div>
+      <p style="font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#fff;margin-bottom:6px;">Fit Guarantee</p>
+      <p style="font-size:11px;color:#71717a;letter-spacing:0.04em;line-height:1.5;">If it doesn't fit perfectly, we'll make it right</p>
     </div>
 
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     MID-PAGE PERSUASION — 3 Benefit Blocks
+     ════════════════════════════════════════════════════════════ -->
+<section style="width:100%;background:#09090b;padding:80px 24px;border-top:1px solid rgba(255,255,255,0.05);" class="font-['Outfit']">
+  <div style="max-width:90rem;margin:0 auto;">
+
+    <!-- Section label -->
+    <div style="text-align:center;margin-bottom:56px;">
+      <span style="font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:#71717a;font-weight:600;">Why LegginX</span>
+    </div>
+
+    <!-- 3 benefit cards -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
+
+      <!-- Benefit 1 -->
+      <div style="padding:clamp(32px,4vw,56px) clamp(24px,3vw,44px);background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;" class="animate-on-scroll">
+        <!-- Large numeral watermark -->
+        <span style="position:absolute;top:-10px;right:16px;font-size:120px;font-weight:900;color:rgba(255,255,255,0.03);line-height:1;pointer-events:none;user-select:none;">01</span>
+        <div style="width:40px;height:2px;background:#fff;margin-bottom:28px;"></div>
+        <h3 style="font-size:clamp(1.4rem,2.5vw,2rem);font-weight:700;text-transform:uppercase;color:#fff;line-height:1.1;letter-spacing:-0.02em;margin-bottom:16px;">No Ride-Up<br>Fit</h3>
+        <p style="font-size:13px;color:#71717a;line-height:1.75;font-weight:300;max-width:280px;">Our patented waistband grip technology locks leggings and shorts in place through squats, sprints, and everything between. No tugging. No adjusting. Just reps.</p>
+        <a href="rival.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:28px;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.45);font-weight:600;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Shop Shorts <span style="font-size:12px;">→</span></a>
+      </div>
+
+      <!-- Benefit 2 -->
+      <div style="padding:clamp(32px,4vw,56px) clamp(24px,3vw,44px);background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.06);border-left:none;position:relative;overflow:hidden;" class="animate-on-scroll">
+        <span style="position:absolute;top:-10px;right:16px;font-size:120px;font-weight:900;color:rgba(255,255,255,0.03);line-height:1;pointer-events:none;user-select:none;">02</span>
+        <div style="width:40px;height:2px;background:#fff;margin-bottom:28px;"></div>
+        <h3 style="font-size:clamp(1.4rem,2.5vw,2rem);font-weight:700;text-transform:uppercase;color:#fff;line-height:1.1;letter-spacing:-0.02em;margin-bottom:16px;">Sweat-Wicking<br>Fabric</h3>
+        <p style="font-size:13px;color:#71717a;line-height:1.75;font-weight:300;max-width:280px;">Four-way stretch nylon blend pulls moisture away from skin instantly. Stay dry, stay comfortable — whether it's a 20-minute HIIT session or a 2-hour lift.</p>
+        <a href="glow.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:28px;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.45);font-weight:600;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Shop Leggings <span style="font-size:12px;">→</span></a>
+      </div>
+
+      <!-- Benefit 3 -->
+      <div style="padding:clamp(32px,4vw,56px) clamp(24px,3vw,44px);background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-left:none;position:relative;overflow:hidden;" class="animate-on-scroll">
+        <span style="position:absolute;top:-10px;right:16px;font-size:120px;font-weight:900;color:rgba(255,255,255,0.03);line-height:1;pointer-events:none;user-select:none;">03</span>
+        <div style="width:40px;height:2px;background:#fff;margin-bottom:28px;"></div>
+        <h3 style="font-size:clamp(1.4rem,2.5vw,2rem);font-weight:700;text-transform:uppercase;color:#fff;line-height:1.1;letter-spacing:-0.02em;margin-bottom:16px;">Sculpted<br>Compression</h3>
+        <p style="font-size:13px;color:#71717a;line-height:1.75;font-weight:300;max-width:280px;">Strategic compression panels lift, contour, and support where it counts. Designed to enhance your natural shape — not hide it. Squat-proof guaranteed.</p>
+        <a href="aura.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:28px;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.45);font-weight:600;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">Shop Aura <span style="font-size:12px;">→</span></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     COLLECTION SECTIONS
+     ════════════════════════════════════════════════════════════ -->
+<div id="collection-sections-container" class="w-full relative z-20">
+    <!-- Sections will be injected here by script -->
+</div>
+
+<!-- Fallback / Featured (Original Section renamed/moved) -->
+<div class="legginx-section py-20 px-4 sm:px-6 lg:px-12 w-full max-w-[90rem] mx-auto hidden" id="featured-fallback">
+  <div class="mb-16 text-center animate-on-scroll">
+    <span class="text-xs uppercase tracking-[0.3em] text-zinc-500 mb-4 block font-semibold">Limited Release</span>
+    <h2 class="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight uppercase text-gradient pb-2">FEATUREDΨ</h2>
+  </div>
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-8" id="featured-grid">
+      <!-- Injected -->
   </div>
 </div>
 
 <!-- ════════════════════════════════════════════════════════════
-     JOIN THE ELITE (INSTAGRAM)
+     BESTSELLERS MARQUEE
      ════════════════════════════════════════════════════════════ -->
-<section class="py-24 px-6 sm:px-12 w-full border-t border-white/5 bg-black/20 font-['Outfit']">
-  <div class="max-w-[90rem] mx-auto">
-    <div class="flex flex-col md:flex-row items-end justify-between mb-12 gap-8">
-      <div class="max-w-2xl text-left">
-        <span class="text-xs uppercase tracking-[0.4em] text-zinc-500 mb-4 block font-semibold">Community</span>
-        <h2 class="text-5xl md:text-8xl font-bold uppercase text-white leading-tight">JOIN THE<br>ELITE Ψ</h2>
-      </div>
-      <div class="flex flex-col items-start md:items-end gap-4 text-left md:text-right">
-        <p class="text-zinc-400 text-sm tracking-wide">338 Followers / 34 Posts</p>
-        <a href="https://www.instagram.com/legginx" target="_blank" class="px-8 py-4 bg-white/5 border border-white/10 hover:bg-white hover:text-black transition-all rounded-full uppercase text-xs tracking-widest font-bold">Follow @legginx</a>
-      </div>
+<section style="width:100%;background:#09090b;padding:80px 0;overflow:hidden;border-top:1px solid rgba(255,255,255,0.05);" class="font-['Outfit']">
+  <div style="max-width:90rem;margin:0 auto;padding:0 24px;display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:12px;">
+    <div>
+      <span style="font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:#71717a;font-weight:600;display:block;margin-bottom:8px;">Community Favorites</span>
+      <h2 style="font-size:clamp(1.8rem,4vw,3.5rem);font-weight:700;text-transform:uppercase;color:#fff;line-height:1;letter-spacing:-0.02em;">Bestsellers</h2>
     </div>
-    
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="ig-grid">
-      <div class="aspect-square relative group overflow-hidden rounded-xl bg-zinc-900 border border-white/5">
-        <img src="images/catalog/aura/aura-cross-front-halter-neck-sports-bra-copy/blackbrafront.png" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
-        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-6 text-center">
-            <p class="text-[10px] text-white font-light leading-relaxed italic">"Aura Sports Bra is live now ✨ Your new favorite fit..."</p>
+    <a href="all-items.html" style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#fff;border-bottom:1px solid rgba(255,255,255,0.3);padding-bottom:2px;white-space:nowrap;font-weight:600;">Shop All →</a>
+  </div>
+  <div style="overflow:hidden;position:relative;">
+    <!-- fade edges -->
+    <div style="position:absolute;top:0;left:0;bottom:0;width:80px;background:linear-gradient(to right,#09090b,transparent);z-index:2;pointer-events:none;"></div>
+    <div style="position:absolute;top:0;right:0;bottom:0;width:80px;background:linear-gradient(to left,#09090b,transparent);z-index:2;pointer-events:none;"></div>
+    <div class="lgx-best-track" style="padding:0 0 4px;">
+      <!-- Cards set 1 -->
+      <div class="lgx-best-card" style="overflow:hidden;border-radius:4px;background:#111;">
+        <div style="aspect-ratio:3/4;overflow:hidden;"><img src="images/catalog/competitor-series-leggings/pink-leggings/0472059D-47E3-42E1-A4BF-7C56D78AE11E.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div style="padding:14px 12px 16px;">
+          <p style="font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:#71717a;margin-bottom:4px;">Rival Series</p>
+          <p style="font-size:13px;font-weight:600;color:#fff;letter-spacing:0.02em;">Rival Leggings</p>
+          <p style="font-size:12px;color:#a1a1aa;margin-top:4px;">$74.00</p>
         </div>
       </div>
-      <div class="aspect-square relative group overflow-hidden rounded-xl bg-zinc-900 border border-white/5">
-        <img src="images/catalog/competitor-series-leggings/pink-leggings/0472059D-47E3-42E1-A4BF-7C56D78AE11E.jpg" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
-        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-6 text-center">
-            <p class="text-[10px] text-white font-light leading-relaxed italic">"gym essentials Ψ · squat & rdl combo in a full @legginx set..."</p>
+      <div class="lgx-best-card" style="overflow:hidden;border-radius:4px;background:#111;">
+        <div style="aspect-ratio:3/4;overflow:hidden;"><img src="images/catalog/glow-leggings/glow-leggings/DSC06652.jpg" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;"></div>
+        <div style="padding:14px 12px 16px;">
+          <p style="font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:#71717a;margin-bottom:4px;">Glow Series</p>
+          <p style="font-size:13px;font-weight:600;color:#fff;letter-spacing:0.02em;">Glow Leggings</p>
+          <p style="font-size:12px;color:#a1a1aa;margin-top:4px;">$79.00</p>
         </div>
       </div>
-      <div class="aspect-square relative group overflow-hidden rounded-xl bg-zinc-900 border border-white/5">
-        <img src="images/catalog/competitor-shorts-1/competitor-shorts/DSC06313.jpg" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
-        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-6 text-center">
-            <p class="text-[10px] text-white font-light leading-relaxed italic">"off season flow outfit: @legginx i do it all for my future self..."</p>
+      <div class="lgx-best-card" style="overflow:hidden;border-radius:4px;background:#111;">
+        <div style="aspect-ratio:3/4;overflow:hidden;"><img src="images/catalog/competitor-shorts-1/competitor-shorts/DSC06313.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div style="padding:14px 12px 16px;">
+          <p style="font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:#71717a;margin-bottom:4px;">Rival Series</p>
+          <p style="font-size:13px;font-weight:600;color:#fff;letter-spacing:0.02em;">Rival Shorts</p>
+          <p style="font-size:12px;color:#a1a1aa;margin-top:4px;">$64.00</p>
         </div>
       </div>
-      <div class="aspect-square relative group overflow-hidden rounded-xl bg-zinc-900 border border-white/5">
-        <img src="images/catalog/glow-leggings/glow-leggings/DSC06652.jpg" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
-        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-6 text-center">
-            <p class="text-[10px] text-white font-light leading-relaxed italic">"easy on the eyes, heavy on the discipline🖤 @legginx Black..."</p>
+      <div class="lgx-best-card" style="overflow:hidden;border-radius:4px;background:#111;">
+        <div style="aspect-ratio:3/4;overflow:hidden;"><img src="images/catalog/aura/aura-cross-front-halter-neck-sports-bra-copy/blackbrafront.png" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div style="padding:14px 12px 16px;">
+          <p style="font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:#71717a;margin-bottom:4px;">Aura Series</p>
+          <p style="font-size:13px;font-weight:600;color:#fff;letter-spacing:0.02em;">Cross-Front Bra</p>
+          <p style="font-size:12px;color:#a1a1aa;margin-top:4px;">$52.00</p>
+        </div>
+      </div>
+      <div class="lgx-best-card" style="overflow:hidden;border-radius:4px;background:#111;">
+        <div style="aspect-ratio:3/4;overflow:hidden;"><img src="images/catalog/competitor-series-leggings/pink-leggings/0472059D-47E3-42E1-A4BF-7C56D78AE11E.jpg" style="width:100%;height:100%;object-fit:cover;display:block;filter:hue-rotate(200deg);"></div>
+        <div style="padding:14px 12px 16px;">
+          <p style="font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:#71717a;margin-bottom:4px;">Rival Series</p>
+          <p style="font-size:13px;font-weight:600;color:#fff;letter-spacing:0.02em;">Rival Leggings — Navy</p>
+          <p style="font-size:12px;color:#a1a1aa;margin-top:4px;">$74.00</p>
+        </div>
+      </div>
+      <!-- Cards set 2 (duplicate for seamless loop) -->
+      <div class="lgx-best-card" style="overflow:hidden;border-radius:4px;background:#111;">
+        <div style="aspect-ratio:3/4;overflow:hidden;"><img src="images/catalog/competitor-series-leggings/pink-leggings/0472059D-47E3-42E1-A4BF-7C56D78AE11E.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div style="padding:14px 12px 16px;">
+          <p style="font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:#71717a;margin-bottom:4px;">Rival Series</p>
+          <p style="font-size:13px;font-weight:600;color:#fff;letter-spacing:0.02em;">Rival Leggings</p>
+          <p style="font-size:12px;color:#a1a1aa;margin-top:4px;">$74.00</p>
+        </div>
+      </div>
+      <div class="lgx-best-card" style="overflow:hidden;border-radius:4px;background:#111;">
+        <div style="aspect-ratio:3/4;overflow:hidden;"><img src="images/catalog/glow-leggings/glow-leggings/DSC06652.jpg" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;"></div>
+        <div style="padding:14px 12px 16px;">
+          <p style="font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:#71717a;margin-bottom:4px;">Glow Series</p>
+          <p style="font-size:13px;font-weight:600;color:#fff;letter-spacing:0.02em;">Glow Leggings</p>
+          <p style="font-size:12px;color:#a1a1aa;margin-top:4px;">$79.00</p>
+        </div>
+      </div>
+      <div class="lgx-best-card" style="overflow:hidden;border-radius:4px;background:#111;">
+        <div style="aspect-ratio:3/4;overflow:hidden;"><img src="images/catalog/competitor-shorts-1/competitor-shorts/DSC06313.jpg" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div style="padding:14px 12px 16px;">
+          <p style="font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:#71717a;margin-bottom:4px;">Rival Series</p>
+          <p style="font-size:13px;font-weight:600;color:#fff;letter-spacing:0.02em;">Rival Shorts</p>
+          <p style="font-size:12px;color:#a1a1aa;margin-top:4px;">$64.00</p>
+        </div>
+      </div>
+      <div class="lgx-best-card" style="overflow:hidden;border-radius:4px;background:#111;">
+        <div style="aspect-ratio:3/4;overflow:hidden;"><img src="images/catalog/aura/aura-cross-front-halter-neck-sports-bra-copy/blackbrafront.png" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+        <div style="padding:14px 12px 16px;">
+          <p style="font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:#71717a;margin-bottom:4px;">Aura Series</p>
+          <p style="font-size:13px;font-weight:600;color:#fff;letter-spacing:0.02em;">Cross-Front Bra</p>
+          <p style="font-size:12px;color:#a1a1aa;margin-top:4px;">$52.00</p>
+        </div>
+      </div>
+      <div class="lgx-best-card" style="overflow:hidden;border-radius:4px;background:#111;">
+        <div style="aspect-ratio:3/4;overflow:hidden;"><img src="images/catalog/competitor-series-leggings/pink-leggings/0472059D-47E3-42E1-A4BF-7C56D78AE11E.jpg" style="width:100%;height:100%;object-fit:cover;display:block;filter:hue-rotate(200deg);"></div>
+        <div style="padding:14px 12px 16px;">
+          <p style="font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:#71717a;margin-bottom:4px;">Rival Series</p>
+          <p style="font-size:13px;font-weight:600;color:#fff;letter-spacing:0.02em;">Rival Leggings — Navy</p>
+          <p style="font-size:12px;color:#a1a1aa;margin-top:4px;">$74.00</p>
         </div>
       </div>
     </div>
@@ -296,46 +606,144 @@
 </section>
 
 <!-- ════════════════════════════════════════════════════════════
-     FOOTER
+     JOIN THE ELITE (INSTAGRAM)
      ════════════════════════════════════════════════════════════ -->
-<footer class="bg-black py-20 px-8 border-t border-white/5 font-['Outfit'] w-full">
+<section style="width:100%;padding:80px 24px;border-top:1px solid rgba(255,255,255,0.05);background:rgba(0,0,0,0.2);" class="font-['Outfit']">
+  <div style="max-width:90rem;margin:0 auto;">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;margin-bottom:44px;gap:20px;">
+      <div>
+        <span style="font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:#71717a;font-weight:600;display:block;margin-bottom:10px;">Community</span>
+        <h2 style="font-size:clamp(2.5rem,8vw,6rem);font-weight:700;text-transform:uppercase;color:#fff;line-height:0.95;letter-spacing:-0.02em;">Join The<br>Elite Ψ</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:12px;">
+        <p style="font-size:12px;color:#71717a;letter-spacing:0.06em;">338 Followers &nbsp;·&nbsp; 34 Posts</p>
+        <a href="https://www.instagram.com/legginx" target="_blank" style="display:inline-block;padding:14px 32px;border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;font-weight:700;transition:background 0.25s,color 0.25s,border-color 0.25s;border-radius:2px;" onmouseover="this.style.background='#fff';this.style.color='#000';this.style.borderColor='#fff'" onmouseout="this.style.background='transparent';this.style.color='#fff';this.style.borderColor='rgba(255,255,255,0.15)'">Follow @legginx</a>
+      </div>
+    </div>
+
+    <!-- 5-col UGC grid: 1 tall + 4 square -->
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:6px;height:clamp(280px,38vw,480px);">
+
+      <div style="position:relative;overflow:hidden;border-radius:4px;cursor:pointer;" onmouseover="this.querySelector('img').style.opacity='1';this.querySelector('img').style.transform='scale(1.06)';this.querySelector('.igcap').style.opacity='1';" onmouseout="this.querySelector('img').style.opacity='0.6';this.querySelector('img').style.transform='scale(1)';this.querySelector('.igcap').style.opacity='0';">
+        <img src="images/catalog/competitor-series-leggings/pink-leggings/0472059D-47E3-42E1-A4BF-7C56D78AE11E.jpg" style="width:100%;height:100%;object-fit:cover;opacity:0.6;transition:opacity 0.5s,transform 0.7s;display:block;">
+        <div class="igcap" style="position:absolute;inset:0;background:rgba(0,0,0,0.55);opacity:0;transition:opacity 0.4s;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center;">
+          <div>
+            <svg style="width:22px;height:22px;margin:0 auto 10px;" fill="#fff" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <p style="font-size:10px;color:#fff;font-style:italic;line-height:1.6;">"gym essentials Ψ · squat & rdl combo in a full @legginx set"</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="position:relative;overflow:hidden;border-radius:4px;cursor:pointer;" onmouseover="this.querySelector('img').style.opacity='1';this.querySelector('img').style.transform='scale(1.06)';this.querySelector('.igcap').style.opacity='1';" onmouseout="this.querySelector('img').style.opacity='0.6';this.querySelector('img').style.transform='scale(1)';this.querySelector('.igcap').style.opacity='0';">
+        <img src="images/catalog/glow-leggings/glow-leggings/DSC06652.jpg" style="width:100%;height:100%;object-fit:cover;object-position:top;opacity:0.6;transition:opacity 0.5s,transform 0.7s;display:block;">
+        <div class="igcap" style="position:absolute;inset:0;background:rgba(0,0,0,0.55);opacity:0;transition:opacity 0.4s;display:flex;align-items:center;justify-content:center;padding:16px;text-align:center;">
+          <p style="font-size:10px;color:#fff;font-style:italic;line-height:1.6;">"easy on the eyes, heavy on the discipline 🖤"</p>
+        </div>
+      </div>
+
+      <div style="position:relative;overflow:hidden;border-radius:4px;cursor:pointer;" onmouseover="this.querySelector('img').style.opacity='1';this.querySelector('img').style.transform='scale(1.06)';this.querySelector('.igcap').style.opacity='1';" onmouseout="this.querySelector('img').style.opacity='0.6';this.querySelector('img').style.transform='scale(1)';this.querySelector('.igcap').style.opacity='0';">
+        <img src="images/catalog/competitor-shorts-1/competitor-shorts/DSC06313.jpg" style="width:100%;height:100%;object-fit:cover;opacity:0.6;transition:opacity 0.5s,transform 0.7s;display:block;">
+        <div class="igcap" style="position:absolute;inset:0;background:rgba(0,0,0,0.55);opacity:0;transition:opacity 0.4s;display:flex;align-items:center;justify-content:center;padding:16px;text-align:center;">
+          <p style="font-size:10px;color:#fff;font-style:italic;line-height:1.6;">"off season flow @legginx i do it all for my future self"</p>
+        </div>
+      </div>
+
+      <div style="position:relative;overflow:hidden;border-radius:4px;cursor:pointer;" onmouseover="this.querySelector('img').style.opacity='1';this.querySelector('img').style.transform='scale(1.06)';this.querySelector('.igcap').style.opacity='1';" onmouseout="this.querySelector('img').style.opacity='0.6';this.querySelector('img').style.transform='scale(1)';this.querySelector('.igcap').style.opacity='0';">
+        <img src="images/catalog/aura/aura-cross-front-halter-neck-sports-bra-copy/blackbrafront.png" style="width:100%;height:100%;object-fit:cover;opacity:0.6;transition:opacity 0.5s,transform 0.7s;display:block;">
+        <div class="igcap" style="position:absolute;inset:0;background:rgba(0,0,0,0.55);opacity:0;transition:opacity 0.4s;display:flex;align-items:center;justify-content:center;padding:16px;text-align:center;">
+          <p style="font-size:10px;color:#fff;font-style:italic;line-height:1.6;">"Aura Sports Bra is live now ✨ Your new favorite fit"</p>
+        </div>
+      </div>
+
+      <div style="position:relative;overflow:hidden;border-radius:4px;cursor:pointer;" onmouseover="this.querySelector('img').style.opacity='1';this.querySelector('img').style.transform='scale(1.06)';this.querySelector('.igcap').style.opacity='1';" onmouseout="this.querySelector('img').style.opacity='0.6';this.querySelector('img').style.transform='scale(1)';this.querySelector('.igcap').style.opacity='0';">
+        <img src="images/catalog/glow-leggings/glow-leggings/DSC06652.jpg" style="width:100%;height:100%;object-fit:cover;opacity:0.6;transition:opacity 0.5s,transform 0.7s;display:block;filter:saturate(1.3);">
+        <div class="igcap" style="position:absolute;inset:0;background:rgba(0,0,0,0.55);opacity:0;transition:opacity 0.4s;display:flex;align-items:center;justify-content:center;padding:16px;text-align:center;">
+          <p style="font-size:10px;color:#fff;font-style:italic;line-height:1.6;">"FW26 drop is everything 🔥 @legginx"</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════════
+     NEWSLETTER — Inner Circle
+     ════════════════════════════════════════════════════════════ -->
+<section style="width:100%;border-top:1px solid rgba(255,255,255,0.05);background:linear-gradient(to bottom,rgba(0,0,0,0.2),#000);padding:96px 24px;" class="font-['Outfit']">
+  <div style="max-width:680px;margin:0 auto;text-align:center;" class="animate-on-scroll">
+    <span style="font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:#71717a;font-weight:600;display:block;margin-bottom:16px;">Inner Circle</span>
+    <h2 style="font-size:clamp(2rem,5vw,3.5rem);font-weight:700;text-transform:uppercase;color:#fff;line-height:1;letter-spacing:-0.02em;margin-bottom:20px;">Uncompromising<br>Access Ψ</h2>
+    <p style="font-size:14px;color:#71717a;letter-spacing:0.04em;line-height:1.7;margin-bottom:40px;font-weight:300;">Join the inner circle. Early access to drops, athlete insights, and exclusive collection previews. No filler — only signal.</p>
+    <form style="display:flex;flex-wrap:wrap;gap:12px;max-width:480px;margin:0 auto;" onsubmit="event.preventDefault();this.innerHTML='<p style=\'color:#fff;font-size:13px;letter-spacing:0.1em;\'>You\'re in. Welcome to the Elite.</p>'">
+      <input type="email" placeholder="YOUR EMAIL ADDRESS" required style="flex:1;min-width:200px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.12);padding:16px 24px;color:#fff;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;outline:none;font-family:inherit;font-weight:500;transition:border-color 0.25s;" onfocus="this.style.borderColor='rgba(255,255,255,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'">
+      <button type="submit" style="background:#fff;color:#000;border:none;padding:16px 32px;font-size:10px;letter-spacing:0.22em;text-transform:uppercase;font-weight:700;cursor:pointer;font-family:inherit;transition:background 0.25s;" onmouseover="this.style.background='#e5e5e5'" onmouseout="this.style.background='#fff'">Subscribe</button>
+    </form>
+  </div>
+</section>
+<!-- ════════════════════════════════════════════════════════════
+     SEARCH MODAL
+     ════════════════════════════════════════════════════════════ -->
+<div id="search-modal" class="fixed inset-0 z-[200] hidden opacity-0 transition-opacity duration-300">
+  <div class="absolute inset-0 bg-black/95 backdrop-blur-3xl"></div>
+  <div class="relative z-10 w-full h-full flex flex-col p-6 sm:p-20">
+    <div class="flex justify-end mb-12">
+      <button id="search-close" class="text-white hover:rotate-90 transition-transform duration-300 cursor-pointer">
+        <svg class="size-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+      </button>
+    </div>
+    <div class="max-w-4xl mx-auto w-full">
+      <input type="text" id="search-input" placeholder="SEARCH OUR CATALOG..." class="w-full bg-transparent border-b-2 border-white/20 py-6 text-2xl sm:text-5xl font-bold text-white uppercase tracking-tighter focus:outline-none focus:border-white transition-all placeholder:text-white/10">
+      <div id="search-results" class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-6">
+        <!-- Live results injected here -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="bg-black py-20 px-8 border-t border-white/5 font-['Outfit'] w-full relative z-20">
   <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-left">
     <div>
-      <h4 class="text-white text-sm uppercase tracking-widest font-bold mb-6">About LegginX</h4>
-      <p class="text-zinc-500 text-sm leading-relaxed">Elite performance wear engineered for those who demand the absolute best from their bodies and their gear. Earn your physique.</p>
+      <h3 class="text-white text-xs font-bold uppercase tracking-[0.3em] mb-8">LEGGINX Ψ</h3>
+      <p class="text-zinc-500 text-sm leading-relaxed max-w-xs font-light">
+        The pinnacle of performance-driven aesthetics. Join the elite.
+      </p>
     </div>
     <div>
-      <h4 class="text-white text-sm uppercase tracking-widest font-bold mb-6">Shop</h4>
-      <ul class="flex flex-col gap-3 text-sm text-zinc-500">
-        <li><a href="rival.html" class="hover:text-white transition-colors">Rival Series</a></li>
-        <li><a href="glow.html" class="hover:text-white transition-colors">Glow Collection</a></li>
-        <li><a href="aura.html" class="hover:text-white transition-colors">Aura Bras</a></li>
-        <li><a href="all-items.html" class="hover:text-white transition-colors">Essentials</a></li>
+      <h4 class="text-white text-[10px] font-bold uppercase tracking-[0.3em] mb-8">COLLECTIONS</h4>
+      <ul class="space-y-4 text-zinc-500 text-xs font-light tracking-wider">
+        <li><a href="rival-shorts.html" class="hover:text-white transition-colors uppercase">Rival Shorts</a></li>
+        <li><a href="rival-leggings.html" class="hover:text-white transition-colors uppercase">Rival Leggings</a></li>
+        <li><a href="glow-shorts.html" class="hover:text-white transition-colors uppercase">Glow Shorts</a></li>
+        <li><a href="glow-leggings.html" class="hover:text-white transition-colors uppercase">Glow Leggings</a></li>
+        <li><a href="essential-bras.html" class="hover:text-white transition-colors uppercase">Essential Bras</a></li>
       </ul>
     </div>
     <div>
-      <h4 class="text-white text-sm uppercase tracking-widest font-bold mb-6">Support</h4>
-      <ul class="flex flex-col gap-3 text-sm text-zinc-500">
-        <li><a href="privacy-policy.html" class="hover:text-white transition-colors">Privacy Policy</a></li>
-        <li><a href="refund-policy.html" class="hover:text-white transition-colors">Refund Policy</a></li>
-        <li><a href="shipping-policy.html" class="hover:text-white transition-colors">Shipping Policy</a></li>
-        <li><a href="terms-of-service.html" class="hover:text-white transition-colors">Terms of Service</a></li>
+      <h4 class="text-white text-[10px] font-bold uppercase tracking-[0.3em] mb-8">SUPPORT</h4>
+      <ul class="space-y-4 text-zinc-500 text-xs font-light tracking-wider">
+        <li><a href="contact.html" class="hover:text-white transition-colors uppercase">Contact Info</a></li>
+        <li><a href="shipping-policy.html" class="hover:text-white transition-colors uppercase">Shipping Policy</a></li>
+        <li><a href="refund-policy.html" class="hover:text-white transition-colors uppercase">Refund Policy</a></li>
+        <li><a href="privacy-policy.html" class="hover:text-white transition-colors uppercase">Privacy Policy</a></li>
+        <li><a href="terms-of-service.html" class="hover:text-white transition-colors uppercase">Terms of Service</a></li>
       </ul>
     </div>
     <div>
-      <h4 class="text-white text-sm uppercase tracking-widest font-bold mb-6">Connect</h4>
-      <p class="text-zinc-500 text-sm mb-4">Email: contact@legginx.com</p>
-      <p class="text-zinc-500 text-sm mb-4">Address: PO Box 4154, Riverside CA 92514</p>
-      <div class="flex gap-4">
-        <a href="https://www.instagram.com/legginx" target="_blank" class="text-white hover:text-zinc-400 flex items-center gap-2">
-          <span>Instagram</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+      <h4 class="text-white text-[10px] font-bold uppercase tracking-[0.3em] mb-8">SOCIAL</h4>
+      <div class="flex gap-6">
+        <a href="https://instagram.com/legginx" target="_blank" class="text-zinc-500 hover:text-white transition-colors">
+          <svg class="size-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         </a>
       </div>
     </div>
   </div>
-  <div class="mt-20 pt-8 border-t border-white/5 text-center text-zinc-600 text-xs tracking-widest uppercase">
-    &copy; 2026 LEGGINX.COM — ALL RIGHTS RESERVED.
+  <div class="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+    <p class="text-[10px] text-zinc-600 uppercase tracking-widest">&copy; 2024 LEGGINX. ALL RIGHTS RESERVED. DESIGNED FOR PERFORMANCE.</p>
+    <div class="flex gap-4">
+      <img src="https://shoplineimg.com/assets/footer/card_visa.png" class="h-4 opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all cursor-crosshair" alt="Visa">
+      <img src="https://shoplineimg.com/assets/footer/card_master.png" class="h-4 opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all cursor-crosshair" alt="Mastercard">
+      <img src="https://shoplineimg.com/assets/footer/card_amex.png" class="h-4 opacity-30 grayscale hover:opacity-100 hover:grayscale-0 transition-all cursor-crosshair" alt="Amex">
+    </div>
   </div>
 </footer>
 
@@ -386,6 +794,119 @@
   toggleBtn && toggleBtn.addEventListener('click', openNavDrawer);
   closeBtn && closeBtn.addEventListener('click', closeNavDrawer);
   navBackdrop && navBackdrop.addEventListener('click', closeNavDrawer);
+
+  // Search Modal Toggle
+  const searchTrigger = document.getElementById('search-trigger');
+  const searchClose = document.getElementById('search-close');
+  const searchModal = document.getElementById('search-modal');
+  const searchInput = document.getElementById('search-input');
+
+  function openSearch() {
+    searchModal.classList.remove('hidden');
+    setTimeout(() => {
+      searchModal.classList.remove('opacity-0');
+      searchInput.focus();
+    }, 10);
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSearch() {
+    searchModal.classList.add('opacity-0');
+    setTimeout(() => {
+      searchModal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }, 300);
+  }
+
+  searchTrigger && searchTrigger.addEventListener('click', openSearch);
+  searchClose && searchClose.addEventListener('click', closeSearch);
+  
+  // Close search on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !searchModal.classList.contains('hidden')) closeSearch();
+  });
+
+  // Dynamic Collection Sections
+  document.addEventListener('DOMContentLoaded', () => {
+    if (!window.LegginXProducts) return;
+    
+    const container = document.getElementById('collection-sections-container');
+    const collections = [
+      { id: 'rival-shorts', name: 'RIVAL SHORTS Ψ', handle: 'competitor-shorts-1' },
+      { id: 'rival-leggings', name: 'RIVAL LEGGINGS Ψ', handle: 'competitor-series-leggings' },
+      { id: 'glow-shorts', name: 'GLOW SHORTS Ψ', handle: 'competitor-shorts' },
+      { id: 'glow-leggings', name: 'GLOW LEGGINGS Ψ', handle: 'glow-leggings' },
+      { id: 'essential-bras', name: 'ESSENTIAL BRAS Ψ', handle: 'essential-bras' }
+    ];
+
+    collections.forEach(col => {
+      const prods = window.LegginXProducts.filter(p => p.cat_handle === col.handle).slice(0, 4);
+      if (prods.length === 0) return;
+
+      const sectionHTML = `
+        <div class="legginx-section py-20 px-4 sm:px-6 lg:px-12 w-full max-w-[90rem] mx-auto overflow-hidden">
+          <div class="mb-10 flex flex-col sm:flex-row items-end justify-between gap-4 animate-on-scroll">
+            <h2 class="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight uppercase text-gradient">${col.name}</h2>
+            <a href="${col.id}.html" class="text-[10px] uppercase tracking-[0.3em] text-white/30 hover:text-white transition-colors border-b border-white/5 hover:border-white pb-1 mb-2">View Collection</a>
+          </div>
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 lg:gap-6">
+            ${prods.map((p, i) => {
+              const badge = i === 0 ? 'Best Seller' : i === 1 ? 'Best Seller' : i === 3 ? 'New' : '';
+              const colorMap = { crimson:'#c0392b', rose:'#e8a0a8', navy:'#1a2a4a', black:'#111', grey:'#888', plum:'#5c2d5c', white:'#f5f5f5', sage:'#7a9e7e', mauve:'#a07080', blue:'#2563eb', pink:'#f472b6', green:'#16a34a', purple:'#7c3aed', brown:'#78350f', tan:'#c9a96e', sand:'#d4a76a', olive:'#6b7c1e' };
+              const colorName = p.name.split(' - ')[1]?.toLowerCase().trim() || '';
+              const swatchColor = colorMap[colorName] || null;
+              const hasHover = p.images && p.images.length > 1;
+              return `
+              <div class="legginx-product-card group relative flex flex-col animate-on-scroll" style="transition-delay:${i*80}ms">
+                <!-- Image container -->
+                <div style="position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;background:#0d0d0f;">
+                  <a href="product.html?id=${p.id}" style="position:absolute;inset:0;display:block;">
+                    <img src="${p.images[0]}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;opacity:0.85;transition:opacity 0.6s ease,transform 0.7s ease;" class="lgx-img-front">
+                    ${hasHover ? `<img src="${p.images[1]}" alt="${p.name} back" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:0;transition:opacity 0.55s ease,transform 0.7s ease;transform:scale(1.03);" class="lgx-img-back">` : ''}
+                  </a>
+                  <!-- Badge -->
+                  ${badge ? `<span style="position:absolute;top:12px;left:12px;z-index:5;font-size:8px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;padding:5px 10px;${badge==='Best Seller'?'background:#fff;color:#000;':'background:#09090b;color:#fff;border:1px solid rgba(255,255,255,0.3);'}">${badge}</span>` : ''}
+                  <!-- Quick Add — always visible on mobile, hover on desktop -->
+                  <div style="position:absolute;bottom:0;left:0;right:0;z-index:10;padding:0 0 0 0;">
+                    <button type="button" class="quick-add-btn" data-id="${p.id}" data-name="${p.name}" data-price="${p.price.replace('$','')}" data-image="${p.images[0]}" style="width:100%;background:rgba(255,255,255,0.95);color:#000;font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;padding:13px;border:none;cursor:pointer;transform:translateY(100%);opacity:0;transition:transform 0.38s cubic-bezier(0.16,1,0.3,1),opacity 0.3s ease;font-family:inherit;" class="lgx-qa-btn">Add to Bag</button>
+                  </div>
+                </div>
+                <!-- Info row -->
+                <div style="padding:14px 4px 6px;display:flex;flex-direction:column;gap:8px;">
+                  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
+                    <h3 style="font-size:11px;font-weight:600;color:#e5e5e5;letter-spacing:0.08em;text-transform:uppercase;line-height:1.3;flex:1;">${p.name}</h3>
+                    <span style="font-size:12px;color:#71717a;font-weight:400;white-space:nowrap;flex-shrink:0;">${p.price}</span>
+                  </div>
+                  <!-- Color swatch -->
+                  ${swatchColor ? `<div style="display:flex;align-items:center;gap:6px;"><span style="width:14px;height:14px;border-radius:50%;background:${swatchColor};display:inline-block;border:1px solid rgba(255,255,255,0.12);"></span><span style="font-size:9px;color:#52525b;letter-spacing:0.12em;text-transform:uppercase;font-weight:500;">${colorName}</span></div>` : ''}
+                </div>
+              </div>`;
+            }).join('')}
+          </div>
+        </div>
+      `;
+      container.insertAdjacentHTML('beforeend', sectionHTML);
+    });
+
+    // Re-initialize intersection observer for new elements
+    if (window.initScrollAnimations) window.initScrollAnimations();
+    
+    // Bind Add to Cart for dynamically injected buttons
+    document.querySelectorAll('.quick-add-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const p = btn.dataset;
+            if (window.LegginXCart) {
+                window.LegginXCart.addToCart({
+                    id: p.id,
+                    name: p.name,
+                    price: parseFloat(p.price),
+                    image: p.image
+                });
+            }
+        });
+    });
+  });
 </script>
 
 </body>
