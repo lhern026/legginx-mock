@@ -97,6 +97,47 @@
         .lgx-best-card { flex-shrink: 0; width: 240px; }
         .lgx-best-card img { transition: transform 0.6s ease; }
         .lgx-best-card:hover img { transform: scale(1.04); }
+
+        /* ── Responsive grids ── */
+        .lgx-cat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            height: clamp(380px,52vw,620px);
+        }
+        .lgx-perks-grid {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 24px;
+            text-align: center;
+        }
+        .lgx-benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 2px;
+        }
+        @media (max-width: 767px) {
+            .lgx-cat-grid {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            .lgx-cat-grid > a {
+                min-height: 260px;
+            }
+            .lgx-perks-grid {
+                grid-template-columns: repeat(2,1fr);
+            }
+            .lgx-perks-grid .lgx-perk:nth-child(odd) {
+                border-left: none !important;
+            }
+            .lgx-benefit-grid {
+                grid-template-columns: 1fr;
+            }
+            .lgx-benefit-grid > div {
+                border-left: 1px solid rgba(255,255,255,0.06) !important;
+                border-top: none !important;
+            }
+        }
     </style>
 </head>
 <body class="flex flex-col items-center justify-center min-h-screen antialiased selection:bg-white selection:text-black">
@@ -359,7 +400,7 @@
     </div>
 
     <!-- 3-col editorial grid -->
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;height:clamp(380px,52vw,620px);">
+    <div class="lgx-cat-grid">
 
       <!-- Rival — tall left -->
       <a href="rival.html" class="lgx-cat-tile" style="grid-row:1;border-radius:4px;">
@@ -402,7 +443,7 @@
      PERKS STRIP
      ════════════════════════════════════════════════════════════ -->
 <section style="width:100%;background:#09090b;padding:64px 24px;border-bottom:1px solid rgba(255,255,255,0.05);" class="font-['Outfit']">
-  <div style="max-width:90rem;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;">
+  <div style="max-width:90rem;margin:0 auto;" class="lgx-perks-grid">
 
     <div class="lgx-perk" style="padding:24px 16px;">
       <div class="lgx-perk-icon" style="margin:0 auto 16px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;">
@@ -451,7 +492,7 @@
     </div>
 
     <!-- 3 benefit cards -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;">
+    <div class="lgx-benefit-grid">
 
       <!-- Benefit 1 -->
       <div style="padding:clamp(32px,4vw,56px) clamp(24px,3vw,44px);background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);position:relative;overflow:hidden;" class="animate-on-scroll">
@@ -701,7 +742,7 @@
 </div>
 
 <footer class="bg-black py-20 px-8 border-t border-white/5 font-['Outfit'] w-full relative z-20">
-  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-left">
+  <div class="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 text-left">
     <div>
       <h3 class="text-white text-xs font-bold uppercase tracking-[0.3em] mb-8">LEGGINX Ψ</h3>
       <p class="text-zinc-500 text-sm leading-relaxed max-w-xs font-light">

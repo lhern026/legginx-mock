@@ -78,6 +78,7 @@
             z-index:10; opacity:0;
         }
         #pdp-main-wrap:hover .pdp-arrow { opacity:1; }
+        @media (max-width:1023px) { .pdp-arrow { opacity:1; } }
         .pdp-arrow:hover { background:rgba(255,255,255,0.15); color:#fff; }
         #pdp-prev { left:12px; }
         #pdp-next { right:12px; }
@@ -108,8 +109,8 @@
         }
         @keyframes lbIn { from{transform:scale(.92);opacity:0} to{transform:scale(1);opacity:1} }
         #pdp-lb-close {
-            position:absolute; top:20px; right:20px;
-            width:40px; height:40px; border-radius:50%;
+            position:absolute; top:16px; right:16px;
+            width:44px; height:44px; border-radius:50%;
             background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1);
             color:rgba(255,255,255,0.6); cursor:pointer; display:flex;
             align-items:center; justify-content:center;
@@ -735,7 +736,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 <footer class="bg-black py-20 px-8 border-t border-white/5 font-['Outfit'] w-full mt-24">
-  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-left">
+  <div class="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 text-left">
     <div>
       <h3 class="text-white text-xs font-bold uppercase tracking-[0.3em] mb-8">LEGGINX Ψ</h3>
       <p class="text-zinc-500 text-sm leading-relaxed max-w-xs font-light">The pinnacle of performance-driven aesthetics. Join the elite.</p>

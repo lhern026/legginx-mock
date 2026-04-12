@@ -75,8 +75,8 @@
 </div>
 
 <!-- ── Filter tabs ── -->
-<div style="width:100%;background:#09090b;border-bottom:1px solid rgba(255,255,255,0.05);position:sticky;top:72px;z-index:50;" class="font-['Outfit']">
-  <div style="max-width:90rem;margin:0 auto;padding:0 24px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;">
+<div style="width:100%;background:#09090b;border-bottom:1px solid rgba(255,255,255,0.05);position:sticky;top:72px;z-index:50;overflow:hidden;" class="font-['Outfit']">
+  <div style="max-width:90rem;margin:0 auto;padding:0 24px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;">
     <div style="display:flex;gap:0;min-width:max-content;" id="lgx-filters">
       <button class="lgx-filter-btn active" data-cat="all" style="padding:16px 24px;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#fff;background:transparent;border:none;border-bottom:2px solid #fff;cursor:pointer;font-family:inherit;white-space:nowrap;transition:color 0.2s;">All</button>
       <button class="lgx-filter-btn" data-cat="competitor-shorts-1" style="padding:16px 24px;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.35);background:transparent;border:none;border-bottom:2px solid transparent;cursor:pointer;font-family:inherit;white-space:nowrap;transition:color 0.2s,border-color 0.2s;">Rival Shorts</button>
@@ -99,15 +99,13 @@
 <!-- ── Product grid ── -->
 <div style="width:100%;background:#09090b;padding:48px 24px 96px;" class="font-['Outfit']">
   <div style="max-width:90rem;margin:0 auto;">
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px;" id="product-grid"
-         class="sm:grid-cols-3 lg:!grid-cols-4"
-         style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px;"></div>
+    <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[6px]"></div>
     <p id="lgx-empty" style="display:none;text-align:center;padding:80px 0;font-size:13px;color:#52525b;letter-spacing:0.1em;">No products found in this category.</p>
   </div>
 </div>
 
 <footer class="bg-black py-20 px-8 border-t border-white/5 font-['Outfit'] mt-auto">
-  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+  <div class="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
     <div>
       <h4 class="text-white text-sm uppercase tracking-widest font-bold mb-6">About LegginX</h4>
       <p class="text-zinc-500 text-sm leading-relaxed">Elite performance wear engineered for those who demand the absolute best from their bodies and their gear.</p>
