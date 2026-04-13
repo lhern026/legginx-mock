@@ -45,6 +45,17 @@
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+
+        /* ── Mobile layout ── */
+        @media (max-width: 767px) {
+            /* Stack to column, hide sidebar (bottom nav handles navigation) */
+            main { flex-direction: column !important; padding: 0 16px 120px !important; gap: 0 !important; }
+            aside { display: none !important; }
+            /* Tighten stat chip padding */
+            .stat-card { padding: 12px 8px !important; }
+            /* Tighten order card padding */
+            .order-card { padding: 16px !important; }
+        }
     </style>
 </head>
 <body class="min-h-screen antialiased selection:bg-white selection:text-black">
