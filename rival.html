@@ -47,14 +47,40 @@
   </div>
 </header>
 
-<div class="relative w-full pt-40 pb-24 px-4 sm:px-6 lg:px-12 bg-[#09090b]">
-    <div class="max-w-[1400px] mx-auto w-full relative z-20">
-        <div class="flex items-center justify-between mb-12 border-b border-white/5 pb-6">
-            <h1 class="text-3xl md:text-5xl font-light text-white tracking-widest uppercase">Rival Series</h1>
-            <p class="text-sm text-zinc-500 font-light tracking-wide">23 Items</p>
-        </div>
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-8" id="product-grid"></div>
+<!-- ── Collection Hero ── -->
+<div style="position:relative;width:100%;height:55vh;min-height:380px;overflow:hidden;background:#000;" class="font-['Outfit']">
+  <img src="images/catalog/competitor-series-leggings/pink-leggings/0472059D-47E3-42E1-A4BF-7C56D78AE11E.jpg" alt="Rival Series" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%;opacity:0.5;display:block;transition:transform 12s ease-out;" id="lgx-coll-img">
+  <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.25) 60%,rgba(0,0,0,0.45) 100%);"></div>
+  <div style="position:absolute;bottom:0;left:0;right:0;padding:clamp(32px,5vw,64px) clamp(16px,4vw,48px);">
+    <span style="font-size:9px;letter-spacing:0.45em;text-transform:uppercase;color:rgba(255,255,255,0.4);font-weight:700;display:block;margin-bottom:14px;">LegginX · FW26</span>
+    <h1 style="font-size:clamp(4rem,12vw,9rem);font-weight:900;text-transform:uppercase;color:#fff;line-height:0.86;letter-spacing:-0.04em;margin-bottom:20px;">Rival</h1>
+    <p style="font-size:clamp(12px,1.1vw,14px);color:rgba(255,255,255,0.45);font-weight:300;letter-spacing:0.05em;max-width:420px;line-height:1.65;">Performance leggings and shorts engineered for elite training. No ride-up. No compromise.</p>
+  </div>
+</div>
+<style>
+  .lgx-col-card { display:flex; flex-direction:column; }
+  .lgx-col-card:hover .lgx-cc-front { opacity:0.35 !important; transform:scale(1.04); }
+  .lgx-col-card:hover .lgx-cc-back  { opacity:1 !important; transform:scale(1) !important; }
+  .lgx-col-card:hover .lgx-cc-qa    { transform:translateY(0) !important; opacity:1 !important; }
+  @media(max-width:1023px){ .lgx-cc-qa { transform:translateY(0) !important; opacity:1 !important; } }
+</style>
+<div style="width:100%;background:#09090b;" class="font-['Outfit']">
+  <div style="max-width:90rem;margin:0 auto;padding:24px 24px 20px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+    <span id="lgx-count" style="font-size:11px;color:#52525b;letter-spacing:0.12em;text-transform:uppercase;">— Items</span>
+    <div style="position:relative;">
+      <select id="lgx-sort" style="appearance:none;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;padding:10px 36px 10px 16px;font-family:inherit;cursor:pointer;outline:none;">
+        <option value="default">Featured</option>
+        <option value="price-asc">Price: Low → High</option>
+        <option value="price-desc">Price: High → Low</option>
+        <option value="name">Name A–Z</option>
+      </select>
+      <svg style="position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;width:12px;height:12px;" fill="none" stroke="rgba(255,255,255,0.4)" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
     </div>
+  </div>
+  <div style="max-width:90rem;margin:0 auto;padding:2px 0 96px;">
+    <div id="product-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:2px;"></div>
+    <p id="lgx-empty" style="display:none;text-align:center;padding:80px 0;font-size:13px;color:#52525b;letter-spacing:0.1em;">No products found.</p>
+  </div>
 </div>
 
 <footer class="bg-black py-20 px-8 border-t border-white/5 font-['Outfit'] mt-auto">
@@ -100,34 +126,65 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    const grid = document.getElementById('product-grid');
-    const filterCats = ["competitor-series-leggings", "competitor-shorts-1"];
-    const products = window.LegginXProducts.filter(p => !filterCats || filterCats.includes(p.cat_handle));
-    
-    let htmlStr = '';
-    products.forEach(p => {
-        let slidesStr = '';
-        p.images.forEach(img => {
-            slidesStr += `<a href="product.html?id=${p.id}" class="w-full h-full flex-shrink-0 snap-center cursor-pointer block"><img src="${img}" class="w-full h-full object-cover object-top opacity-80 hover:opacity-100 transition-opacity"></a>`;
-        });
-        htmlStr += `
-        <div class="legginx-product-card group relative flex flex-col rounded-xl glass-panel reveal-glow p-2 transition-transform hover:-translate-y-1">
-          <div class="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-black flex-grow">
-            <div class="relative w-full h-full flex snap-x snap-mandatory overflow-x-auto hide-scrollbar scroll-smooth" id="slider-${p.id}">${slidesStr}</div>
-            <button class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-black/40 rounded-full text-white opacity-100 lg:opacity-0 lg:group-hover:opacity-100 z-10" onclick="document.getElementById('slider-${p.id}').scrollBy({left: -300, behavior: 'smooth'})">&#10094;</button>
-            <button class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-black/40 rounded-full text-white opacity-100 lg:opacity-0 lg:group-hover:opacity-100 z-10" onclick="document.getElementById('slider-${p.id}').scrollBy({left: 300, behavior: 'smooth'})">&#10095;</button>
-            <form class="absolute bottom-4 left-4 right-4 translate-y-8 group-hover:translate-y-0 transition-all opacity-0 group-hover:opacity-100 z-10">
-              <button type="button" class="quick-add-btn w-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium py-3 px-4 rounded-lg hover:bg-white hover:text-black uppercase tracking-widest text-xs transition-all">Quick Add / ${p.price}</button>
-            </form>
-          </div>
-          <div class="mt-4 px-2">
-            <p class="text-[10px] text-zinc-500 uppercase tracking-widest">${p.category}</p>
-            <h3 class="text-sm font-medium text-white truncate mt-1"><a href="product.html?id=${p.id}">${p.name}</a></h3>
-            <p class="text-sm text-zinc-400 mt-1">${p.price}</p>
-          </div>
-        </div>`;
+  const heroImg = document.getElementById('lgx-coll-img');
+  if (heroImg) heroImg.style.transform = 'scale(1.06)';
+
+  const grid    = document.getElementById('product-grid');
+  const countEl = document.getElementById('lgx-count');
+  const emptyEl = document.getElementById('lgx-empty');
+  const sortEl  = document.getElementById('lgx-sort');
+  const colorMap = { crimson:'#c0392b',rose:'#e8a0a8',navy:'#1a2a4a',black:'#111',grey:'#888',plum:'#5c2d5c',white:'#f5f5f5',sage:'#7a9e7e',mauve:'#a07080',blue:'#2563eb',pink:'#f472b6',green:'#16a34a',purple:'#7c3aed',brown:'#78350f',tan:'#c9a96e',sand:'#d4a76a',olive:'#6b7c1e',burgundy:'#800020',coral:'#ff6b6b',teal:'#0d9488',mint:'#3eb489',sky:'#87ceeb',peach:'#ffcba4',lavender:'#e6e6fa',stone:'#8e8e8e',onyx:'#111820',hazel:'#8b6914',almond:'#efdecd',shadow:'#555',royal:'#4169e1' };
+  const filterCats = ["competitor-series-leggings","competitor-shorts-1"];
+
+  function getColor(name) {
+    const part = (name.split(' - ')[1] || '').toLowerCase().trim();
+    return { name: part, hex: colorMap[part] || null };
+  }
+  function buildCard(p, idx) {
+    const hasBack = p.images && p.images.length > 1;
+    const swatch  = getColor(p.name);
+    const badge   = idx === 0 ? 'Best Seller' : idx === 2 ? 'New' : '';
+    return `<div class="lgx-col-card" style="position:relative;">
+      <div style="position:relative;aspect-ratio:3/4;overflow:hidden;background:#0d0d0f;">
+        <a href="product.html?id=${p.id}" style="position:absolute;inset:0;display:block;">
+          <img src="${p.images[0]}" alt="${p.name}" class="lgx-cc-front" style="width:100%;height:100%;object-fit:cover;opacity:0.88;transition:opacity 0.55s,transform 0.65s ease;display:block;">
+          ${hasBack ? `<img src="${p.images[1]}" alt="${p.name}" class="lgx-cc-back" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:0;transform:scale(1.03);transition:opacity 0.5s,transform 0.65s ease;display:block;">` : ''}
+        </a>
+        ${badge ? `<span style="position:absolute;top:10px;left:10px;z-index:4;font-size:8px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:4px 9px;background:#fff;color:#000;">${badge}</span>` : ''}
+        <button type="button" class="lgx-cc-qa quick-add-btn" data-id="${p.id}" data-name="${p.name}" data-price="${p.price.replace(/[^0-9.]/g,'')}" data-image="${p.images[0]}" style="position:absolute;bottom:0;left:0;right:0;background:rgba(255,255,255,0.96);color:#000;border:none;padding:12px;font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;cursor:pointer;font-family:inherit;transform:translateY(100%);opacity:0;transition:transform 0.36s cubic-bezier(0.16,1,0.3,1),opacity 0.28s ease;z-index:5;">Add to Bag</button>
+      </div>
+      <div style="padding:14px 2px 8px;background:#09090b;">
+        <div style="display:flex;justify-content:space-between;gap:8px;margin-bottom:6px;">
+          <a href="product.html?id=${p.id}" style="font-size:11px;font-weight:600;color:#e5e5e5;letter-spacing:0.06em;text-transform:uppercase;line-height:1.3;text-decoration:none;flex:1;">${p.name}</a>
+          <span style="font-size:12px;color:#71717a;white-space:nowrap;flex-shrink:0;">${p.price}</span>
+        </div>
+        ${swatch.hex ? `<div style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:12px;border-radius:50%;background:${swatch.hex};display:inline-block;border:1px solid rgba(255,255,255,0.15);"></span><span style="font-size:9px;color:#52525b;letter-spacing:0.1em;text-transform:capitalize;">${swatch.name}</span></div>` : ''}
+      </div>
+    </div>`;
+  }
+  function render() {
+    let products = window.LegginXProducts ? [...window.LegginXProducts] : [];
+    products = products.filter(p => filterCats.includes(p.cat_handle));
+    const sortVal = sortEl ? sortEl.value : 'default';
+    if (sortVal === 'price-asc')  products.sort((a,b) => parseFloat(a.price.replace(/[^0-9.]/g,'')) - parseFloat(b.price.replace(/[^0-9.]/g,'')));
+    if (sortVal === 'price-desc') products.sort((a,b) => parseFloat(b.price.replace(/[^0-9.]/g,'')) - parseFloat(a.price.replace(/[^0-9.]/g,'')));
+    if (sortVal === 'name')       products.sort((a,b) => a.name.localeCompare(b.name));
+    countEl.textContent = `${products.length} Items`;
+    emptyEl.style.display = products.length ? 'none' : 'block';
+    const catIdx = {};
+    grid.innerHTML = products.map(p => { const ci = catIdx[p.cat_handle] = (catIdx[p.cat_handle]||0); catIdx[p.cat_handle]++; return buildCard(p, ci); }).join('');
+    applyGridCols();
+    grid.querySelectorAll('.quick-add-btn').forEach(btn => {
+      btn.addEventListener('click', e => { e.preventDefault(); const d = btn.dataset; if (window.LegginXCart) window.LegginXCart.addToCart({id:d.id,name:d.name,price:parseFloat(d.price),image:d.image}); });
     });
-    grid.innerHTML = htmlStr;
+  }
+  function applyGridCols() {
+    const w = window.innerWidth;
+    grid.style.gridTemplateColumns = w >= 1024 ? 'repeat(4,1fr)' : w >= 640 ? 'repeat(3,1fr)' : 'repeat(2,1fr)';
+  }
+  window.addEventListener('resize', applyGridCols);
+  sortEl && sortEl.addEventListener('change', render);
+  render();
 });
 </script>
 </body></html>
