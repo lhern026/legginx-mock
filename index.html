@@ -117,6 +117,9 @@
             gap: 2px;
         }
         @media (max-width: 767px) {
+            #lgx-hero-content {
+                bottom: 60px !important;
+            }
             .lgx-cat-grid {
                 grid-template-columns: 1fr;
                 height: auto;
@@ -219,7 +222,7 @@
   <div id="hero-canvas-container" style="position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:0.35;"></div>
 
   <!-- ── Content — anchored to bottom-left ── -->
-  <div style="position:absolute;bottom:clamp(72px,11vh,130px);left:0;right:0;padding:0 clamp(20px,5.5vw,88px);z-index:10;">
+  <div id="lgx-hero-content" style="position:absolute;bottom:clamp(72px,11vh,130px);left:0;right:0;padding:0 clamp(20px,5.5vw,88px);z-index:10;">
 
     <!-- Massive reveal headline -->
     <h1 style="font-size:clamp(4rem,14vw,15rem);font-weight:900;text-transform:uppercase;line-height:0.86;letter-spacing:-0.04em;margin:0 0 clamp(20px,3.5vh,44px);overflow:visible;">
