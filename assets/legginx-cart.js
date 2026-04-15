@@ -608,7 +608,6 @@
   function bindCartIcon() {
     document.querySelectorAll('a[href="cart.html"]').forEach(link => {
       if (link.closest('#lgx-drawer')) return;
-      if (link.closest('nav.lg\\:hidden')) return;
       link.addEventListener('click', e => {
         e.preventDefault();
         animateCartIcon();
