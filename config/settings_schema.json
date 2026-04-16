@@ -1,0 +1,53 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "LegginX Elite",
+    "theme_version": "1.0.0",
+    "theme_author": "Antigravity",
+    "theme_documentation_url": "https:\/\/github.com\/",
+    "theme_support_url": "https:\/\/support.example.com\/"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bg_body",
+        "label": "Body Background",
+        "default": "#09090b"
+      },
+      {
+        "type": "color",
+        "id": "text_body",
+        "label": "Body Text",
+        "default": "#ededed"
+      },
+      {
+        "type": "color",
+        "id": "accent",
+        "label": "Accent Color",
+        "default": "#ffffff"
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram Link"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter Link"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook Link"
+      }
+    ]
+  }
+]

@@ -1,0 +1,103 @@
+<div style="background:{{ section.settings.bg_color }};overflow:hidden;border-top:1px solid {{ section.settings.border_color }};border-bottom:1px solid {{ section.settings.border_color }};padding:{{ section.settings.padding }}px 0;" class="relative w-full z-20">
+  <div class="lgx-ticker-track" style="animation-duration:{{ section.settings.speed }}s;">
+    {%- for i in (1..2) -%}
+      <span style="display:flex;align-items:center;gap:40px;padding-right:40px;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:{{ section.settings.text_color }};white-space:nowrap;">
+        {%- for block in section.blocks -%}
+          <span>{{ block.settings.text | escape }}</span>
+          {%- unless forloop.last -%}
+            <span style="color:{{ section.settings.dot_color }};">·</span>
+          {%- endunless -%}
+        {%- endfor -%}
+        <span style="color:{{ section.settings.dot_color }};">·</span>
+      </span>
+    {%- endfor -%}
+  </div>
+</div>
+
+<style>
+  @keyframes lgx-ticker {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .lgx-ticker-track {
+    display: flex;
+    width: max-content;
+    animation: lgx-ticker linear infinite;
+  }
+  .lgx-ticker-track:hover { animation-play-state: paused; }
+</style>
+
+{% schema %}
+{
+  "name": "LegginX Ticker",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#e5e5e5"
+    },
+    {
+      "type": "color",
+      "id": "dot_color",
+      "label": "Dot Color",
+      "default": "#cccccc"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Scroll Speed (Seconds)",
+      "min": 5,
+      "max": 60,
+      "step": 1,
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding",
+      "label": "Padding (px)",
+      "min": 5,
+      "max": 30,
+      "step": 1,
+      "default": 12
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Ticker Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Free Shipping All Orders"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "LegginX Ticker",
+      "blocks": [
+        { "type": "text", "settings": { "text": "Free Shipping" } },
+        { "type": "text", "settings": { "text": "Free Returns" } },
+        { "type": "text", "settings": { "text": "New Drops Weekly" } },
+        { "type": "text", "settings": { "text": "FW26" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

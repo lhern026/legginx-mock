@@ -52,7 +52,7 @@
         @media (max-width: 767px) {
             /* Stack to column, hide sidebar (bottom nav handles navigation) */
             main { flex-direction: column !important; padding: 0 16px 40px !important; gap: 0 !important; }
-            aside { display: none !important; }
+            main > aside { display: none !important; }
             /* Tighten stat chip padding */
             .stat-card { padding: 12px 8px !important; }
             /* Tighten order card padding */
@@ -459,7 +459,7 @@
             <p style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.85);
                       margin-bottom:2px">Glow Legging</p>
             <p style="font-size:11px;color:rgba(255,255,255,0.3);margin-bottom:12px">Black · $58</p>
-            <button style="width:100%;height:34px;background:none;border:1px solid rgba(255,255,255,0.14);
+            <button class="quick-add-btn" data-id="glow_legging_black" data-name="Glow Legging" data-price="58" data-image="images/catalog/glow-leggings/glow-leggings/DSC06652.jpg" style="width:100%;height:34px;background:none;border:1px solid rgba(255,255,255,0.14);
                            color:rgba(255,255,255,0.6);font-size:9px;text-transform:uppercase;
                            letter-spacing:0.16em;font-weight:700;cursor:pointer;
                            font-family:'Outfit',sans-serif;transition:background .18s,color .18s,border-color .18s"
@@ -485,7 +485,7 @@
             <p style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.85);
                       margin-bottom:2px">Aura Bra</p>
             <p style="font-size:11px;color:rgba(255,255,255,0.3);margin-bottom:12px">Obsidian · $48</p>
-            <button style="width:100%;height:34px;background:none;border:1px solid rgba(255,255,255,0.14);
+            <button class="quick-add-btn" data-id="aura_obsidian" data-name="Aura Bra" data-price="48" data-image="images/aura_obsidian.png" style="width:100%;height:34px;background:none;border:1px solid rgba(255,255,255,0.14);
                            color:rgba(255,255,255,0.6);font-size:9px;text-transform:uppercase;
                            letter-spacing:0.16em;font-weight:700;cursor:pointer;
                            font-family:'Outfit',sans-serif;transition:background .18s,color .18s,border-color .18s"
@@ -601,6 +601,21 @@
 <!-- ══════════════════════════════════════════════════
      MOBILE BOTTOM NAV
 ══════════════════════════════════════════════════ -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-[#09090b]/90 backdrop-blur-md border-t border-white/5 flex items-center justify-around py-4 z-50 transition-transform duration-300">
+  <a href="#" class="tab-trigger side-link active flex flex-col items-center gap-1 text-white/40 hover:text-white transition-colors" data-tab="tab-overview">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+  </a>
+  <a href="#" class="tab-trigger side-link flex flex-col items-center gap-1 text-white/40 hover:text-white transition-colors" data-tab="tab-orders">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+  </a>
+  <a id="cart-trigger" href="cart.html" class="flex flex-col items-center gap-1 text-white/40 hover:text-white transition-colors relative">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg>
+    <span id="cart-count" class="absolute -top-1 -right-2 bg-white text-black text-[9px] font-bold w-3.5 h-3.5 rounded-full flex items-center justify-center">0</span>
+  </a>
+  <a href="#" class="tab-trigger side-link flex flex-col items-center gap-1 text-white/40 hover:text-white transition-colors" data-tab="tab-settings">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+  </a>
+</nav>
 
 <script>
   // Tab switching

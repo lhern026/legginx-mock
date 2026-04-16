@@ -1,0 +1,52 @@
+{
+  "sections": {
+    "hero": {
+      "type": "legginx-hero",
+      "settings": {
+        "kicker": "Built for Real Training.",
+        "heading": "LegginX Performance",
+        "subheading": "The most advanced performance wear ever made. Sculpted for movement, designed for impact.",
+        "button_label_1": "Shop All",
+        "button_link_1": "shopify:\/\/collections\/all"
+      }
+    },
+    "ticker": {
+      "type": "legginx-ticker",
+      "settings": {
+        "speed": 28,
+        "bg_color": "#ffffff",
+        "text_color": "#0a0a0a"
+      }
+    },
+    "new_arrivals": {
+      "type": "legginx-featured-collection",
+      "settings": {
+        "watermark": "New In",
+        "button_label": "Shop All New"
+      }
+    },
+    "categories": {
+      "type": "legginx-categories",
+      "settings": {
+        "kicker": "Collections",
+        "heading": "Shop The Range"
+      }
+    },
+    "editorial": {
+      "type": "legginx-editorial-edit",
+      "settings": {
+        "heading": "Rival Series",
+        "label": "Rival Series · FW26",
+        "button_label": "Shop Rival Series",
+        "button_link": "shopify:\/\/collections\/all"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "ticker",
+    "new_arrivals",
+    "categories",
+    "editorial"
+  ]
+}
