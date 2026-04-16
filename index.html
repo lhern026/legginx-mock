@@ -225,34 +225,14 @@
   <!-- ── Content — anchored to bottom-left ── -->
   <div id="lgx-hero-content" style="position:absolute;bottom:clamp(72px,11vh,130px);left:0;right:0;padding:0 clamp(20px,5.5vw,88px);z-index:10;">
 
-    <!-- Massive reveal headline -->
-    <h1 style="font-size:clamp(4rem,14vw,15rem);font-weight:900;text-transform:uppercase;line-height:0.86;letter-spacing:-0.04em;margin:0 0 clamp(20px,3.5vh,44px);overflow:visible;">
+    <!-- Headline -->
+    <div style="overflow:hidden;margin:0 0 clamp(24px,4vh,48px);">
+      <h1 id="lgx-h1" style="font-size:clamp(3rem,10vw,11rem);font-weight:900;text-transform:uppercase;line-height:0.9;letter-spacing:-0.04em;color:#fff;margin:0;transform:translateY(108%);transition:transform 1.05s cubic-bezier(0.16,1,0.3,1);">Built for<br>Real Training.</h1>
+    </div>
 
-      <div style="overflow:hidden;">
-        <div id="lgx-h1" style="color:#fff;transform:translateY(108%);transition:transform 1.05s cubic-bezier(0.16,1,0.3,1);">Sculpted.</div>
-      </div>
-
-      <div style="overflow:hidden;">
-        <div id="lgx-h2" style="color:#fff;transform:translateY(108%);transition:transform 1.05s cubic-bezier(0.16,1,0.3,1) 0.09s;">Zero Slip.</div>
-      </div>
-
-      <div style="overflow:hidden;">
-        <div id="lgx-h3" style="color:rgba(255,255,255,0.22);transform:translateY(108%);transition:transform 1.05s cubic-bezier(0.16,1,0.3,1) 0.18s;">
-          Built to <span id="lgx-cycle-word" style="color:#fff;">Win.</span>
-        </div>
-      </div>
-
-    </h1>
-
-    <!-- Sub row — fades in after lines -->
-    <div id="lgx-sub-row" style="display:flex;align-items:center;flex-wrap:wrap;gap:clamp(16px,3vw,40px);opacity:0;transform:translateY(18px);transition:opacity 0.85s ease,transform 0.85s ease;">
-      <p style="font-size:clamp(12px,1.05vw,14px);color:rgba(255,255,255,0.45);font-weight:300;letter-spacing:0.04em;line-height:1.75;max-width:300px;flex-shrink:0;">
-        Built for real training.
-      </p>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <a href="all-items.html" style="display:inline-block;background:#fff;color:#000;padding:14px 34px;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;font-family:inherit;text-decoration:none;transition:background 0.2s,transform 0.15s;" onmouseover="this.style.background='#e5e5e5';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#fff';this.style.transform='none'">Shop Best Sellers →</a>
-        <a href="all-items.html" style="display:inline-block;background:transparent;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.22);padding:14px 34px;font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;font-family:inherit;text-decoration:none;transition:border-color 0.2s,color 0.2s;" onmouseover="this.style.borderColor='rgba(255,255,255,0.65)';this.style.color='#fff'" onmouseout="this.style.borderColor='rgba(255,255,255,0.22)';this.style.color='rgba(255,255,255,0.6)'">Find Your Fit</a>
-      </div>
+    <!-- Single CTA -->
+    <div id="lgx-sub-row" style="opacity:0;transform:translateY(18px);transition:opacity 0.85s ease,transform 0.85s ease;">
+      <a href="all-items.html" style="display:inline-block;background:#fff;color:#000;padding:14px 34px;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;font-family:inherit;text-decoration:none;transition:background 0.2s,transform 0.15s;" onmouseover="this.style.background='#e5e5e5';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#fff';this.style.transform='none'">Shop Now →</a>
     </div>
 
   </div>
@@ -263,45 +243,13 @@
 <script>
   document.addEventListener('DOMContentLoaded', () => {
 
-    // ── Hero text entrance — pure JS, no class dependency
+    // ── Hero text entrance
     const h1 = document.getElementById('lgx-h1');
-    const h2 = document.getElementById('lgx-h2');
-    const h3 = document.getElementById('lgx-h3');
     const subRow = document.getElementById('lgx-sub-row');
-
     requestAnimationFrame(() => {
-      setTimeout(() => {
-        if (h1) h1.style.transform = 'translateY(0)';
-        if (h2) h2.style.transform = 'translateY(0)';
-        if (h3) h3.style.transform = 'translateY(0)';
-      }, 80);
-      setTimeout(() => {
-        if (subRow) { subRow.style.opacity = '1'; subRow.style.transform = 'translateY(0)'; }
-      }, 620);
+      setTimeout(() => { if (h1) h1.style.transform = 'translateY(0)'; }, 80);
+      setTimeout(() => { if (subRow) { subRow.style.opacity = '1'; subRow.style.transform = 'translateY(0)'; } }, 500);
     });
-
-    // ── Cycling word
-    const words = ['Win.', 'Compete.', 'Perform.', 'Dominate.', 'Train.'];
-    let idx = 0;
-    const wordEl = document.getElementById('lgx-cycle-word');
-    if (wordEl) {
-      setInterval(() => {
-        idx = (idx + 1) % words.length;
-        wordEl.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
-        wordEl.style.opacity = '0';
-        wordEl.style.transform = 'translateY(-14px)';
-        setTimeout(() => {
-          wordEl.textContent = words[idx];
-          wordEl.style.transition = 'none';
-          wordEl.style.transform = 'translateY(14px)';
-          requestAnimationFrame(() => requestAnimationFrame(() => {
-            wordEl.style.transition = 'opacity 0.35s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1)';
-            wordEl.style.opacity = '1';
-            wordEl.style.transform = 'translateY(0)';
-          }));
-        }, 260);
-      }, 2800);
-    }
 
     // ── Ken Burns + scroll parallax
     const heroImg = document.getElementById('lgx-hero-img');
@@ -331,17 +279,25 @@
 <div style="background:#fff;overflow:hidden;border-top:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5;padding:12px 0;" class="relative w-full z-20">
   <div class="lgx-ticker-track">
     <!-- First set -->
-    <span style="display:flex;align-items:center;gap:48px;padding-right:48px;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#0a0a0a;white-space:nowrap;">
+    <span style="display:flex;align-items:center;gap:40px;padding-right:40px;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#0a0a0a;white-space:nowrap;">
       <span>Free Shipping</span>
       <span style="color:#ccc;">·</span>
       <span>Free Returns</span>
+      <span style="color:#ccc;">·</span>
+      <span>New Drops Weekly</span>
+      <span style="color:#ccc;">·</span>
+      <span>FW26</span>
       <span style="color:#ccc;">·</span>
     </span>
     <!-- Duplicate for seamless loop -->
-    <span style="display:flex;align-items:center;gap:48px;padding-right:48px;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#0a0a0a;white-space:nowrap;">
+    <span style="display:flex;align-items:center;gap:40px;padding-right:40px;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#0a0a0a;white-space:nowrap;">
       <span>Free Shipping</span>
       <span style="color:#ccc;">·</span>
       <span>Free Returns</span>
+      <span style="color:#ccc;">·</span>
+      <span>New Drops Weekly</span>
+      <span style="color:#ccc;">·</span>
+      <span>FW26</span>
       <span style="color:#ccc;">·</span>
     </span>
   </div>
@@ -583,46 +539,6 @@
   });
 </script>
 
-<!-- ════════════════════════════════════════════════════════════
-     PERKS STRIP
-     ════════════════════════════════════════════════════════════ -->
-<section style="width:100%;background:#09090b;padding:64px 24px;border-bottom:1px solid rgba(255,255,255,0.05);" class="font-['Outfit']">
-  <div style="max-width:90rem;margin:0 auto;" class="lgx-perks-grid">
-
-    <div class="lgx-perk" style="padding:24px 16px;">
-      <div class="lgx-perk-icon" style="margin:0 auto 16px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;">
-        <svg width="32" height="32" fill="none" stroke="#fff" stroke-width="1.4" viewBox="0 0 24 24"><path d="M12 19.5C7.305 19.5 3.5 15.694 3.5 11S7.305 2.5 12 2.5s8.5 3.806 8.5 8.5-3.805 9-8.5 9z" stroke-linecap="round"/><path d="M12 6.5v5l3 3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <p style="font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#fff;margin-bottom:6px;">2-Day Delivery</p>
-      <p style="font-size:11px;color:#71717a;letter-spacing:0.04em;line-height:1.5;">Express shipping on all orders over $75</p>
-    </div>
-
-    <div class="lgx-perk" style="padding:24px 16px;border-left:1px solid rgba(255,255,255,0.06);">
-      <div class="lgx-perk-icon" style="margin:0 auto 16px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;">
-        <svg width="32" height="32" fill="none" stroke="#fff" stroke-width="1.4" viewBox="0 0 24 24"><path d="M3 12h18M12 3c-4.97 5.5-4.97 12.5 0 18M12 3c4.97 5.5 4.97 12.5 0 18" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <p style="font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#fff;margin-bottom:6px;">Free Worldwide</p>
-      <p style="font-size:11px;color:#71717a;letter-spacing:0.04em;line-height:1.5;">Free standard shipping on every single order</p>
-    </div>
-
-    <div class="lgx-perk" style="padding:24px 16px;border-left:1px solid rgba(255,255,255,0.06);">
-      <div class="lgx-perk-icon" style="margin:0 auto 16px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;">
-        <svg width="32" height="32" fill="none" stroke="#fff" stroke-width="1.4" viewBox="0 0 24 24"><path d="M16.5 9.4L7.55 4.24M3.61 6.02L12 11m0 0v9M12 11l8.39-4.98M3.61 6.02A2 2 0 013 7.73v8.54a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4a2 2 0 001-1.73V7.73a2 2 0 00-.61-1.71L12 2 3.61 6.02z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <p style="font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#fff;margin-bottom:6px;">Free Returns</p>
-      <p style="font-size:11px;color:#71717a;letter-spacing:0.04em;line-height:1.5;">Hassle-free returns within 30 days of purchase</p>
-    </div>
-
-    <div class="lgx-perk" style="padding:24px 16px;border-left:1px solid rgba(255,255,255,0.06);">
-      <div class="lgx-perk-icon" style="margin:0 auto 16px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;">
-        <svg width="32" height="32" fill="none" stroke="#fff" stroke-width="1.4" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <p style="font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#fff;margin-bottom:6px;">Fit Guarantee</p>
-      <p style="font-size:11px;color:#71717a;letter-spacing:0.04em;line-height:1.5;">If it doesn't fit perfectly, we'll make it right</p>
-    </div>
-
-  </div>
-</section>
 
 
 
