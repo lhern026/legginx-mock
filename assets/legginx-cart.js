@@ -623,7 +623,7 @@
     document._lgxCartBound = true;
 
     const handle = e => {
-      const link = e.target.closest('a[href="cart.html"]');
+      const link = e.target.closest('a[href="cart.html"], #cart-trigger');
       if (!link || link.closest('#lgx-drawer')) return;
       e.preventDefault();
       e.stopPropagation();
@@ -631,8 +631,7 @@
       openCartDrawer();
     };
 
-    document.addEventListener('click',    handle, true);
-    document.addEventListener('touchend', handle, { capture: true, passive: false });
+    document.addEventListener('click', handle, true);
   }
 
   // ── Mobile nav drawer — inject on pages that have the toggle but not the drawer ──

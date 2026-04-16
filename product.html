@@ -8,7 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="assets/legginx-animations.js" defer></script>
     <script src="assets/product-data.js"></script>
-    <script src="assets/legginx-cart.js?v=11" defer></script>
+    <script src="assets/legginx-cart.js?v=12" defer></script>
+    <script src="assets/legginx-search.js?v=1" defer></script>
     <style>
         body { font-family: 'Outfit', sans-serif; background-color: #09090b; color: #ededed; }
         .glass-panel {
@@ -133,40 +134,34 @@
 </head>
 <body class="min-h-screen antialiased selection:bg-white selection:text-black">
 
-<!-- HEADER SECTION -->
+<!-- ════════════════════════════════════════════════════════════
+     HEADER
+     ════════════════════════════════════════════════════════════ -->
 <header class="fixed top-0 left-0 right-0 z-[100] w-full transition-all duration-300 bg-transparent flex flex-col font-['Outfit'] antialiased group" id="legginx-header">
-  <div class="bg-black text-white text-xs font-semibold tracking-widest uppercase text-center py-2 relative z-20 w-full">
-    Free Shipping on All Orders
-  </div>
-  <div class="w-full px-6 md:px-12 py-4 flex items-center justify-between transition-all duration-500 bg-gradient-to-b from-black/80 to-transparent group-hover:bg-black/90 group-hover:backdrop-blur-md">
-    <div class="flex-1 flex items-center lg:hidden">
-      <button id="mobile-nav-toggle" class="text-white hover:text-zinc-400 transition-colors" aria-label="Open navigation">
+  <div class="w-full px-5 md:px-12 py-6 flex items-center justify-between transition-all duration-500 bg-gradient-to-b from-black/80 to-transparent group-hover:bg-black/90 group-hover:backdrop-blur-md">
+    <div class="flex-1 flex items-center">
+      <button id="mobile-nav-toggle" class="lg:hidden text-white hover:text-zinc-400 transition-colors">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"/></svg>
       </button>
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="rival.html"      class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400">Rival</a>
+        <a href="glow.html"       class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400">Glow</a>
+        <a href="aura.html"       class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400">Aura</a>
+        <a href="all-items.html"  class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400">All Items</a>
+        <a href="essentials.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400">Essentials</a>
+      </nav>
     </div>
-    <nav class="hidden lg:flex items-center gap-8 flex-1">
-      <a href="rival.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Rival</a>
-      <a href="glow.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Glow</a>
-      <a href="aura.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Aura</a>
-      <a href="all-items.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors" style="color: #cbd5e1;">All Items</a>
-      <a href="essentials.html" class="text-xs font-medium uppercase tracking-[0.2em] text-white hover:text-zinc-400 transition-colors">Essentials</a>
-    </nav>
-    <div class="flex-1 flex justify-center items-center">
-      <a href="index.html" class="text-white hover:scale-110 transition-transform duration-500 filter drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
-        <img src="assets/logo.png" class="w-8 h-8 md:w-10 md:h-10" alt="LegginX">
+    <div class="flex-shrink-0 mx-8">
+      <a href="index.html" class="text-white hover:scale-110 transition-transform duration-500 block filter drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
+        <img src="assets/logo.png" class="w-10 h-10 md:w-12 md:h-12 opacity-90 transition-opacity" alt="LegginX">
       </a>
     </div>
-    <div class="flex flex-1 items-center justify-end gap-6 text-white">
-      <a href="#" id="search-trigger" class="hover:text-zinc-400 transition-colors">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>
-      </a>
-      <a href="profile.html" class="hover:text-zinc-400 transition-colors hidden sm:block">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
-      </a>
-      <a href="cart.html" class="hover:text-zinc-400 transition-colors flex items-center relative">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/></svg>
-        <span id="cart-count" class="absolute -top-2 -right-2 bg-white text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center transition-transform duration-300">0</span>
-      </a>
+    <div class="flex flex-1 items-center justify-end gap-5 text-white">
+      <button id="search-trigger" class="hover:text-zinc-400 transition-colors cursor-pointer">
+        <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"/></svg>
+      </button>
+      <a href="profile.html" class="hover:text-zinc-400"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg></a>
+      <a href="cart.html" id="cart-trigger" class="relative group"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/></svg><span id="cart-count" class="absolute -top-2 -right-2 bg-white text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span></a>
     </div>
   </div>
 </header>
@@ -716,20 +711,6 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- ════════════════════════════════════════════════════════════
      SEARCH MODAL
      ════════════════════════════════════════════════════════════ -->
-<div id="search-modal" class="fixed inset-0 z-[600] hidden opacity-0 transition-opacity duration-300">
-  <div class="absolute inset-0 bg-black/95 backdrop-blur-3xl"></div>
-  <div class="relative z-10 w-full h-full flex flex-col p-6 sm:p-20">
-    <div class="flex justify-end mb-12">
-      <button id="search-close" class="text-white hover:rotate-90 transition-transform duration-300 cursor-pointer">
-        <svg class="size-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
-      </button>
-    </div>
-    <div class="max-w-4xl mx-auto w-full">
-      <input type="text" id="search-input" placeholder="SEARCH OUR CATALOG..." class="w-full bg-transparent border-b-2 border-white/20 py-6 text-2xl sm:text-5xl font-bold text-white uppercase tracking-tighter focus:outline-none focus:border-white transition-all placeholder:text-white/10">
-      <div id="search-results" class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-6"></div>
-    </div>
-  </div>
-</div>
 
 <footer class="bg-black py-20 px-8 border-t border-white/5 font-['Outfit'] w-full mt-24">
   <div class="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 text-left">
@@ -784,13 +765,6 @@ document.addEventListener('DOMContentLoaded', function() {
      ════════════════════════════════════════════════════════════ -->
 
 <script>
-  // Search Modal Toggle
-  const sTrig = document.getElementById('search-trigger');
-  const sClose = document.getElementById('search-close');
-  const sModal = document.getElementById('search-modal');
-  const sInput = document.getElementById('search-input');
-  if (sTrig) sTrig.onclick = () => { sModal.classList.remove('hidden'); setTimeout(()=>sModal.classList.remove('opacity-0'),10); sInput.focus(); document.body.style.overflow='hidden'; };
-  if (sClose) sClose.onclick = () => { sModal.classList.add('opacity-0'); setTimeout(()=>sModal.classList.add('hidden'),300); document.body.style.overflow=''; };
 </script>
 
 </body>
