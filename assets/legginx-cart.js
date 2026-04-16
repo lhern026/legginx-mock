@@ -122,14 +122,13 @@
 
     document.body.insertAdjacentHTML('beforeend', `
       <div id="lgx-backdrop"
-           style="position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:400;
-                  backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
+           style="position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9000;
                   opacity:0;pointer-events:none;
                   transition:opacity 0.38s ease;"></div>
 
       <aside id="lgx-drawer"
              role="dialog" aria-modal="true" aria-label="Cart"
-             style="position:fixed;top:0;right:0;height:100%;z-index:401;
+             style="position:fixed;top:0;right:0;height:100%;z-index:9001;
                     width:100%;max-width:420px;
                     background:#0d0d0d;
                     border-left:1px solid rgba(255,255,255,0.07);
@@ -137,8 +136,7 @@
                     font-family:'Outfit',sans-serif;
                     box-shadow:-24px 0 64px rgba(0,0,0,0.6);
                     transform:translateX(100%);
-                    transition:transform 0.44s cubic-bezier(0.76,0,0.24,1);
-                    will-change:transform;">
+                    transition:transform 0.44s cubic-bezier(0.76,0,0.24,1);">
 
         <!-- HEADER -->
         <div id="lgx-header"
