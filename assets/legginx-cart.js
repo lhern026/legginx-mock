@@ -615,23 +615,24 @@
   }
 
   // ── Hijack cart icon links ─────────────────────────────────
+  // Use capture-phase delegation on document so we intercept the click
+  // before the browser begins any navigation — works on all viewports
+  // and input types (touch or mouse).
   function bindCartIcon() {
-    document.querySelectorAll('a[href="cart.html"]').forEach(link => {
-      if (link.closest('#lgx-drawer')) return;
-      if (link.dataset.lgxCartBound) return;
-      link.dataset.lgxCartBound = 'true';
+    if (document._lgxCartBound) return;
+    document._lgxCartBound = true;
 
-      const openCart = e => {
-        e.preventDefault();
-        animateCartIcon();
-        openCartDrawer();
-      };
+    const handle = e => {
+      const link = e.target.closest('a[href="cart.html"]');
+      if (!link || link.closest('#lgx-drawer')) return;
+      e.preventDefault();
+      e.stopPropagation();
+      animateCartIcon();
+      openCartDrawer();
+    };
 
-      // touchend fires before click on mobile — preventDefault stops the
-      // browser from also firing a click event, so the drawer opens once.
-      link.addEventListener('touchend', openCart, { passive: false });
-      link.addEventListener('click', openCart);
-    });
+    document.addEventListener('click',    handle, true);
+    document.addEventListener('touchend', handle, { capture: true, passive: false });
   }
 
   // ── Mobile nav drawer — inject on pages that have the toggle but not the drawer ──
