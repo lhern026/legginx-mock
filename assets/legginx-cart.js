@@ -123,7 +123,9 @@
     document.body.insertAdjacentHTML('beforeend', `
       <div id="lgx-backdrop"
            style="position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:400;
-                  backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)"></div>
+                  backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
+                  opacity:0;pointer-events:none;
+                  transition:opacity 0.38s ease;"></div>
 
       <aside id="lgx-drawer"
              role="dialog" aria-modal="true" aria-label="Cart"
@@ -133,7 +135,10 @@
                     border-left:1px solid rgba(255,255,255,0.07);
                     display:flex;flex-direction:column;
                     font-family:'Outfit',sans-serif;
-                    box-shadow:-24px 0 64px rgba(0,0,0,0.6)">
+                    box-shadow:-24px 0 64px rgba(0,0,0,0.6);
+                    transform:translateX(100%);
+                    transition:transform 0.44s cubic-bezier(0.76,0,0.24,1);
+                    will-change:transform;">
 
         <!-- HEADER -->
         <div id="lgx-header"
@@ -508,9 +513,13 @@
     const backdrop = document.getElementById('lgx-backdrop');
     if (!drawer) return;
     renderCart(animId);
+    // Use inline style directly — immune to CSS specificity / Tailwind conflicts
     requestAnimationFrame(() => {
-      drawer.classList.add('open');
-      if (backdrop) backdrop.classList.add('open');
+      drawer.style.transform = 'translateX(0)';
+      if (backdrop) {
+        backdrop.style.opacity = '1';
+        backdrop.style.pointerEvents = 'all';
+      }
     });
     document.body.style.overflow = 'hidden';
   }
@@ -518,8 +527,11 @@
   function closeCartDrawer() {
     const drawer   = document.getElementById('lgx-drawer');
     const backdrop = document.getElementById('lgx-backdrop');
-    if (drawer)   drawer.classList.remove('open');
-    if (backdrop) backdrop.classList.remove('open');
+    if (drawer)   drawer.style.transform = 'translateX(100%)';
+    if (backdrop) {
+      backdrop.style.opacity = '0';
+      backdrop.style.pointerEvents = 'none';
+    }
     setTimeout(() => { document.body.style.overflow = ''; }, 460);
   }
 
