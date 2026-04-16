@@ -118,9 +118,25 @@
         }
         @media (max-width: 767px) {
             .lgx-best-grid { grid-template-columns: repeat(2,1fr) !important; }
+
+            /* ── Hero ── */
             #lgx-hero-content {
-                bottom: 60px !important;
+                bottom: max(100px, calc(80px + env(safe-area-inset-bottom, 0px))) !important;
+                text-align: center !important;
+                padding: 0 28px !important;
             }
+            #lgx-h1 {
+                font-size: clamp(3rem, 14vw, 5rem) !important;
+            }
+            #lgx-sub-row a {
+                display: inline-block;
+                padding: 16px 40px !important;
+            }
+            #lgx-hero-img {
+                object-position: 60% center !important;
+            }
+
+            /* ── Section padding ── */
             .lgx-cat-grid {
                 grid-template-columns: 1fr;
                 height: auto;
@@ -141,6 +157,20 @@
                 border-left: 1px solid rgba(255,255,255,0.06) !important;
                 border-top: none !important;
             }
+
+            /* ── Instagram grid → 3-col on mobile ── */
+            .lgx-ig-grid {
+                grid-template-columns: 1fr 1fr 1fr !important;
+                grid-template-rows: 1fr 1fr !important;
+                height: auto !important;
+                aspect-ratio: unset !important;
+            }
+            .lgx-ig-grid > div:first-child {
+                grid-column: span 1 !important;
+            }
+
+            /* ── Tighten section padding on mobile ── */
+            .lgx-section-tight { padding-top: 56px !important; padding-bottom: 56px !important; }
         }
     </style>
 </head>
@@ -306,7 +336,7 @@
 <!-- ════════════════════════════════════════════════════════════
      NEW IN — Editorial Drop Section
      ════════════════════════════════════════════════════════════ -->
-<section style="width:100%;background:#000;padding:88px 0 0;overflow:hidden;border-top:1px solid rgba(255,255,255,0.04);" class="font-['Outfit']">
+<section style="width:100%;background:#000;padding:88px 0 0;overflow:hidden;border-top:1px solid rgba(255,255,255,0.04);" class="font-['Outfit'] lgx-section-tight">
   <div style="max-width:90rem;margin:0 auto;padding:0 24px;position:relative;">
 
     <!-- Ghost watermark -->
@@ -551,7 +581,7 @@
 <!-- ════════════════════════════════════════════════════════════
      BESTSELLERS MARQUEE
      ════════════════════════════════════════════════════════════ -->
-<section style="width:100%;background:#09090b;padding:80px 0;overflow:hidden;border-top:1px solid rgba(255,255,255,0.05);" class="font-['Outfit']">
+<section style="width:100%;background:#09090b;padding:80px 0;overflow:hidden;border-top:1px solid rgba(255,255,255,0.05);" class="font-['Outfit'] lgx-section-tight">
   <div style="max-width:90rem;margin:0 auto;padding:0 24px;display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:12px;">
     <div>
       <span style="font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:#71717a;font-weight:600;display:block;margin-bottom:8px;">Top Picks</span>
@@ -598,7 +628,7 @@
 <!-- ════════════════════════════════════════════════════════════
      JOIN THE ELITE (INSTAGRAM)
      ════════════════════════════════════════════════════════════ -->
-<section style="width:100%;padding:80px 24px;border-top:1px solid rgba(255,255,255,0.05);background:rgba(0,0,0,0.2);" class="font-['Outfit']">
+<section style="width:100%;padding:80px 24px;border-top:1px solid rgba(255,255,255,0.05);background:rgba(0,0,0,0.2);" class="font-['Outfit'] lgx-section-tight">
   <div style="max-width:90rem;margin:0 auto;">
     <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;margin-bottom:44px;gap:20px;">
       <div>
@@ -611,7 +641,7 @@
     </div>
 
     <!-- 5-col UGC grid: 1 tall + 4 square -->
-    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:6px;height:clamp(280px,38vw,480px);">
+    <div class="lgx-ig-grid" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:6px;height:clamp(280px,38vw,480px);">
 
       <div style="position:relative;overflow:hidden;border-radius:4px;cursor:pointer;" onmouseover="this.querySelector('img').style.opacity='1';this.querySelector('img').style.transform='scale(1.06)';this.querySelector('.igcap').style.opacity='1';" onmouseout="this.querySelector('img').style.opacity='0.6';this.querySelector('img').style.transform='scale(1)';this.querySelector('.igcap').style.opacity='0';">
         <img src="images/catalog/competitor-series-leggings/pink-leggings/0472059D-47E3-42E1-A4BF-7C56D78AE11E.jpg" style="width:100%;height:100%;object-fit:cover;opacity:0.6;transition:opacity 0.5s,transform 0.7s;display:block;">
@@ -645,7 +675,7 @@
 <!-- ════════════════════════════════════════════════════════════
      NEWSLETTER — Inner Circle
      ════════════════════════════════════════════════════════════ -->
-<section style="width:100%;border-top:1px solid rgba(255,255,255,0.05);background:linear-gradient(to bottom,rgba(0,0,0,0.2),#000);padding:96px 24px;" class="font-['Outfit']">
+<section style="width:100%;border-top:1px solid rgba(255,255,255,0.05);background:linear-gradient(to bottom,rgba(0,0,0,0.2),#000);padding:96px 24px;" class="font-['Outfit'] lgx-section-tight">
   <div style="max-width:680px;margin:0 auto;text-align:center;" class="animate-on-scroll">
     <span style="font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:#71717a;font-weight:600;display:block;margin-bottom:16px;">Inner Circle</span>
     <h2 style="font-size:clamp(2rem,5vw,3.5rem);font-weight:700;text-transform:uppercase;color:#fff;line-height:1;letter-spacing:-0.02em;margin-bottom:20px;">Get Early<br>Access</h2>
