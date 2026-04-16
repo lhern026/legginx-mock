@@ -616,6 +616,55 @@
     });
   }
 
+  // ── Mobile nav drawer — inject on pages that have the toggle but not the drawer ──
+  function bindMobileNav() {
+    const toggle = document.getElementById('mobile-nav-toggle');
+    if (!toggle || document.getElementById('mobile-nav-drawer')) return;
+
+    document.body.insertAdjacentHTML('beforeend', `
+      <div id="mobile-nav-backdrop" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:200;display:none;opacity:0;transition:opacity 0.3s;"></div>
+      <div id="mobile-nav-drawer" style="position:fixed;top:0;left:0;height:100%;width:80%;max-width:320px;background:#09090b;z-index:210;transform:translateX(-100%);transition:transform 0.3s ease;border-right:1px solid rgba(255,255,255,0.05);display:flex;flex-direction:column;padding:32px;font-family:'Outfit',sans-serif;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:48px;">
+          <img src="assets/logo.png" style="width:32px;height:32px;opacity:0.6;" alt="LegginX">
+          <button id="mobile-nav-close" style="background:none;border:none;color:rgba(255,255,255,0.6);cursor:pointer;padding:4px;">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <nav style="display:flex;flex-direction:column;gap:28px;">
+          <a href="rival.html" style="font-size:24px;font-weight:300;letter-spacing:0.12em;color:rgba(255,255,255,0.8);text-decoration:none;text-transform:uppercase;">Rival</a>
+          <a href="glow.html" style="font-size:24px;font-weight:300;letter-spacing:0.12em;color:rgba(255,255,255,0.8);text-decoration:none;text-transform:uppercase;">Glow</a>
+          <a href="aura.html" style="font-size:24px;font-weight:300;letter-spacing:0.12em;color:rgba(255,255,255,0.8);text-decoration:none;text-transform:uppercase;">Aura</a>
+          <a href="all-items.html" style="font-size:24px;font-weight:300;letter-spacing:0.12em;color:rgba(255,255,255,0.8);text-decoration:none;text-transform:uppercase;">All Items</a>
+          <a href="essentials.html" style="font-size:24px;font-weight:300;letter-spacing:0.12em;color:rgba(255,255,255,0.8);text-decoration:none;text-transform:uppercase;">Essentials</a>
+        </nav>
+        <div style="margin-top:auto;border-top:1px solid rgba(255,255,255,0.05);padding-top:32px;display:flex;flex-direction:column;gap:16px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#71717a;">
+          <a href="profile.html" style="color:inherit;text-decoration:none;">My Account</a>
+          <a href="cart.html" style="color:inherit;text-decoration:none;">Shopping Cart</a>
+        </div>
+      </div>
+    `);
+
+    const backdrop = document.getElementById('mobile-nav-backdrop');
+    const drawer   = document.getElementById('mobile-nav-drawer');
+    const closeBtn = document.getElementById('mobile-nav-close');
+
+    function openNav() {
+      backdrop.style.display = 'block';
+      setTimeout(() => backdrop.style.opacity = '1', 10);
+      drawer.style.transform = 'translateX(0)';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeNav() {
+      backdrop.style.opacity = '0';
+      drawer.style.transform = 'translateX(-100%)';
+      setTimeout(() => { backdrop.style.display = 'none'; document.body.style.overflow = ''; }, 300);
+    }
+
+    toggle.addEventListener('click', openNav);
+    closeBtn.addEventListener('click', closeNav);
+    backdrop.addEventListener('click', closeNav);
+  }
+
   // ── Init ───────────────────────────────────────────────────
   function init() {
     injectStyles();
@@ -623,6 +672,7 @@
     renderCart();
     bindQuickAddButtons();
     bindCartIcon();
+    bindMobileNav();
     new MutationObserver(() => bindQuickAddButtons()).observe(document.body, { childList: true, subtree: true });
   }
 
