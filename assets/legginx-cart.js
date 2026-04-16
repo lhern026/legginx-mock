@@ -608,11 +608,19 @@
   function bindCartIcon() {
     document.querySelectorAll('a[href="cart.html"]').forEach(link => {
       if (link.closest('#lgx-drawer')) return;
-      link.addEventListener('click', e => {
+      if (link.dataset.lgxCartBound) return;
+      link.dataset.lgxCartBound = 'true';
+
+      const openCart = e => {
         e.preventDefault();
         animateCartIcon();
         openCartDrawer();
-      });
+      };
+
+      // touchend fires before click on mobile — preventDefault stops the
+      // browser from also firing a click event, so the drawer opens once.
+      link.addEventListener('touchend', openCart, { passive: false });
+      link.addEventListener('click', openCart);
     });
   }
 
